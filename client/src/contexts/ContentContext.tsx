@@ -69,10 +69,10 @@ export interface SiteContent {
 }
 
 const DEFAULT_IMAGES = {
-  hero: "https://images.unsplash.com/photo-1506450622285-d729c366ffde?auto=format&fit=crop&q=80&w=2000",
-  pool: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-  walkway: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=1200",
-  detail: "https://images.unsplash.com/photo-1517551068221-a461e7a0279d?auto=format&fit=crop&q=80&w=1200",
+  hero: "/images/hero.jpg",
+  pool: "/images/commercial.jpg",
+  walkway: "/images/walkway.jpg",
+  detail: "/images/detail.jpg",
 };
 
 export const DEFAULT_CONTENT: SiteContent = {
