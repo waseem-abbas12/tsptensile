@@ -183,13 +183,28 @@ function loadFromStorage(): SiteContent {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_CONTENT;
     const parsed = JSON.parse(raw);
+    
+    // --- AUTO-FIX SCRIPT ---
+    // Automatically fix any old broken unsplash or manus-storage image links in user's saved data
+    if (parsed.projects && Array.isArray(parsed.projects)) {
+      const defaultImgs = [DEFAULT_IMAGES.hero, DEFAULT_IMAGES.pool, DEFAULT_IMAGES.walkway, DEFAULT_IMAGES.detail];
+      parsed.projects = parsed.projects.map((p: any, index: number) => {
+        if (p.image && (p.image.includes('unsplash.com') || p.image.includes('manus-storage'))) {
+          p.image = defaultImgs[index % defaultImgs.length];
+        }
+        return p;
+      });
+    }
+    // --- END AUTO-FIX ---
+
     return {
       ...DEFAULT_CONTENT,
       ...parsed,
       company: { ...DEFAULT_CONTENT.company, ...parsed.company },
       ceo: { ...DEFAULT_CONTENT.ceo, ...parsed.ceo },
     };
-  } catch {
+  } catch (err) {
+    console.error("Failed to load from storage", err);
     return DEFAULT_CONTENT;
   }
 }
