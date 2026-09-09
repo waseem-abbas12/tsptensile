@@ -109,7 +109,7 @@ function ProjectsSection() {
   const remove = (id: string) => setLocal(ps => ps.filter(p => p.id !== id));
   const add = () => {
     const id = String(Date.now());
-    setLocal(ps => [...ps, { id, title: "New Project", type: "Commercial", city: "Lahore", system: "", image: "/manus-storage/tensile-hero_d649ec63.jpg", year: "2025", area: "", description: "" }]);
+    setLocal(ps => [...ps, { id, title: "New Project", type: "Commercial", city: "Lahore", system: "", image: "/images/hero.jpg", year: "2025", area: "", description: "" }]);
     setExpanded(id);
   };
   const save = () => { setProjects(projects); setSaved(true); setTimeout(() => setSaved(false), 2000); };

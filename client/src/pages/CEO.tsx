@@ -2,12 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowUpRight, Quote } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
-
-const ceoQuotes = [
-  "The best tensile structure is one that looks inevitable — as if it could only have been that form in that place.",
-  "We spend more time on a connection detail than most contractors spend on an entire design.",
-  "Pakistan has some of the most demanding climates for outdoor structures. That demands better engineering, not cheaper materials.",
-];
+import { useContent } from "@/contexts/ContentContext";
 
 const milestones = [
   { year: "2016", text: "Founded Form/Field with a team of two engineers." },
@@ -18,9 +13,34 @@ const milestones = [
 ];
 
 export default function CeoPage() {
+  const { content } = useContent();
+  const ceo = content?.ceo || {
+    name: "Khalid Ahmed",
+    title: "Founder & Chief Executive",
+    intro: "Khalid founded Form/Field in Lahore in 2016 after a decade working in structural engineering and architectural fabrication.",
+    years: "9+",
+    projects: "120+",
+    teamSize: "24",
+    quotes: [],
+  };
+
+  const ceoQuotes = ceo.quotes?.length ? ceo.quotes : [
+    "The best tensile structure is one that looks inevitable — as if it could only have been that form in that place.",
+    "We spend more time on a connection detail than most contractors spend on an entire design.",
+    "Pakistan has some of the most demanding climates for outdoor structures. That demands better engineering, not cheaper materials.",
+  ];
+
   const { ref: r1, isInView: iv1 } = useScrollAnimation({ amount: 0.2 });
   const { ref: r2, isInView: iv2 } = useScrollAnimation({ amount: 0.15 });
   const { ref: r3, isInView: iv3 } = useScrollAnimation({ amount: 0.15 });
+
+  const getInitials = (name: string) =>
+    name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
 
   return (
     <div className="inner-page">
@@ -29,21 +49,21 @@ export default function CeoPage() {
         <div className="container ceo-hero-inner">
           <motion.div className="ceo-text" variants={staggerContainer} initial="hidden" animate="visible">
             <motion.p className="eyebrow" variants={fadeUp}>Leadership</motion.p>
-            <motion.h1 variants={fadeUp}>Khalid Ahmed</motion.h1>
-            <motion.p className="ceo-title" variants={fadeUp}>Founder & Chief Executive</motion.p>
+            <motion.h1 variants={fadeUp}>{ceo.name}</motion.h1>
+            <motion.p className="ceo-title" variants={fadeUp}>{ceo.title}</motion.p>
             <motion.p className="ceo-intro" variants={fadeUp}>
-              Khalid founded Form/Field in Lahore in 2016 after a decade working in structural engineering and architectural fabrication. His conviction was simple: Pakistan deserved tensile structures designed with the same rigour as the best international work — and that meant design, engineering and installation under one roof.
+              {ceo.intro}
             </motion.p>
             <motion.div className="ceo-credentials" variants={fadeUp}>
-              <div><span className="cred-num">9+</span><span className="cred-label">Years leading Form/Field</span></div>
-              <div><span className="cred-num">120+</span><span className="cred-label">Projects delivered</span></div>
-              <div><span className="cred-num">24</span><span className="cred-label">Team members</span></div>
+              <div><span className="cred-num">{ceo.years}</span><span className="cred-label">Years leading the team</span></div>
+              <div><span className="cred-num">{ceo.projects}</span><span className="cred-label">Projects delivered</span></div>
+              <div><span className="cred-num">{ceo.teamSize}</span><span className="cred-label">Team members</span></div>
             </motion.div>
           </motion.div>
           <motion.div className="ceo-image-wrap" initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.9, ease: [0.23, 1, 0.32, 1] }}>
             <div className="ceo-image-placeholder">
-              <div className="ceo-initials">KA</div>
-              <p>Portrait coming soon</p>
+              <div className="ceo-initials">{getInitials(ceo.name)}</div>
+              <p>Leadership Portrait</p>
             </div>
           </motion.div>
         </div>
@@ -53,7 +73,7 @@ export default function CeoPage() {
       <section className="ceo-quotes-section" ref={r1}>
         <div className="container">
           <motion.div variants={staggerContainer} initial="hidden" animate={iv1 ? "visible" : "hidden"}>
-            <motion.p className="eyebrow" variants={fadeUp}>In his words</motion.p>
+            <motion.p className="eyebrow" variants={fadeUp}>In words</motion.p>
             <motion.h2 variants={fadeUp}>On the practice of tensile architecture.</motion.h2>
             <div className="ceo-quotes">
               {ceoQuotes.map((q, i) => (

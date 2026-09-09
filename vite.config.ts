@@ -203,7 +203,42 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+function vitePluginContentApi(): Plugin {
+  let inMemoryContent: any = null;
+  return {
+    name: "content-api",
+    configureServer(server: ViteDevServer) {
+      server.middlewares.use("/api/content", (req, res) => {
+        res.setHeader("Content-Type", "application/json");
+        if (req.method === "GET") {
+          res.writeHead(200);
+          res.end(JSON.stringify({ success: true, data: inMemoryContent }));
+          return;
+        }
+        if (req.method === "POST") {
+          let body = "";
+          req.on("data", (chunk) => { body += chunk.toString(); });
+          req.on("end", () => {
+            try {
+              const parsed = JSON.parse(body);
+              inMemoryContent = parsed.content;
+              res.writeHead(200);
+              res.end(JSON.stringify({ success: true }));
+            } catch (e) {
+              res.writeHead(400);
+              res.end(JSON.stringify({ success: false, error: String(e) }));
+            }
+          });
+          return;
+        }
+        res.writeHead(405);
+        res.end(JSON.stringify({ success: false, error: "Method not allowed" }));
+      });
+    },
+  };
+}
+
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy(), vitePluginContentApi()];
 
 export default defineConfig({
   plugins,

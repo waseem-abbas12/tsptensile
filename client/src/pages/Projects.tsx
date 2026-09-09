@@ -6,21 +6,145 @@ import { TensileCanvas } from "@/components/TensileCanvas";
 import { useContent } from "@/contexts/ContentContext";
 
 const images = {
-  hero: "/manus-storage/tensile-hero_d649ec63.jpg",
-  pool: "/manus-storage/tensile-project-pool_7a74d370.jpg",
-  walkway: "/manus-storage/tensile-project-walkway_6b2a07e8.jpg",
-  detail: "/manus-storage/tensile-detail_0f9d56cf.jpg",
+  hero: "/images/hero.jpg",
+  pool: "/images/commercial.jpg",
+  walkway: "/images/walkway.jpg",
+  detail: "/images/detail.jpg",
 };
 
 const ALL_PROJECTS = [
-  { id: "01", title: "The Arrival Canopy", type: "Commercial", city: "Lahore", system: "PVC membrane · Steel mast", image: images.hero, year: "2023", area: "420 m²", description: "A welcoming entry canopy for a corporate campus in DHA Lahore. The asymmetric single-mast form anchors the main gate while allowing full vehicular clearance below." },
-  { id: "02", title: "Pool House Membrane", type: "Residential", city: "Islamabad", system: "HDPE shade · Tension cable", image: images.pool, year: "2023", area: "180 m²", description: "A lightweight HDPE membrane spans the pool and adjacent terrace of a private villa in F-7. The geometry follows the sun path — maximum shade from 10am to 4pm." },
-  { id: "03", title: "Garden Link Walkway", type: "Hospitality", city: "Rawalpindi", system: "PTFE tensioned · Timber posts", image: images.walkway, year: "2024", area: "95 m × 3.2 m", description: "A 95-metre covered walkway connecting the restaurant building to the garden pavilion of a boutique hotel. PTFE fabric lets in diffused daylight while blocking direct sun and rain." },
-  { id: "04", title: "Corporate Parking Canopy", type: "Commercial", city: "Lahore", system: "Modular steel · Polycarbonate", image: images.detail, year: "2024", area: "1,200 m²", description: "A modular canopy system covering 120 parking bays for a corporate office in Gulberg. Polycarbonate panels allow ambient light through while blocking UV." },
-  { id: "05", title: "Rooftop Garden Shade", type: "Residential", city: "Islamabad", system: "Sail shade · Stainless steel", image: images.hero, year: "2024", area: "340 m²", description: "Three overlapping sail shades create a layered canopy over the rooftop garden of a residential tower in Blue Area. Each sail is independently adjustable for seasonal sun angles." },
-  { id: "06", title: "Hotel Terrace Pergola", type: "Hospitality", city: "Karachi", system: "Retractable awning · Aluminium", image: images.pool, year: "2025", area: "260 m²", description: "A motorised retractable fabric pergola over the sea-facing terrace of a boutique hotel in Clifton. Wind sensors auto-retract the fabric above 45 km/h." },
-  { id: "07", title: "School Sports Canopy", type: "Institutional", city: "Lahore", system: "HDPE shade · Galvanised posts", image: images.walkway, year: "2025", area: "800 m²", description: "A large free-standing HDPE shade structure covering the main sports ground of a private school in DHA. Engineered to withstand Lahore's summer storms." },
-  { id: "08", title: "Shopping Mall Entry", type: "Commercial", city: "Islamabad", system: "PVC tensioned · Glass fins", image: images.detail, year: "2025", area: "560 m²", description: "A dramatic tensile entry canopy for a new retail mall in Bahria Town. The doubly-curved PVC membrane is backlit at night, creating a luminous landmark." },
+  {
+    id: "01",
+    title: "National EV Fast-Charging Station Canopy",
+    type: "Commercial",
+    city: "Lahore",
+    system: "Cantilever Wing · EV Infrastructure Shade",
+    image: "/images/project_ev_charging_canopy.jpg",
+    year: "2024",
+    area: "350 m²",
+    description: "Custom-fabricated architectural cantilever tensile canopy sheltering electric vehicle (EV) fast-charging infrastructure at an elite colonial heritage landmark estate in Lahore."
+  },
+  {
+    id: "02",
+    title: "Radio Pakistan Executive Parking Canopy",
+    type: "Commercial",
+    city: "Islamabad",
+    system: "Cantilever Arch · Tensile Membrane",
+    image: "/images/project_radio_pakistan.jpg",
+    year: "2024",
+    area: "650 m²",
+    description: "Custom-engineered double cantilever arch tensile car parking structure for the national broadcasting headquarters (Radio Pakistan), sheltering executive vehicles with high UV-reflective membrane."
+  },
+  {
+    id: "03",
+    title: "DHA Luxury Villa Row Gate & Driveway Shades",
+    type: "Residential",
+    city: "Lahore",
+    system: "Modular Cantilever · Architectural Awning",
+    image: "/images/project_dha_street_villas.jpg",
+    year: "2024",
+    area: "480 m²",
+    description: "Continuous custom cantilever tensile driveway canopies designed for modern luxury townhouses in DHA Phase 6, featuring sleek minimal steel frames and high-tension membrane."
+  },
+  {
+    id: "04",
+    title: "The Grand Arrival Canopy",
+    type: "Commercial",
+    city: "Lahore",
+    system: "PTFE Membrane · Steel Mast",
+    image: "/images/hero_luxury.jpg",
+    year: "2024",
+    area: "420 m²",
+    description: "Double-curved hyperbolic paraboloid white PTFE architectural membrane canopy suspended by tapered steel masts over a modern corporate campus entrance."
+  },
+  {
+    id: "03",
+    title: "Padel & Multi-Sport Arena Long-Span Roof",
+    type: "Institutional",
+    city: "Lahore",
+    system: "Barrel Vault Arch · Tensile Roof",
+    image: "/images/project_sports_arena.jpg",
+    year: "2024",
+    area: "1,800 m²",
+    description: "Massive clear-span structural steel arched truss framework covered with weatherproof tensile membrane for professional indoor padel courts and sports facilities."
+  },
+  {
+    id: "04",
+    title: "Executive Cantilever Car Parking Bays",
+    type: "Commercial",
+    city: "Lahore",
+    system: "Heavy Steel Cantilever · PVC Membrane",
+    image: "/images/commercial.jpg",
+    year: "2024",
+    area: "1,200 m²",
+    description: "High-end cantilevered tensile canopy sheltering luxury corporate executive parking with zero front-column obstruction for effortless vehicle maneuverability."
+  },
+  {
+    id: "05",
+    title: "Private Villa Gate & Driveway Canopy",
+    type: "Residential",
+    city: "Islamabad",
+    system: "Curved Arch · Polycarbonate & Membrane",
+    image: "/images/project_residential_gate.jpg",
+    year: "2023",
+    area: "120 m²",
+    description: "Bespoke residential entrance gate canopy engineered to seamlessly integrate with villa boundary architecture, providing shade from street to driveway."
+  },
+  {
+    id: "06",
+    title: "Heritage Conservation Canopy (ETPB)",
+    type: "Institutional",
+    city: "Lahore",
+    system: "Heritage Cantilever · Protective Canopy",
+    image: "/images/project_heritage_site.jpg",
+    year: "2023",
+    area: "250 m²",
+    description: "Government of Pakistan heritage conservation installation at historic landmark site, custom-fabricated to preserve site aesthetics while providing essential sun and rain protection."
+  },
+  {
+    id: "07",
+    title: "Villa Pool Terrace Tensile Membrane",
+    type: "Residential",
+    city: "Islamabad",
+    system: "Hyperbolic Paraboloid · Tension Cable",
+    image: "/images/luxury_pool.jpg",
+    year: "2023",
+    area: "180 m²",
+    description: "Sculptural sail shade structure spanning private villa swimming pool and travertine deck in F-7 Islamabad, engineered for optimal seasonal sun protection."
+  },
+  {
+    id: "08",
+    title: "Heavy Steel Truss & Architectural Framework",
+    type: "Commercial",
+    city: "Lahore",
+    system: "Precision CNC · Arched Steel Trusses",
+    image: "/images/project_steel_engineering.jpg",
+    year: "2024",
+    area: "Heavy Fabrication",
+    description: "In-house structural engineering and fabrication of arched steel roof trusses, tested for heavy wind loads, seismic resilience, and precise membrane pre-stressing."
+  },
+  {
+    id: "09",
+    title: "Arch Cantilever Parking Shade Structure",
+    type: "Commercial",
+    city: "Rawalpindi",
+    system: "Tubular Steel · Curved PVC Membrane",
+    image: "/images/project_cantilever_parking.jpg",
+    year: "2025",
+    area: "450 m²",
+    description: "Modular arch cantilever car parking shade with powder-coated steel posts and curved waterproof fabric covering multiple parking bays."
+  },
+  {
+    id: "10",
+    title: "Garden Link Covered Walkway",
+    type: "Hospitality",
+    city: "Rawalpindi",
+    system: "PTFE Tensioned · Timber & Steel",
+    image: "/images/luxury_walkway.jpg",
+    year: "2024",
+    area: "95 m × 3.2 m",
+    description: "Undulating covered tensile walkway connecting hotel suites with lush landscaped pavilions, filtering soft natural daylight while deflecting rain."
+  },
 ];
 
 const FILTERS = ["All", "Commercial", "Residential", "Hospitality", "Institutional"];

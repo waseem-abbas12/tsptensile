@@ -3,42 +3,15 @@ import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
-
-const testimonials = [
-  {
-    quote:
-      "The team understood the brief on first meeting. What arrived on site was exactly what we discussed, and the installation crew left the place cleaner than they found it.",
-    name: "Raza M.",
-    location: "DHA, Lahore",
-    project: "Arrival canopy — residential compound",
-  },
-  {
-    quote:
-      "We had a difficult roof terrace — awkward proportions, a parapet wall, drainage issues. Form/Field found the geometry that made it sing. It's the first thing every guest mentions.",
-    name: "Sara K.",
-    location: "F-7, Islamabad",
-    project: "Rooftop garden shade",
-  },
-  {
-    quote:
-      "From drawing to final bolt in six weeks. No delays, no excuses, no drama. Just a structure that does exactly what it was supposed to do.",
-    name: "Ahmed H.",
-    location: "F-6, Islamabad",
-    project: "Commercial entrance canopy",
-  },
-  {
-    quote:
-      "I've recommended Form/Field to three neighbours since our pool canopy was installed. The shade is perfect in summer and the cables still look taut two years on.",
-    name: "Tariq N.",
-    location: "Bahria Town, Rawalpindi",
-    project: "Pool & garden membrane",
-  },
-];
+import { useContent } from "@/contexts/ContentContext";
 
 export function TestimonialsSection() {
+  const { content } = useContent();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { ref, isInView } = useScrollAnimation({ amount: 0.15 });
+
+  const testimonials = content?.testimonials?.length ? content.testimonials : [];
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -95,17 +68,21 @@ export function TestimonialsSection() {
         >
           <div className="testimonials-viewport" ref={emblaRef}>
             <div className="testimonials-track">
-              {testimonials.map((t) => (
-                <div key={t.name} className="testimonial-card">
-                  <Quote size={32} className="testimonial-quote-icon" />
-                  <p className="testimonial-text">"{t.quote}"</p>
-                  <div className="testimonial-author">
-                    <strong>{t.name}</strong>
-                    <span>{t.location}</span>
-                    <span className="testimonial-project">{t.project}</span>
+              {testimonials.map((t, idx) => {
+                const author = t.author || (t as any).name || "Client";
+                const designation = t.designation || (t as any).location || "";
+                return (
+                  <div key={idx} className="testimonial-card">
+                    <Quote size={32} className="testimonial-quote-icon" />
+                    <p className="testimonial-text">"{t.quote}"</p>
+                    <div className="testimonial-author">
+                      <strong>{author}</strong>
+                      {designation && <span>{designation}</span>}
+                      {t.project && <span className="testimonial-project">{t.project}</span>}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

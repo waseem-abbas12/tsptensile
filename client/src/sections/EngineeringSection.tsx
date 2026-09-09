@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp, slideInLeft, slideInRight } from "@/hooks/useScrollAnimation";
 
 const images = {
-  detail: "/manus-storage/tensile-detail_0f9d56cf.jpg",
+  detail: "/images/detail.jpg",
 };
 
 interface EngineeringSectionProps {

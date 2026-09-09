@@ -8,7 +8,7 @@ import {
 } from "@/hooks/useScrollAnimation";
 
 const images = {
-  pool: "/manus-storage/tensile-project-pool_7a74d370.jpg",
+  pool: "/images/commercial.jpg",
 };
 
 const solutionItems = [

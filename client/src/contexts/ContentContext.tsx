@@ -77,19 +77,19 @@ const DEFAULT_IMAGES = {
 
 export const DEFAULT_CONTENT: SiteContent = {
   company: {
-    name: "Form/Field Structures",
-    tagline: "Tensile architecture / Pakistan",
+    name: "TSP Tensile Structures",
+    tagline: "Tensile Architecture & Car Parking Shades / Pakistan",
     heroHeading: "Shade becomes architecture when every curve has a reason.",
-    heroSub: "Custom membrane structures for places that deserve more than an afterthought. Designed, engineered and installed as one considered whole.",
+    heroSub: "Custom tensile membrane structures and cantilever parking shades engineered for Pakistan's climate. Designed, fabricated, and installed as one considered whole.",
     phone: "+92 300 1234567",
-    email: "hello@formfield.pk",
+    email: "info@tsptensile.pk",
     whatsapp: "923001234567",
     workingHours: "Monday – Saturday, 9:00 am – 6:00 pm",
   },
   ceo: {
     name: "Khalid Ahmed",
     title: "Founder & Chief Executive",
-    intro: "Khalid founded Form/Field in Lahore in 2016 after a decade working in structural engineering and architectural fabrication. His conviction was simple: Pakistan deserved tensile structures designed with the same rigour as the best international work — and that meant design, engineering and installation under one roof.",
+    intro: "Khalid founded TSP Tensile Structures in Lahore in 2016 after a decade working in structural engineering and architectural fabrication. His conviction was simple: Pakistan deserved tensile structures designed with the same rigour as the best international work — and that meant design, engineering and installation under one roof.",
     years: "9+",
     projects: "120+",
     teamSize: "24",
@@ -100,17 +100,108 @@ export const DEFAULT_CONTENT: SiteContent = {
     ],
   },
   projects: [
-    { id: "01", title: "The Arrival Canopy", type: "Commercial", city: "Lahore", system: "PVC membrane · Steel mast", image: DEFAULT_IMAGES.hero, year: "2023", area: "420 m²", description: "A welcoming entry canopy for a corporate campus in DHA Lahore. The asymmetric single-mast form anchors the main gate while allowing full vehicular clearance below." },
-    { id: "02", title: "Pool House Membrane", type: "Residential", city: "Islamabad", system: "HDPE shade · Tension cable", image: DEFAULT_IMAGES.pool, year: "2023", area: "180 m²", description: "A lightweight HDPE membrane spans the pool and adjacent terrace of a private villa in F-7. The geometry follows the sun path — maximum shade from 10am to 4pm." },
-    { id: "03", title: "Garden Link Walkway", type: "Hospitality", city: "Rawalpindi", system: "PTFE tensioned · Timber posts", image: DEFAULT_IMAGES.walkway, year: "2024", area: "95 m × 3.2 m", description: "A 95-metre covered walkway connecting the restaurant building to the garden pavilion of a boutique hotel. PTFE fabric lets in diffused daylight while blocking direct sun and rain." },
-    { id: "04", title: "Corporate Parking Canopy", type: "Commercial", city: "Lahore", system: "Modular steel · Polycarbonate", image: DEFAULT_IMAGES.detail, year: "2024", area: "1,200 m²", description: "A modular canopy system covering 120 parking bays for a corporate office in Gulberg. Polycarbonate panels allow ambient light through while blocking UV." },
-    { id: "05", title: "Rooftop Garden Shade", type: "Residential", city: "Islamabad", system: "Sail shade · Stainless steel", image: DEFAULT_IMAGES.hero, year: "2024", area: "340 m²", description: "Three overlapping sail shades create a layered canopy over the rooftop garden of a residential tower in Blue Area." },
-    { id: "06", title: "Hotel Terrace Pergola", type: "Hospitality", city: "Karachi", system: "Retractable awning · Aluminium", image: DEFAULT_IMAGES.pool, year: "2025", area: "260 m²", description: "A motorised retractable fabric pergola over the sea-facing terrace of a boutique hotel in Clifton. Wind sensors auto-retract the fabric above 45 km/h." },
-    { id: "07", title: "School Sports Canopy", type: "Institutional", city: "Lahore", system: "HDPE shade · Galvanised posts", image: DEFAULT_IMAGES.walkway, year: "2025", area: "800 m²", description: "A large free-standing HDPE shade structure covering the main sports ground of a private school in DHA. Engineered to withstand Lahore's summer storms." },
-    { id: "08", title: "Shopping Mall Entry", type: "Commercial", city: "Islamabad", system: "PVC tensioned · Glass fins", image: DEFAULT_IMAGES.detail, year: "2025", area: "560 m²", description: "A dramatic tensile entry canopy for a new retail mall in Bahria Town. The doubly-curved PVC membrane is backlit at night, creating a luminous landmark." },
+    {
+      id: "01",
+      title: "Executive Cantilever Car Parking Bays",
+      type: "Commercial",
+      city: "Lahore",
+      system: "Heavy Steel Cantilever · Architectural PVDF",
+      image: "/images/hero.jpg",
+      year: "2025",
+      area: "850 m²",
+      description: "Flagship luxury cantilevered tensile canopy sheltering executive fleet parking with zero front-column obstruction, 316 marine-grade stainless rigging, and 15-year weatherproofing."
+    },
+    {
+      id: "02",
+      title: "Arch Cantilever Luxury Driveway Canopy",
+      type: "Residential",
+      city: "Islamabad",
+      system: "Tubular Steel Arches · Curved PVC/PVDF",
+      image: "/images/project_cantilever_parking.jpg",
+      year: "2025",
+      area: "420 m²",
+      description: "Custom-engineered arched cantilever tensile car parking structure for high-end residential estates, combining sleek white tubular framing with high UV-reflective membrane."
+    },
+    {
+      id: "03",
+      title: "The Grand Arrival Canopy",
+      type: "Commercial",
+      city: "Lahore",
+      system: "PTFE Membrane · Steel Mast Tensioning",
+      image: "/images/hero_luxury.jpg",
+      year: "2024",
+      area: "560 m²",
+      description: "Double-curved hyperbolic paraboloid white PTFE architectural membrane canopy suspended by tapered steel masts over a prestigious corporate campus entrance."
+    },
+    {
+      id: "04",
+      title: "National EV Fast-Charging Station Canopy",
+      type: "Commercial",
+      city: "Lahore",
+      system: "Cantilever Wing · EV Infrastructure Shade",
+      image: "/images/project_ev_charging_canopy.jpg",
+      year: "2024",
+      area: "350 m²",
+      description: "Custom-fabricated architectural cantilever tensile canopy sheltering electric vehicle (EV) fast-charging infrastructure at an elite colonial heritage landmark estate in Lahore."
+    },
+    {
+      id: "05",
+      title: "Radio Pakistan Executive Parking Canopy",
+      type: "Institutional",
+      city: "Islamabad",
+      system: "Cantilever Arch · Tensile Membrane",
+      image: "/images/project_radio_pakistan.jpg",
+      year: "2024",
+      area: "650 m²",
+      description: "Custom-engineered double cantilever arch tensile car parking structure for the national broadcasting headquarters (Radio Pakistan), sheltering executive vehicles with high UV-reflective membrane."
+    },
+    {
+      id: "06",
+      title: "DHA Luxury Villa Row Gate & Driveway Shades",
+      type: "Residential",
+      city: "Lahore",
+      system: "Modular Cantilever · Architectural Awning",
+      image: "/images/project_dha_street_villas.jpg",
+      year: "2024",
+      area: "480 m²",
+      description: "Continuous custom cantilever tensile driveway canopies designed for modern luxury townhouses in DHA Phase 6, featuring sleek minimal steel frames and high-tension membrane."
+    },
+    {
+      id: "07",
+      title: "Padel & Multi-Sport Arena Long-Span Roof",
+      type: "Commercial",
+      city: "Lahore",
+      system: "Barrel Vault Arch · Tensile Roof",
+      image: "/images/project_sports_arena.jpg",
+      year: "2024",
+      area: "1,800 m²",
+      description: "Massive clear-span structural steel arched truss framework covered with weatherproof tensile membrane for professional indoor padel courts and sports facilities."
+    },
+    {
+      id: "08",
+      title: "Villa Pool Terrace Tensile Membrane",
+      type: "Residential",
+      city: "Islamabad",
+      system: "Hyperbolic Paraboloid · Tension Cable",
+      image: "/images/luxury_pool.jpg",
+      year: "2023",
+      area: "180 m²",
+      description: "Sculptural sail shade structure spanning private villa swimming pool and travertine deck in F-7 Islamabad, engineered for optimal seasonal sun protection."
+    },
+    {
+      id: "09",
+      title: "Garden Link Covered Walkway",
+      type: "Hospitality",
+      city: "Rawalpindi",
+      system: "PTFE Tensioned · Timber & Steel",
+      image: "/images/luxury_walkway.jpg",
+      year: "2024",
+      area: "95 m × 3.2 m",
+      description: "Undulating covered tensile walkway connecting hotel suites with lush landscaped pavilions, filtering soft natural daylight while deflecting rain."
+    },
   ],
   testimonials: [
-    { quote: "We'd used other shade contractors before. The difference with Form/Field was immediate — they came to site, asked questions nobody else had asked, and came back with something that genuinely fitted the space.", author: "Tariq Mahmood", designation: "Director, Gulberg Commercial Properties", project: "Corporate Canopy · Lahore 2024" },
+    { quote: "We'd used other shade contractors before. The difference with TSP Tensile was immediate — they came to site, asked questions nobody else had asked, and came back with something that genuinely fitted the space.", author: "Tariq Mahmood", designation: "Director, Gulberg Commercial Properties", project: "Corporate Canopy · Lahore 2024" },
     { quote: "The pool canopy has changed how we use the house. We're outside from morning to evening now. The fact that it looks considered — not like an afterthought — is what I'm most pleased about.", author: "Sana Mirza", designation: "Homeowner", project: "Residential Pool Shade · Islamabad 2023" },
     { quote: "From the first site visit to handover, I knew exactly what was happening and why. The team stayed on site until the tensioning was right. That level of care is rare in Pakistan.", author: "Usman Farooqi", designation: "Managing Director, The Jasmine Hotel", project: "Terrace Walkway · Rawalpindi 2024" },
     { quote: "They solved a drainage problem three other contractors had ignored for two years. The membrane channels water exactly where we needed it. No complaints since day one.", author: "Rabia Chaudhry", designation: "Estate Manager, DHA Villa Complex", project: "Entry Canopy · Lahore 2023" },
@@ -233,11 +324,16 @@ export function ContentProvider({ children }: { children: ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Fetch global state on load
     fetch("/api/content")
-      .then(res => res.json())
+      .then(res => {
+        const ct = res.headers.get("content-type");
+        if (res.ok && ct && ct.includes("application/json")) {
+          return res.json();
+        }
+        return null;
+      })
       .then(json => {
-        if (json.success && json.data) {
+        if (json && json.success && json.data) {
           const parsed = json.data;
           const merged = {
             ...DEFAULT_CONTENT,

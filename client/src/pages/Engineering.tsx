@@ -5,8 +5,8 @@ import { useScrollAnimation, staggerContainer, fadeUp, slideInLeft, slideInRight
 import { TensileCanvas } from "@/components/TensileCanvas";
 
 const images = {
-  detail: "/manus-storage/tensile-detail_0f9d56cf.jpg",
-  walkway: "/manus-storage/tensile-project-walkway_6b2a07e8.jpg",
+  detail: "/images/detail.jpg",
+  walkway: "/images/walkway.jpg",
 };
 
 const materials = [

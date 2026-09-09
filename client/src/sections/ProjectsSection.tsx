@@ -2,66 +2,9 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, fadeUp, staggerContainer } from "@/hooks/useScrollAnimation";
+import { useContent } from "@/contexts/ContentContext";
 
-const images = {
-  hero: "/manus-storage/tensile-hero_d649ec63.jpg",
-  pool: "/manus-storage/tensile-project-pool_7a74d370.jpg",
-  walkway: "/manus-storage/tensile-project-walkway_6b2a07e8.jpg",
-  detail: "/manus-storage/tensile-detail_0f9d56cf.jpg",
-};
-
-const projects = [
-  {
-    title: "The arrival canopy",
-    type: "Commercial",
-    city: "Lahore",
-    system: "PVC membrane · Steel mast",
-    image: images.hero,
-    number: "01",
-  },
-  {
-    title: "Pool house membrane",
-    type: "Residential",
-    city: "Islamabad",
-    system: "HDPE shade · Tension cable",
-    image: images.pool,
-    number: "02",
-  },
-  {
-    title: "Garden link walkway",
-    type: "Hospitality",
-    city: "Rawalpindi",
-    system: "PTFE tensioned · Timber posts",
-    image: images.walkway,
-    number: "03",
-  },
-  {
-    title: "Corporate parking canopy",
-    type: "Commercial",
-    city: "Lahore",
-    system: "Modular steel · Polycarbonate",
-    image: images.detail,
-    number: "04",
-  },
-  {
-    title: "Rooftop garden shade",
-    type: "Residential",
-    city: "Islamabad",
-    system: "Sail shade · Stainless steel",
-    image: images.hero,
-    number: "05",
-  },
-  {
-    title: "Hotel terrace pergola",
-    type: "Hospitality",
-    city: "Karachi",
-    system: "Retractable awning · Aluminium",
-    image: images.pool,
-    number: "06",
-  },
-];
-
-const filters = ["All", "Commercial", "Residential", "Hospitality"];
+const filters = ["All", "Commercial", "Residential", "Hospitality", "Institutional"];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 36 },
@@ -82,15 +25,18 @@ interface ProjectsSectionProps {
 }
 
 export function ProjectsSection({ onQuoteOpen }: ProjectsSectionProps) {
+  const { content } = useContent();
   const [filter, setFilter] = useState("All");
   const { ref, isInView } = useScrollAnimation({ amount: 0.1 });
+
+  const projectList = content?.projects?.length ? content.projects : [];
 
   const filtered = useMemo(
     () =>
       filter === "All"
-        ? projects
-        : projects.filter((p) => p.type === filter),
-    [filter]
+        ? projectList
+        : projectList.filter((p) => p.type.toLowerCase() === filter.toLowerCase()),
+    [filter, projectList]
   );
 
   return (
@@ -123,7 +69,7 @@ export function ProjectsSection({ onQuoteOpen }: ProjectsSectionProps) {
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
               <motion.article
-                key={project.title}
+                key={project.id || project.title}
                 className={`project-card project-${(i % 3) + 1}`}
                 custom={i}
                 variants={cardVariants}
@@ -133,11 +79,17 @@ export function ProjectsSection({ onQuoteOpen }: ProjectsSectionProps) {
                 layout
               >
                 <div className="project-image">
-                  <img src={project.image} alt={project.title} />
+                  <img
+                    src={project.image || "/images/hero.jpg"}
+                    alt={project.title}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = "/images/hero.jpg";
+                    }}
+                  />
                 </div>
                 <div className="project-info">
                   <span>
-                    {project.number} / {project.city}
+                    {project.id ? (project.id.length === 1 ? `0${project.id}` : project.id) : `0${i + 1}`} / {project.city}
                   </span>
                   <h3>{project.title}</h3>
                   <p>{project.type} structure</p>
