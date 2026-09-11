@@ -2,11 +2,14 @@
 import { useState } from "react";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { HeroSection } from "@/sections/HeroSection";
+import { TextMarquee } from "@/components/TextMarquee";
 import { StatsSection } from "@/sections/StatsSection";
+import { ClientLogosMarquee } from "@/components/ClientLogosMarquee";
 import { ApproachSection } from "@/sections/ApproachSection";
 import { SolutionsSection } from "@/sections/SolutionsSection";
 import { BlueprintBand } from "@/sections/BlueprintBand";
 import { ProjectsSection } from "@/sections/ProjectsSection";
+import { VideoGallerySection } from "@/sections/VideoGallerySection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { ProcessSection } from "@/sections/ProcessSection";
 import { EngineeringSection } from "@/sections/EngineeringSection";
@@ -30,11 +33,14 @@ export default function Home() {
       </div>
 
       <HeroSection onQuoteOpen={() => setQuoteOpen(true)} scrollTo={scrollTo} />
+      <TextMarquee />
       <StatsSection />
+      <ClientLogosMarquee />
       <ApproachSection scrollTo={scrollTo} />
       <SolutionsSection />
       <BlueprintBand scrollTo={scrollTo} />
       <ProjectsSection onQuoteOpen={() => setQuoteOpen(true)} />
+      <VideoGallerySection />
       <TestimonialsSection />
       <ProcessSection onQuoteOpen={() => setQuoteOpen(true)} />
       <EngineeringSection onQuoteOpen={() => setQuoteOpen(true)} />

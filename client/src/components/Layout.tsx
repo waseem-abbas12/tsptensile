@@ -5,6 +5,7 @@ import { ArrowUpRight, Menu, X, MessageCircle } from "lucide-react";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { QuotePanel } from "@/components/QuotePanel";
 import { AiAssistant } from "@/components/AiAssistant";
+import { SocialIconsRow, FloatingWhatsAppButton } from "@/components/SocialIcons";
 import { useContent } from "@/contexts/ContentContext";
 
 function BrandMark({ className }: { className?: string }) {
@@ -151,6 +152,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </Link>
             <p>{content?.company?.heroSub || "Custom tensile architecture & parking shades engineered for Pakistan's climate."}</p>
+            <div style={{ marginTop: "18px" }}>
+              <span className="footer-label" style={{ marginBottom: "10px" }}>Follow Our Work</span>
+              <SocialIconsRow />
+            </div>
           </div>
           <div>
             <span className="footer-label">Explore</span>
@@ -199,6 +204,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <AnimatePresence>
         {quoteOpen && <QuotePanel onClose={() => setQuoteOpen(false)} />}
       </AnimatePresence>
+
+      {/* ── Floating WhatsApp Action ── */}
+      <FloatingWhatsAppButton />
 
       {/* ── Gemini AI Assistant Widget ── */}
       <AiAssistant />

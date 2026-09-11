@@ -1,8 +1,42 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight, ShieldCheck, Wind, SunMedium } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, ShieldCheck, Wind, SunMedium, ChevronLeft, ChevronRight } from "lucide-react";
 import { useContent } from "@/contexts/ContentContext";
+import { HeroVerticalSocials } from "@/components/SocialIcons";
 
-const heroImage = "/images/hero.jpg";
+interface HeroSlide {
+  image: string;
+  project: string;
+  title: string;
+  spec: string;
+}
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    image: "/images/hero.jpg",
+    project: "Flagship Project · TSP Tensile",
+    title: "Executive Cantilever Car Parking Shade",
+    spec: "Zero-Rust 316 Rigging",
+  },
+  {
+    image: "/images/hero_flagship.jpg",
+    project: "Commercial Landmark · DHA Lahore",
+    title: "Hyperbolic Paraboloid Architectural Canopy",
+    spec: "140 km/h Wind Certified",
+  },
+  {
+    image: "/images/hero_luxury.jpg",
+    project: "Private Residence · Bahria Town",
+    title: "Luxury Swimming Pool Tensile Membrane",
+    spec: "100% UV & Heat Shield",
+  },
+  {
+    image: "/images/hero_canopy.jpg",
+    project: "Institutional Plaza · Islamabad",
+    title: "Architectural Entrance Arch & Walkway",
+    spec: "German Mehler PVDF Fabric",
+  },
+];
 
 const containerVariants = {
   hidden: {},
@@ -21,11 +55,26 @@ interface HeroSectionProps {
 
 export function HeroSection({ onQuoteOpen, scrollTo }: HeroSectionProps) {
   const { content } = useContent();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const eyebrow = content?.company?.tagline || "Tensile Architecture & Cantilever Shades / Pakistan";
   const heading = content?.company?.heroHeading || "Shade becomes architecture when every curve has a reason.";
   const lede = content?.company?.heroSub || "Custom membrane structures and cantilever parking shades engineered for Pakistan's climate. Designed, fabricated, and installed as one considered whole.";
-  const whatsappNumber = (content?.company?.whatsapp || "923001234567").replace(/[^0-9]/g, "");
+
+  // Auto slide every 4.5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+
+  const active = HERO_SLIDES[currentSlide];
 
   return (
     <section className="hero-section">
@@ -73,32 +122,83 @@ export function HeroSection({ onQuoteOpen, scrollTo }: HeroSectionProps) {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Hero Showcase Image Card */}
+          {/* Right Column: Hero Luxury Image Carousel */}
           <motion.div
             className="hero-image-wrap"
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.23, 1, 0.32, 1], delay: 0.15 }}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
             <div className="hero-image-card">
-              <img
-                src={heroImage}
-                alt="TSP Tensile executive cantilever car parking membrane canopy"
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src = "/images/commercial.jpg";
-                }}
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={active.image}
+                  src={active.image}
+                  alt={active.title}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.75, ease: [0.23, 1, 0.32, 1] }}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = "/images/commercial.jpg";
+                  }}
+                />
+              </AnimatePresence>
+
+              {/* Slide Navigation Arrows (Hover) */}
+              <div className="hero-slider-arrows" aria-hidden="true">
+                <button
+                  className="hero-arrow-btn prev"
+                  onClick={prevSlide}
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  className="hero-arrow-btn next"
+                  onClick={nextSlide}
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+
+              {/* Caption Overlay */}
               <div className="hero-image-overlay">
-                <div className="hero-image-caption">
-                  <span>Flagship Project · TSP Tensile</span>
-                  <strong>Executive Cantilever Tensile Shade</strong>
-                </div>
-                <span className="hero-spec-tag">Zero-Rust 316 Rigging</span>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active.title}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="hero-image-caption"
+                  >
+                    <span>{active.project}</span>
+                    <strong>{active.title}</strong>
+                  </motion.div>
+                </AnimatePresence>
+                <span className="hero-spec-tag">{active.spec}</span>
+              </div>
+
+              {/* Slide Indicator Dots */}
+              <div className="hero-slider-dots">
+                {HERO_SLIDES.map((_, idx) => (
+                  <button
+                    key={idx}
+                    className={`hero-slider-dot ${idx === currentSlide ? "active" : ""}`}
+                    onClick={() => setCurrentSlide(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </motion.div>
         </div>
       </div>
+      <HeroVerticalSocials />
     </section>
   );
 }
