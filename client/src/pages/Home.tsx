@@ -8,7 +8,7 @@ import { ClientLogosMarquee } from "@/components/ClientLogosMarquee";
 import { ApproachSection } from "@/sections/ApproachSection";
 import { SolutionsSection } from "@/sections/SolutionsSection";
 import { BlueprintBand } from "@/sections/BlueprintBand";
-import { ProjectsSection } from "@/sections/ProjectsSection";
+import { ProjectsMarquee } from "@/components/ProjectsMarquee";
 import { VideoGallerySection } from "@/sections/VideoGallerySection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { ProcessSection } from "@/sections/ProcessSection";
@@ -39,7 +39,7 @@ export default function Home() {
       <ApproachSection scrollTo={scrollTo} />
       <SolutionsSection />
       <BlueprintBand scrollTo={scrollTo} />
-      <ProjectsSection onQuoteOpen={() => setQuoteOpen(true)} />
+      <ProjectsMarquee onQuoteOpen={() => setQuoteOpen(true)} />
       <VideoGallerySection />
       <TestimonialsSection />
       <ProcessSection onQuoteOpen={() => setQuoteOpen(true)} />

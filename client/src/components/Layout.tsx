@@ -20,11 +20,12 @@ function BrandMark({ className }: { className?: string }) {
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/solutions", label: "Solutions" },
+  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
+  { href: "/solutions", label: "Solutions" },
   { href: "/process", label: "Process" },
   { href: "/engineering", label: "Engineering" },
-  { href: "/about", label: "About" },
+  { href: "/about/ceo", label: "CEO Message" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -47,7 +48,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   // Scroll to top on route change
   useEffect(() => { window.scrollTo(0, 0); }, [location]);
 
-  const whatsappRaw = (content?.company?.whatsapp || "923001234567").replace(/[^0-9]/g, "");
+  const whatsappRaw = (content?.company?.whatsapp || "923481816618").replace(/[^0-9]/g, "");
+  const phoneDisplay = content?.company?.phone || "0348 1816618";
 
   return (
     <div className="site-shell">
@@ -66,8 +68,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </Link>
 
+          {/* Complete Desktop Navigation Bar */}
           <nav className="desktop-nav" aria-label="Primary navigation">
-            {navLinks.slice(1).map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -79,6 +82,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </nav>
 
           <div className="header-actions">
+            <a
+              href={`tel:${phoneDisplay.replace(/[^0-9]/g, "")}`}
+              className="header-phone-btn"
+              title="Call us directly"
+            >
+              <span>{phoneDisplay}</span>
+            </a>
+
             <a
               href={`https://wa.me/${whatsappRaw}?text=Hello%20TSP%20Tensile,%20I'd%20like%20to%20inquire%20about%20a%20tensile%20structure.`}
               target="_blank"
