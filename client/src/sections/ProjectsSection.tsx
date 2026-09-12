@@ -77,6 +77,8 @@ export function ProjectsSection({ onQuoteOpen }: ProjectsSectionProps) {
                 animate="visible"
                 exit="exit"
                 layout
+                onClick={onQuoteOpen}
+                style={{ cursor: "pointer" }}
               >
                 <div className="project-image">
                   <img

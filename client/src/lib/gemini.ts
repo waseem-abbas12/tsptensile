@@ -32,7 +32,7 @@ COMPANY PROFILE:
 - Offices: ${offices.map((o) => `${o.city} (${o.address}, Ph: ${o.phone})`).join("; ") || "Lahore (DHA Phase 5), Islamabad (F-8 Markaz), Rawalpindi (Saddar)"}
 
 LEADERSHIP & TEAM:
-- CEO & Founder: ${ceo?.name || "Khalid Ahmed"} (${ceo?.title || "Founder & Chief Executive"})
+- CEO & Founder: ${ceo?.name || "Shaukat Bhullar"} (${ceo?.title || "Founder & Chief Executive"})
 - Experience: ${ceo?.years || "9+"} years leading the firm, ${ceo?.projects || "120+"} completed projects, team of ${ceo?.teamSize || "24"} in-house architects, engineers, fabricators, and riggers.
 - Background: ${ceo?.intro || "Founded in Lahore in 2016 after a decade in structural engineering and architectural fabrication."}
 
@@ -198,7 +198,7 @@ Tensile structures کا ریٹ ایریا (Square Feet / Meters)، ڈیزائن 
     const ceo = content?.ceo;
     return `**قیادت اور بانی (Leadership):**
 
-ہماری کمپنی کے بانی اور چیف ایگزیکٹو **${ceo?.name || "Khalid Ahmed"}** ہیں، جن کے پاس اسٹرکچرل انجینئرنگ اور ٹینسل فیبریکیشن کا 9+ سال سے زائد کا تجربہ ہے اور انہوں نے پاکستان بھر میں 120+ سے زائد کامیاب پراجیکٹس مکمل کیے ہیں۔`;
+ہماری کمپنی کے بانی اور چیف ایگزیکٹو **${ceo?.name || "Shaukat Bhullar"}** ہیں، جن کے پاس اسٹرکچرل انجینئرنگ اور ٹینسل فیبریکیشن کا 9+ سال سے زائد کا تجربہ ہے اور انہوں نے پاکستان بھر میں 120+ سے زائد کامیاب پراجیکٹس مکمل کیے ہیں۔`;
   }
 
   if (

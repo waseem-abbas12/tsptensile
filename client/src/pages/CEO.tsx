@@ -5,7 +5,7 @@ import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollA
 import { useContent } from "@/contexts/ContentContext";
 
 const milestones = [
-  { year: "2016", text: "Founded Form/Field with a team of two engineers." },
+  { year: "2016", text: "Founded TSP Tensile Structures with a team of two engineers." },
   { year: "2018", text: "First PTFE structure installed — a landmark hotel canopy in Gulberg." },
   { year: "2020", text: "Expanded from Lahore to Islamabad and Rawalpindi." },
   { year: "2023", text: "Surpassed 100 completed projects across Pakistan." },
@@ -15,9 +15,9 @@ const milestones = [
 export default function CeoPage() {
   const { content } = useContent();
   const ceo = content?.ceo || {
-    name: "Khalid Ahmed",
+    name: "Shaukat Bhullar",
     title: "Founder & Chief Executive",
-    intro: "Khalid founded Form/Field in Lahore in 2016 after a decade working in structural engineering and architectural fabrication.",
+    intro: "Shaukat Bhullar founded TSP Tensile Structures in Lahore in 2016 after a decade working in structural engineering and architectural fabrication.",
     years: "9+",
     projects: "120+",
     teamSize: "24",
@@ -93,11 +93,11 @@ export default function CeoPage() {
           <motion.div className="ceo-vision-inner" variants={staggerContainer} initial="hidden" animate={iv2 ? "visible" : "hidden"}>
             <motion.div variants={fadeUp}>
               <p className="eyebrow">Vision</p>
-              <h2>What Form/Field is building toward.</h2>
+              <h2>What TSP Tensile Structures is building toward.</h2>
             </motion.div>
             <motion.div className="ceo-vision-text" variants={fadeUp}>
-              <p>Khalid's vision for Form/Field is a practice where design quality and engineering precision are inseparable — where every project, from a residential garden shade to a 2,000m² commercial canopy, receives the same rigour of thought.</p>
-              <p>He sees Form/Field as Pakistan's first tensile architecture practice in the full sense — not a contractor that installs shade, but a design-led studio that happens to build what it designs.</p>
+              <p>{ceo.name}'s vision for TSP Tensile Structures is a practice where design quality and engineering precision are inseparable — where every project, from a residential garden shade to a 2,000m² commercial canopy, receives the same rigour of thought.</p>
+              <p>He sees TSP Tensile Structures as Pakistan's first tensile architecture practice in the full sense — not a contractor that installs shade, but a design-led studio that happens to build what it designs.</p>
               <p>In the near term, that means expanding the team's capabilities in computational form-finding, and building a portfolio of public-realm structures that demonstrate what the medium can do at civic scale.</p>
             </motion.div>
           </motion.div>
@@ -128,7 +128,7 @@ export default function CeoPage() {
         <div className="container">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }}>
             <motion.h2 variants={fadeUp}>Speak directly with the team.</motion.h2>
-            <motion.p variants={fadeUp}>Khalid and the leadership team review every initial project brief personally.</motion.p>
+            <motion.p variants={fadeUp}>{ceo.name} and the leadership team review every initial project brief personally.</motion.p>
             <motion.div variants={fadeUp} style={{ marginTop: 28 }}>
               <Link href="/contact" className="button button-solid" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
                 Get in touch <ArrowUpRight size={17} />

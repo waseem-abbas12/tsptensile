@@ -87,9 +87,9 @@ export const DEFAULT_CONTENT: SiteContent = {
     workingHours: "Monday – Saturday, 9:00 am – 6:00 pm",
   },
   ceo: {
-    name: "Khalid Ahmed",
+    name: "Shaukat Bhullar",
     title: "Founder & Chief Executive",
-    intro: "Khalid founded TSP Tensile Structures in Lahore in 2016 after a decade working in structural engineering and architectural fabrication. His conviction was simple: Pakistan deserved tensile structures designed with the same rigour as the best international work — and that meant design, engineering and installation under one roof.",
+    intro: "Shaukat Bhullar founded TSP Tensile Structures in Lahore in 2016 after a decade working in structural engineering and architectural fabrication. His conviction was simple: Pakistan deserved tensile structures designed with the same rigour as the best international work — and that meant design, engineering and installation under one roof.",
     years: "9+",
     projects: "120+",
     teamSize: "24",
@@ -286,6 +286,13 @@ function loadFromStorage(): SiteContent {
         return p;
       });
     }
+    // CEO auto-fix: update old placeholder Khalid Ahmed to Shaukat Bhullar
+    if (parsed.ceo && (parsed.ceo.name === "Khalid Ahmed" || !parsed.ceo.name)) {
+      parsed.ceo.name = "Shaukat Bhullar";
+      if (parsed.ceo.intro && parsed.ceo.intro.includes("Khalid")) {
+        parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid/g, "Shaukat Bhullar");
+      }
+    }
     // --- END AUTO-FIX ---
 
     return {
@@ -335,6 +342,12 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       .then(json => {
         if (json && json.success && json.data) {
           const parsed = json.data;
+          if (parsed.ceo && (parsed.ceo.name === "Khalid Ahmed" || !parsed.ceo.name)) {
+            parsed.ceo.name = "Shaukat Bhullar";
+            if (parsed.ceo.intro && parsed.ceo.intro.includes("Khalid")) {
+              parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid/g, "Shaukat Bhullar");
+            }
+          }
           const merged = {
             ...DEFAULT_CONTENT,
             ...parsed,

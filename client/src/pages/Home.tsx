@@ -9,6 +9,7 @@ import { ApproachSection } from "@/sections/ApproachSection";
 import { SolutionsSection } from "@/sections/SolutionsSection";
 import { BlueprintBand } from "@/sections/BlueprintBand";
 import { ProjectsMarquee } from "@/components/ProjectsMarquee";
+import { ProjectsSection } from "@/sections/ProjectsSection";
 import { VideoGallerySection } from "@/sections/VideoGallerySection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { ProcessSection } from "@/sections/ProcessSection";
@@ -40,6 +41,7 @@ export default function Home() {
       <SolutionsSection />
       <BlueprintBand scrollTo={scrollTo} />
       <ProjectsMarquee onQuoteOpen={() => setQuoteOpen(true)} />
+      <ProjectsSection onQuoteOpen={() => setQuoteOpen(true)} />
       <VideoGallerySection />
       <TestimonialsSection />
       <ProcessSection onQuoteOpen={() => setQuoteOpen(true)} />
