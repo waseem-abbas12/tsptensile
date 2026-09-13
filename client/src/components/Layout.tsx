@@ -82,6 +82,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </nav>
 
           <div className="header-actions">
+            {/* Phone — desktop only */}
             <a
               href={`tel:${phoneDisplay.replace(/[^0-9]/g, "")}`}
               className="header-phone-btn"
@@ -90,27 +91,30 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <span>{phoneDisplay}</span>
             </a>
 
+            {/* WhatsApp — desktop only (floating button handles mobile) */}
             <a
               href={`https://wa.me/${whatsappRaw}?text=Hello%20TSP%20Tensile,%20I'd%20like%20to%20inquire%20about%20a%20tensile%20structure.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="header-wa-btn"
+              className="header-wa-btn header-wa-desktop"
               title="Chat directly on WhatsApp"
             >
               <MessageCircle size={15} />
               <span>WhatsApp</span>
             </a>
 
-            <button className="header-cta" onClick={() => setQuoteOpen(true)}>
-              <span className="header-cta-text">Get a quote</span> <ArrowUpRight size={15} />
+            {/* Get a quote — desktop only (in mobile menu below) */}
+            <button className="header-cta header-cta-desktop" onClick={() => setQuoteOpen(true)}>
+              Get a quote <ArrowUpRight size={15} />
             </button>
 
+            {/* ☰ Hamburger — ALWAYS visible on mobile */}
             <button
               className="mobile-menu-toggle"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle navigation"
+              aria-label="Toggle navigation menu"
             >
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
