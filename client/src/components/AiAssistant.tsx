@@ -108,8 +108,8 @@ How can I assist your project today? *(You can ask in English, Roman Urdu, or ا
 
   return (
     <>
-      {/* Floating Widget Trigger Button */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center">
+      {/* Floating Widget Trigger Button — BOTTOM LEFT (WhatsApp is bottom-right) */}
+      <div className="fixed bottom-6 left-4 sm:left-6 z-50 flex items-center">
         {!isOpen && (
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
@@ -117,7 +117,7 @@ How can I assist your project today? *(You can ask in English, Roman Urdu, or ا
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-2.5 px-4 py-3 bg-[#0d1f2d] text-[#e8ded2] rounded-full shadow-2xl border border-[#2a3b4c] hover:border-[#6a9080] transition-all group"
+            className="ai-float-btn flex items-center gap-2.5 px-3 py-3 sm:px-4 bg-[#0d1f2d] text-[#e8ded2] rounded-full shadow-2xl border border-[#2a3b4c] hover:border-[#6a9080] transition-all group"
             style={{
               boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
             }}
@@ -128,7 +128,7 @@ How can I assist your project today? *(You can ask in English, Roman Urdu, or ا
               <span className="relative inline-flex rounded-full h-3 w-3 bg-[#6a9080]"></span>
             </span>
             <Sparkles size={18} className="text-[#6a9080] group-hover:rotate-12 transition-transform" />
-            <span className="font-medium text-sm tracking-wide">Tensile AI</span>
+            <span className="font-medium text-sm tracking-wide hidden sm:inline">Tensile AI</span>
           </motion.button>
         )}
       </div>
@@ -141,7 +141,7 @@ How can I assist your project today? *(You can ask in English, Roman Urdu, or ا
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.95 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-6 right-4 sm:right-6 z-50 w-[92vw] sm:w-[420px] h-[580px] max-h-[85vh] bg-[#0c1821] text-[#f2efe9] rounded-2xl shadow-2xl border border-[#1f2f3e] flex flex-col overflow-hidden"
+            className="fixed bottom-6 left-4 sm:left-6 z-50 w-[92vw] sm:w-[420px] h-[580px] max-h-[85vh] bg-[#0c1821] text-[#f2efe9] rounded-2xl shadow-2xl border border-[#1f2f3e] flex flex-col overflow-hidden"
             style={{
               boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.7)",
             }}

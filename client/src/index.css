@@ -1169,12 +1169,32 @@ img { max-width: 100%; height: auto; }
   .page-cta-band h2 { font-size: clamp(32px, 8vw, 52px); }
 }
 
-/* ── Floating WhatsApp button — make sure it doesn't clip ──────────── */
+/* ── Floating WhatsApp button — stays RIGHT, AI button stays LEFT ──── */
+.floating-wa-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 49;
+}
 @media (max-width: 560px) {
-  /* Keep floating WA button above mobile navigation bars */
-  .floating-wa-btn, [class*="floating-whatsapp"] {
-    bottom: 20px !important;
-    right: 16px !important;
+  .floating-wa-btn {
+    bottom: 18px;
+    right: 14px;
+  }
+  .ai-float-btn {
+    bottom: 18px;
+    left: 14px;
   }
 }
 
+/* ── Header CTA — hide text on very small screens ─────────────────── */
+@media (max-width: 420px) {
+  .header-cta-text { display: none; }
+  .header-cta { padding: 0 12px; min-width: 40px; }
+  .header-inner { padding: 0 14px; }
+  .brand-sub { display: none; }
+}
+@media (max-width: 360px) {
+  .brand-name { font-size: 13px; }
+  .header-wa-btn { display: none; }
+}

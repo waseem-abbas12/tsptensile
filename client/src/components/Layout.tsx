@@ -102,7 +102,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </a>
 
             <button className="header-cta" onClick={() => setQuoteOpen(true)}>
-              Get a quote <ArrowUpRight size={15} />
+              <span className="header-cta-text">Get a quote</span> <ArrowUpRight size={15} />
             </button>
 
             <button
