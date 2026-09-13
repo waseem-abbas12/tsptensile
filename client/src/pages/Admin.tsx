@@ -330,7 +330,21 @@ export default function AdminPage() {
       {/* Sidebar */}
       <aside className="adm-sidebar">
         <div className="adm-sidebar-top">
-          <div className="adm-logo">FF Admin</div>
+          <div className="adm-logo" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "0 20px 20px" }}>
+            <div style={{ width: 32, height: 32, borderRadius: 6, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", display: "grid", placeItems: "center", flexShrink: 0 }}>
+              <svg width="22" height="22" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 29 C12 18, 16 12, 18 5 C17 14, 13 23, 6 29 Z" fill="#F59E0B" />
+                <path d="M30 29 C24 18, 20 12, 18 5 C19 14, 23 23, 30 29 Z" fill="#D97706" opacity="0.9" />
+                <path d="M8 28 C13 23, 23 23, 28 28 C22 25, 14 25, 8 28 Z" fill="#FFFFFF" opacity="0.95" />
+                <line x1="18" y1="4" x2="18" y2="30" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
+                <circle cx="18" cy="4" r="1.5" fill="#FBBF24" />
+              </svg>
+            </div>
+            <div>
+              <div style={{ fontSize: "14px", fontWeight: 700, letterSpacing: "0.06em", color: "#FFFFFF", lineHeight: 1.2 }}>TSP TENSILE</div>
+              <div style={{ fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--sage)", fontWeight: 600 }}>Admin Portal</div>
+            </div>
+          </div>
           <nav>
             {SECTIONS.map(s => (
               <button key={s.id} className={active === s.id ? "active" : ""} onClick={() => setActive(s.id)}>

@@ -10,10 +10,25 @@ import { useContent } from "@/contexts/ContentContext";
 
 function BrandMark({ className }: { className?: string }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={{ display: "inline-block", flexShrink: 0 }}>
-      <path d="M4 26L16 6L28 26" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M16 6V26" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2" />
-      <path d="M10 18C14 15 18 15 22 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <svg width="24" height="24" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={{ display: "inline-block", flexShrink: 0 }}>
+      {/* Tensile membrane sail wings */}
+      <path d="M6 29 C12 18, 16 12, 18 5 C17 14, 13 23, 6 29 Z" fill="#F59E0B" />
+      <path d="M30 29 C24 18, 20 12, 18 5 C19 14, 23 23, 30 29 Z" fill="#D97706" opacity="0.9" />
+      {/* Center hyperbolic curved membrane */}
+      <path d="M8 28 C13 23, 23 23, 28 28 C22 25, 14 25, 8 28 Z" fill="#FFFFFF" opacity="0.95" />
+      {/* Structural Mast */}
+      <line x1="18" y1="4" x2="18" y2="30" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
+      {/* Mast Finial */}
+      <circle cx="18" cy="4" r="1.5" fill="#FBBF24" />
+      {/* High-tensile stay cables */}
+      <line x1="18" y1="7" x2="6" y2="29" stroke="#94A3B8" strokeWidth="0.75" strokeLinecap="round" />
+      <line x1="18" y1="7" x2="30" y2="29" stroke="#94A3B8" strokeWidth="0.75" strokeLinecap="round" />
+      <line x1="18" y1="16" x2="11" y2="28" stroke="#FBBF24" strokeWidth="0.65" strokeDasharray="1.5 1" opacity="0.8" />
+      <line x1="18" y1="16" x2="25" y2="28" stroke="#FBBF24" strokeWidth="0.65" strokeDasharray="1.5 1" opacity="0.8" />
+      {/* Base Anchor Points */}
+      <circle cx="6" cy="29" r="1.2" fill="#E2E8F0" />
+      <circle cx="30" cy="29" r="1.2" fill="#E2E8F0" />
+      <circle cx="18" cy="30" r="1.2" fill="#E2E8F0" />
     </svg>
   );
 }
