@@ -52,7 +52,7 @@ export const SOCIAL_LINKS = [
   },
   {
     name: "WhatsApp",
-    url: "https://wa.me/923481816618",
+    url: "https://wa.me/923024001063",
     color: "#25D366",
     svg: (
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
@@ -87,7 +87,7 @@ export function SocialIconsRow({ className = "" }: { className?: string }) {
 /** Sticky floating WhatsApp action button (Bottom-right) */
 export function FloatingWhatsAppButton() {
   const { content } = useContent();
-  const whatsappRaw = (content?.company?.whatsapp || "923481816618").replace(/[^0-9]/g, "");
+  const whatsappRaw = (content?.company?.whatsapp || "923024001063").replace(/[^0-9]/g, "");
 
   return (
     <a

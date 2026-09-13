@@ -10,7 +10,9 @@ type FormState = { name: string; phone: string; city: string; type: string; mess
 export default function ContactPage() {
   const { content } = useContent();
   const offices = content.offices;
-  const whatsapp = content.company.whatsapp;
+  const whatsapp = content.company.whatsapp || "923024001063";
+  const companyPhone = content.company.phone || "0302 4001063";
+  const companyEmail = content.company.email || "info@tsptensile.pk";
 
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState<FormState>({ name: "", phone: "", city: "", type: "", message: "" });
@@ -19,7 +21,7 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = encodeURIComponent(
-      `Hello Form/Field,\n\nName: ${form.name}\nPhone: ${form.phone}\nCity: ${form.city}\nProject type: ${form.type}\n\nMessage:\n${form.message}`
+      `Hello TSP Tensile,\n\nName: ${form.name}\nPhone: ${form.phone}\nCity: ${form.city}\nProject type: ${form.type}\n\nMessage:\n${form.message}`
     );
     window.open(`https://wa.me/${whatsapp}?text=${text}`, "_blank");
     setSent(true);
@@ -101,14 +103,14 @@ export default function ContactPage() {
           {/* Contact info */}
           <motion.div className="contact-info-wrap" variants={staggerContainer} initial="hidden" animate={isInView ? "visible" : "hidden"}>
             <motion.div variants={fadeUp}>
-              <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" className="whatsapp-big-btn">
+              <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="whatsapp-big-btn">
                 <MessageCircle size={24} /> Chat on WhatsApp
               </a>
             </motion.div>
 
             <motion.div className="contact-direct" variants={fadeUp}>
-              <div><Mail size={16} /><a href="mailto:hello@formfield.pk">hello@formfield.pk</a></div>
-              <div><Phone size={16} /><a href="tel:+923001234567">+92 300 1234567</a></div>
+              <div><Mail size={16} /><a href={`mailto:${companyEmail}`}>{companyEmail}</a></div>
+              <div><Phone size={16} /><a href={`tel:${companyPhone.replace(/\s+/g, "")}`}>{companyPhone}</a></div>
             </motion.div>
 
             <motion.div className="offices-list" variants={staggerContainer}>

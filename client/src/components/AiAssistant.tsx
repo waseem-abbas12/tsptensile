@@ -73,7 +73,7 @@ How can I assist your project today? *(You can ask in English, Roman Urdu, or ا
         {
           id: String(Date.now() + 1),
           sender: "assistant",
-          text: "Sorry, I encountered a temporary issue. You can reach our engineering desk directly at WhatsApp: +92 300 1234567.",
+          text: "Sorry, I encountered a temporary issue. You can reach our engineering desk directly at WhatsApp: 0302 4001063.",
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         },
       ]);

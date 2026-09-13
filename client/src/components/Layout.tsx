@@ -63,8 +63,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   // Scroll to top on route change
   useEffect(() => { window.scrollTo(0, 0); }, [location]);
 
-  const whatsappRaw = (content?.company?.whatsapp || "923481816618").replace(/[^0-9]/g, "");
-  const phoneDisplay = content?.company?.phone || "0348 1816618";
+  const whatsappRaw = (content?.company?.whatsapp || "923024001063").replace(/[^0-9]/g, "");
+  const phoneDisplay = content?.company?.phone || "0302 4001063";
 
   return (
     <div className="site-shell">
@@ -200,8 +200,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <a href={`mailto:${content?.company?.email || "info@tsptensile.pk"}`}>
               {content?.company?.email || "info@tsptensile.pk"}
             </a>
-            <a href={`tel:${(content?.company?.phone || "+92 300 1234567").replace(/\s+/g, "")}`}>
-              {content?.company?.phone || "+92 300 1234567"}
+            <a href={`tel:${(content?.company?.phone || "0302 4001063").replace(/\s+/g, "")}`}>
+              {content?.company?.phone || "0302 4001063"}
             </a>
             <a
               href={`https://wa.me/${whatsappRaw}`}

@@ -22,17 +22,17 @@ export function buildSiteKnowledgeBase(content?: SiteContent): string {
 === COMPLETE ARCHITECTURAL SITE KNOWLEDGE (A to Z) ===
 
 COMPANY PROFILE:
-- Name: ${company?.name || "Form/Field Structures (TSP Tensile)"}
-- Tagline: ${company?.tagline || "Tensile Architecture / Pakistan"}
+- Name: ${company?.name || "TSP Tensile Structures"}
+- Tagline: ${company?.tagline || "Tensile Architecture & Car Parking Shades / Pakistan"}
 - Philosophy: "Shade becomes architecture when every curve has a reason." Custom membrane structures designed, engineered and installed under one roof.
-- Phone: ${company?.phone || "+92 300 1234567"}
-- Email: ${company?.email || "hello@formfield.pk"}
-- WhatsApp: ${company?.whatsapp || "923001234567"}
+- Phone: ${company?.phone || "0302 4001063"}
+- Email: ${company?.email || "info@tsptensile.pk"}
+- WhatsApp: ${company?.whatsapp || "923024001063"}
 - Working Hours: ${company?.workingHours || "Monday – Saturday, 9:00 am – 6:00 pm"}
 - Offices: ${offices.map((o) => `${o.city} (${o.address}, Ph: ${o.phone})`).join("; ") || "Lahore (DHA Phase 5), Islamabad (F-8 Markaz), Rawalpindi (Saddar)"}
 
 LEADERSHIP & TEAM:
-- CEO & Founder: ${ceo?.name || "Shaukat Bhullar"} (${ceo?.title || "Founder & Chief Executive"})
+- CEO & Founder: ${ceo?.name || "Shaukat Rauf"} (${ceo?.title || "Founder & Chief Executive"})
 - Experience: ${ceo?.years || "9+"} years leading the firm, ${ceo?.projects || "120+"} completed projects, team of ${ceo?.teamSize || "24"} in-house architects, engineers, fabricators, and riggers.
 - Background: ${ceo?.intro || "Founded in Lahore in 2016 after a decade in structural engineering and architectural fabrication."}
 
@@ -95,7 +95,7 @@ Guidelines:
    - If user asks in English, reply in crisp architectural English.
 3. Help visitors calculate or estimate requirements, explain difference between PVC vs HDPE vs PTFE, guide them on how to get a quote or book a site visit in Lahore, Islamabad, Rawalpindi or across Pakistan.
 4. Reference real projects from your knowledge base when giving examples.
-5. Provide the company's WhatsApp (+92 300 1234567) or phone for direct quote inquiries.
+5. Provide the company's WhatsApp (0302 4001063) or phone for direct quote inquiries.
 
 Here is the complete site data you must draw from:
 ${knowledge}`;
@@ -133,8 +133,8 @@ ${knowledge}`;
 
 function generateLocalSmartResponse(query: string, content?: SiteContent): string {
   const q = query.toLowerCase();
-  const company = content?.company?.name || "Form/Field Structures (TSP Tensile)";
-  const phone = content?.company?.phone || "+92 300 1234567";
+  const company = content?.company?.name || "TSP Tensile Structures";
+  const phone = content?.company?.phone || "0302 4001063";
 
   if (
     q.includes("rate") ||

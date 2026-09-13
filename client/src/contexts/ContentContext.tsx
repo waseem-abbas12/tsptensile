@@ -81,7 +81,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     tagline: "Tensile Architecture & Car Parking Shades / Pakistan",
     heroHeading: "Shade becomes architecture when every curve has a reason.",
     heroSub: "Custom tensile membrane structures and cantilever parking shades engineered for Pakistan's climate. Designed, fabricated, and installed as one considered whole.",
-    phone: "+92 300 1234567",
+    phone: "0302 4001063",
     email: "info@tsptensile.pk",
     whatsapp: "923024001063",
     workingHours: "Monday – Saturday, 9:00 am – 6:00 pm",
@@ -276,9 +276,9 @@ export const DEFAULT_CONTENT: SiteContent = {
     },
   ],
   offices: [
-    { city: "Lahore", address: "DHA Phase 5, Lahore, Punjab", phone: "+92 300 1234567", email: "lahore@formfield.pk" },
-    { city: "Islamabad", address: "F-8 Markaz, Islamabad, ICT", phone: "+92 300 1234568", email: "islamabad@formfield.pk" },
-    { city: "Rawalpindi", address: "Saddar, Rawalpindi, Punjab", phone: "+92 300 1234569", email: "rwp@formfield.pk" },
+    { city: "Lahore", address: "DHA Phase 5, Lahore, Punjab", phone: "0302 4001063", email: "info@tsptensile.pk" },
+    { city: "Islamabad", address: "F-8 Markaz, Islamabad, ICT", phone: "0302 4001063", email: "info@tsptensile.pk" },
+    { city: "Rawalpindi", address: "Saddar, Rawalpindi, Punjab", phone: "0302 4001063", email: "info@tsptensile.pk" },
   ],
 };
 
@@ -324,6 +324,15 @@ function loadFromStorage(): SiteContent {
       parsed.ceo.name = "Shaukat Rauf";
       if (parsed.ceo.intro) {
         parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid Ahmed|Khalid|Shaukat Bhullar/g, "Shaukat Rauf");
+      }
+    }
+    // Phone & WhatsApp auto-fix: update old dummy numbers to 0302 4001063
+    if (parsed.company) {
+      if (parsed.company.phone === "+92 300 1234567" || parsed.company.phone === "0348 1816618" || !parsed.company.phone) {
+        parsed.company.phone = "0302 4001063";
+      }
+      if (!parsed.company.whatsapp || parsed.company.whatsapp === "923001234567" || parsed.company.whatsapp === "923481816618") {
+        parsed.company.whatsapp = "923024001063";
       }
     }
     // --- END AUTO-FIX ---
@@ -379,6 +388,14 @@ export function ContentProvider({ children }: { children: ReactNode }) {
             parsed.ceo.name = "Shaukat Rauf";
             if (parsed.ceo.intro) {
               parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid Ahmed|Khalid|Shaukat Bhullar/g, "Shaukat Rauf");
+            }
+          }
+          if (parsed.company) {
+            if (parsed.company.phone === "+92 300 1234567" || parsed.company.phone === "0348 1816618" || !parsed.company.phone) {
+              parsed.company.phone = "0302 4001063";
+            }
+            if (!parsed.company.whatsapp || parsed.company.whatsapp === "923001234567" || parsed.company.whatsapp === "923481816618") {
+              parsed.company.whatsapp = "923024001063";
             }
           }
           const merged = {

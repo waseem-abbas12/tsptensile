@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, ChevronRight, MessageCircle, X } from "lucide-react";
+import { useContent } from "@/contexts/ContentContext";
 
 interface QuotePanelProps {
   onClose: () => void;
@@ -34,6 +35,9 @@ const stepVariants = {
 };
 
 export function QuotePanel({ onClose }: QuotePanelProps) {
+  const { content } = useContent();
+  const whatsappNumber = (content?.company?.whatsapp || "923024001063").replace(/[^0-9]/g, "");
+
   const [step, setStep] = useState<Step>(1);
   const [direction, setDirection] = useState(1);
   const [formData, setFormData] = useState<FormData>({
@@ -59,9 +63,9 @@ export function QuotePanel({ onClose }: QuotePanelProps) {
       setFormData((prev) => ({ ...prev, [field]: e.target.value }));
 
   const whatsappMessage = encodeURIComponent(
-    `Hi Form/Field — I'd like to discuss a project.\n\nName: ${formData.name}\nWhatsApp: ${formData.whatsapp}\nCity: ${formData.city}\nProject Type: ${formData.projectType}\n\n${formData.description}`.trim()
+    `Hi TSP Tensile — I'd like to discuss a project.\n\nName: ${formData.name}\nWhatsApp: ${formData.whatsapp}\nCity: ${formData.city}\nProject Type: ${formData.projectType}\n\n${formData.description}`.trim()
   );
-  const whatsappUrl = `https://wa.me/923001234567?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
     <div

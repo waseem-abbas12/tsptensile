@@ -47,7 +47,7 @@ function CompanySection() {
       <div className="adm-grid-2">
         <Field label="Company Name" value={local.name} onChange={set("name")} />
         <Field label="Tagline (hero eyebrow)" value={local.tagline} onChange={set("tagline")} />
-        <Field label="WhatsApp Number (digits only, e.g. 923001234567)" value={local.whatsapp} onChange={set("whatsapp")} />
+        <Field label="WhatsApp Number (digits only, e.g. 923024001063)" value={local.whatsapp} onChange={set("whatsapp")} />
         <Field label="Main Phone" value={local.phone} onChange={set("phone")} />
         <Field label="Email" value={local.email} onChange={set("email")} />
         <Field label="Working Hours" value={local.workingHours} onChange={set("workingHours")} />
