@@ -10,8 +10,8 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { value: 120, suffix: "+", label: "Projects delivered" },
-  { value: 8, suffix: "", label: "Years building" },
-  { value: 4, suffix: "", label: "Cities served" },
+  { value: 18, suffix: "+", label: "Years experience" },
+  { value: 5, suffix: "+", label: "Cities served" },
   { value: 100, suffix: "%", label: "In-house team" },
 ];
 

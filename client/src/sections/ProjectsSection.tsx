@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, fadeUp, staggerContainer } from "@/hooks/useScrollAnimation";
 import { useContent } from "@/contexts/ContentContext";
 
-const filters = ["All", "Commercial", "Residential", "Hospitality", "Institutional"];
+const filters = ["All", "Commercial", "Residential", "Hospitality", "Institutional", "Government", "Healthcare"];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 36 },

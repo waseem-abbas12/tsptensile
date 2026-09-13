@@ -83,20 +83,20 @@ export const DEFAULT_CONTENT: SiteContent = {
     heroSub: "Custom tensile membrane structures and cantilever parking shades engineered for Pakistan's climate. Designed, fabricated, and installed as one considered whole.",
     phone: "+92 300 1234567",
     email: "info@tsptensile.pk",
-    whatsapp: "923001234567",
+    whatsapp: "923024001063",
     workingHours: "Monday – Saturday, 9:00 am – 6:00 pm",
   },
   ceo: {
-    name: "Shaukat Bhullar",
+    name: "Shaukat Rauf",
     title: "Founder & Chief Executive",
-    intro: "Shaukat Bhullar founded TSP Tensile Structures in Lahore in 2016 after a decade working in structural engineering and architectural fabrication. His conviction was simple: Pakistan deserved tensile structures designed with the same rigour as the best international work — and that meant design, engineering and installation under one roof.",
-    years: "9+",
+    intro: "Shaukat Rauf is a Mechanical & Architectural Engineering professional with 18+ years of experience spanning Saudi Arabia and Pakistan. After a distinguished career with companies including Haif Trading & Contracting (Riyadh), SAJCO, Sarwar & Company, FWO and Descon Engineering, he channelled his deep expertise in structural steel fabrication, tensile structures and PVC fabric systems into building TSP Tensile Structures — Pakistan's premier design-led tensile architecture practice.",
+    years: "18+",
     projects: "120+",
     teamSize: "24",
     quotes: [
-      "The best tensile structure is one that looks inevitable — as if it could only have been that form in that place.",
-      "We spend more time on a connection detail than most contractors spend on an entire design.",
-      "Pakistan has some of the most demanding climates for outdoor structures. That demands better engineering, not cheaper materials.",
+      "Eighteen years of steel and fabric have taught me one thing: precision at the connection is where every great structure begins.",
+      "We do not sell shade. We engineer solutions — from site measurement and structural design through to PVC hot-air welding and final tensioning.",
+      "Pakistan's climate is demanding. That is why we specify materials and details built to last, not to impress on day one and fail by year three.",
     ],
   },
   projects: [
@@ -147,7 +147,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     {
       id: "05",
       title: "Radio Pakistan Executive Parking Canopy",
-      type: "Institutional",
+      type: "Government",
       city: "Islamabad",
       system: "Cantilever Arch · Tensile Membrane",
       image: "/images/project_radio_pakistan.jpg",
@@ -198,6 +198,39 @@ export const DEFAULT_CONTENT: SiteContent = {
       year: "2024",
       area: "95 m × 3.2 m",
       description: "Undulating covered tensile walkway connecting hotel suites with lush landscaped pavilions, filtering soft natural daylight while deflecting rain."
+    },
+    {
+      id: "10",
+      title: "PAF Base Shade & Canopy Structures",
+      type: "Government",
+      city: "Lahore",
+      system: "Heavy Steel · PVC Membrane",
+      image: "/images/hero.jpg",
+      year: "2023",
+      area: "900 m²",
+      description: "Custom tensile shade and cantilever canopy structures fabricated and installed at Pakistan Air Force base — engineered to defence-grade standards with heavy-duty galvanised steel frames and high-UV-resistant fabric."
+    },
+    {
+      id: "11",
+      title: "Hamid Latif Hospital Entrance Canopy",
+      type: "Healthcare",
+      city: "Lahore",
+      system: "Cantilever Arch · Architectural Canopy",
+      image: "/images/commercial.jpg",
+      year: "2023",
+      area: "320 m²",
+      description: "Patient-facing entrance canopy structure for Hamid Latif Hospital — providing full rain and sun protection at the main drop-off point, engineered for high foot-traffic and 24/7 operational durability."
+    },
+    {
+      id: "12",
+      title: "Governor House Shading & Landscape Structures",
+      type: "Government",
+      city: "Lahore",
+      system: "Bespoke Steel · Tensile & Fabric",
+      image: "/images/walkway.jpg",
+      year: "2022",
+      area: "Confidential",
+      description: "Custom-designed shading and architectural tensile structures installed at Governor House, Lahore — fabricated and installed to exacting government specifications with premium-grade materials."
     },
   ],
   testimonials: [
@@ -286,11 +319,11 @@ function loadFromStorage(): SiteContent {
         return p;
       });
     }
-    // CEO auto-fix: update old placeholder Khalid Ahmed to Shaukat Bhullar
-    if (parsed.ceo && (parsed.ceo.name === "Khalid Ahmed" || !parsed.ceo.name)) {
-      parsed.ceo.name = "Shaukat Bhullar";
-      if (parsed.ceo.intro && parsed.ceo.intro.includes("Khalid")) {
-        parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid/g, "Shaukat Bhullar");
+    // CEO auto-fix: update old placeholder names to Shaukat Rauf
+    if (parsed.ceo && (parsed.ceo.name === "Khalid Ahmed" || parsed.ceo.name === "Shaukat Bhullar" || !parsed.ceo.name)) {
+      parsed.ceo.name = "Shaukat Rauf";
+      if (parsed.ceo.intro) {
+        parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid Ahmed|Khalid|Shaukat Bhullar/g, "Shaukat Rauf");
       }
     }
     // --- END AUTO-FIX ---
@@ -342,10 +375,10 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       .then(json => {
         if (json && json.success && json.data) {
           const parsed = json.data;
-          if (parsed.ceo && (parsed.ceo.name === "Khalid Ahmed" || !parsed.ceo.name)) {
-            parsed.ceo.name = "Shaukat Bhullar";
-            if (parsed.ceo.intro && parsed.ceo.intro.includes("Khalid")) {
-              parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid/g, "Shaukat Bhullar");
+          if (parsed.ceo && (parsed.ceo.name === "Khalid Ahmed" || parsed.ceo.name === "Shaukat Bhullar" || !parsed.ceo.name)) {
+            parsed.ceo.name = "Shaukat Rauf";
+            if (parsed.ceo.intro) {
+              parsed.ceo.intro = parsed.ceo.intro.replace(/Khalid Ahmed|Khalid|Shaukat Bhullar/g, "Shaukat Rauf");
             }
           }
           const merged = {

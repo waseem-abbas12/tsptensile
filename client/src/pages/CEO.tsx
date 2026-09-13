@@ -5,20 +5,21 @@ import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollA
 import { useContent } from "@/contexts/ContentContext";
 
 const milestones = [
-  { year: "2016", text: "Founded TSP Tensile Structures with a team of two engineers." },
-  { year: "2018", text: "First PTFE structure installed — a landmark hotel canopy in Gulberg." },
-  { year: "2020", text: "Expanded from Lahore to Islamabad and Rawalpindi." },
-  { year: "2023", text: "Surpassed 100 completed projects across Pakistan." },
-  { year: "2025", text: "Leading a team of 24 — designers, engineers, fabricators and installers." },
+  { year: "2008", text: "Joined Haif Trading & Contracting Company, Riyadh — 6 years of structural steel erection and fabrication across Saudi Arabia." },
+  { year: "2014", text: "Moved to SAJCO (Shibh Al-Jazira Contracting Company) as Erection Engineer — deepened expertise in structural fabrication and site coordination." },
+  { year: "2016", text: "Returned to Pakistan. Joined Sarwar & Company as Structural Foreman — contributed to the KOTO Hydro Power Project." },
+  { year: "2018", text: "In-Charge of Structural Erection & Fabrication at FWO (Frontier Works Organization) — overseeing full site execution." },
+  { year: "2019", text: "Joined Descon Engineering Ltd. as Foreman — applying 10+ years of Pakistan and Saudi experience to landmark engineering projects." },
+  { year: "2025", text: "120+ tensile and shade projects delivered across Pakistan's most prestigious housing societies, corporations, hospitals and government institutions." },
 ];
 
 export default function CeoPage() {
   const { content } = useContent();
   const ceo = content?.ceo || {
-    name: "Shaukat Bhullar",
+    name: "Shaukat Rauf",
     title: "Founder & Chief Executive",
-    intro: "Shaukat Bhullar founded TSP Tensile Structures in Lahore in 2016 after a decade working in structural engineering and architectural fabrication.",
-    years: "9+",
+    intro: "Shaukat Rauf is a Mechanical & Architectural Engineering professional with 18+ years of experience spanning Saudi Arabia and Pakistan.",
+    years: "18+",
     projects: "120+",
     teamSize: "24",
     quotes: [],
@@ -96,9 +97,9 @@ export default function CeoPage() {
               <h2>What TSP Tensile Structures is building toward.</h2>
             </motion.div>
             <motion.div className="ceo-vision-text" variants={fadeUp}>
-              <p>{ceo.name}'s vision for TSP Tensile Structures is a practice where design quality and engineering precision are inseparable — where every project, from a residential garden shade to a 2,000m² commercial canopy, receives the same rigour of thought.</p>
-              <p>He sees TSP Tensile Structures as Pakistan's first tensile architecture practice in the full sense — not a contractor that installs shade, but a design-led studio that happens to build what it designs.</p>
-              <p>In the near term, that means expanding the team's capabilities in computational form-finding, and building a portfolio of public-realm structures that demonstrate what the medium can do at civic scale.</p>
+              <p>With 8 years of hands-on structural engineering in Saudi Arabia — working with companies like Haif Trading & Contracting and SAJCO — and 10+ years of Pakistan-based project execution at Sarwar & Company, FWO and Descon Engineering, Shaukat Rauf brings unmatched depth to every TSP project.</p>
+              <p>His core expertise spans the full value chain: structural steel erection, PVC fabric cutting and hot-air welding, membrane tensioning, aluminium channel fixing, MS pipe and truss planning — all carried out in-house, by a team he has built and trained personally.</p>
+              <p>His vision for TSP is a practice where international-grade engineering standards meet Pakistani site realities — delivering tensile and shade structures for housing societies, corporates, hospitals, defence establishments and private clients that are built to last.</p>
             </motion.div>
           </motion.div>
         </div>

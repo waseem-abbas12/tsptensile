@@ -4,14 +4,35 @@ interface ClientLogo {
 }
 
 const CLIENTS: ClientLogo[] = [
-  { name: "DHA LAHORE", category: "Residential & Commercial" },
-  { name: "EMPORIUM MALL", category: "Commercial Canopy" },
-  { name: "GOURMET", category: "Industrial Facility" },
-  { name: "PACKAGES MALL", category: "Public Infrastructure" },
-  { name: "NESTLE PAKISTAN", category: "Corporate Campus" },
-  { name: "PCL", category: "Industrial Shade" },
-  { name: "HAMEED LATIF", category: "Hospital Canopy" },
-  { name: "RLMC", category: "Institutional Arena" },
+  // Housing Societies & Residential
+  { name: "DHA LAHORE", category: "Housing Society" },
+  { name: "BAHRIA TOWN", category: "Housing Society" },
+  { name: "BAHRIA ORCHARD", category: "Housing Society" },
+  { name: "PARK VIEW", category: "Housing Society" },
+  { name: "VALENCIA", category: "Residential Project" },
+  { name: "CENTRAL PARK", category: "Housing Society" },
+  { name: "SOAN GARDEN", category: "Residential – Islamabad" },
+  // Corporate & Commercial
+  { name: "NESTLÉ", category: "Corporate – Sheikhupura" },
+  { name: "KFC", category: "Commercial" },
+  { name: "ECS", category: "Commercial" },
+  { name: "EMPORIUM TOWER", category: "Commercial" },
+  { name: "FAISAL MOTORS", category: "Commercial" },
+  { name: "DAMANA GROUP", category: "Corporate" },
+  { name: "SIALKO PAK SPORTS", category: "Industrial" },
+  { name: "NAWA-I-WAQAT", category: "Commercial" },
+  // Government & Defence
+  { name: "PAF", category: "Pakistan Air Force" },
+  { name: "GOVERNOR HOUSE", category: "Government" },
+  { name: "PAKISTAN RADIO", category: "Government – Islamabad" },
+  { name: "HEC / UET", category: "Public Sector" },
+  { name: "RANGERS RISE", category: "Defence" },
+  // Healthcare
+  { name: "HAMID LATIF HOSPITAL", category: "Healthcare" },
+  { name: "UMAR HOSPITAL", category: "Healthcare" },
+  // Educational
+  { name: "BEACONHOUSE / BNU", category: "Educational" },
+  { name: "NSSE", category: "Nawaz Sharif School of Eminence" },
 ];
 
 export function ClientLogosMarquee() {

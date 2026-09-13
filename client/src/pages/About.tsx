@@ -12,12 +12,12 @@ const values = [
 ];
 
 const timeline = [
-  { year: "2016", event: "Founded in Lahore by Shaukat Bhullar with two engineers and one workshop." },
-  { year: "2018", event: "First hospitality project — a 400m² shade canopy for a boutique hotel in Gulberg." },
-  { year: "2019", event: "Islamabad office opened. First institutional project: PAF Base school sports canopy." },
-  { year: "2021", event: "PTFE glass fibre capability added. First landmark structure — shopping mall entry canopy, Bahria Town." },
-  { year: "2023", event: "Expanded to Rawalpindi. 80th completed project delivered." },
-  { year: "2025", event: "120+ projects. Four cities. One team." },
+  { year: "2008", event: "Shaukat Rauf begins his international career at Haif Trading & Contracting, Riyadh — 6 years of structural steel erection, fabrication and site supervision across Saudi Arabia." },
+  { year: "2016", event: "Returns to Pakistan. Works with Sarwar & Company on the KOTO Hydro Power Project; then leads structural erection at FWO (Frontier Works Organization)." },
+  { year: "2019", event: "Joins Descon Engineering Ltd. as Foreman — Pakistan's largest engineering company — bringing 11 years of combined international and local experience." },
+  { year: "2021", event: "Landmark institutional project: tensile shade structures for PAF (Pakistan Air Force). Government House and Pakistan Radio – Islamabad projects completed." },
+  { year: "2023", event: "Portfolio grows to include Nestlé, KFC, ECS, Emporium Tower, Hamid Latif Hospital, Beaconhouse / BNU and multiple DHA & Bahria Town housing societies." },
+  { year: "2025", event: "120+ projects delivered. Clients span housing societies, corporate companies, defence establishments, hospitals, schools and private residences across Pakistan." },
 ];
 
 export default function AboutPage() {
@@ -35,7 +35,7 @@ export default function AboutPage() {
             We make structures that belong where they are placed.
           </motion.h1>
           <motion.p className="page-hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-            Founded in Lahore in 2016 by Shaukat Bhullar. 120+ projects. One conviction: that the space between a structure and its site is where the real design lives.
+            Led by Shaukat Rauf — 18+ years of structural engineering experience. 120+ projects. One conviction: that the space between a structure and its site is where the real design lives.
           </motion.p>
         </div>
       </section>
@@ -82,7 +82,7 @@ export default function AboutPage() {
         <div className="container">
           <motion.div variants={staggerContainer} initial="hidden" animate={iv3 ? "visible" : "hidden"}>
             <motion.p className="eyebrow" variants={fadeUp}>Our history</motion.p>
-            <motion.h2 variants={fadeUp}>Nine years in the making.</motion.h2>
+            <motion.h2 variants={fadeUp}>18 years of engineering excellence.</motion.h2>
             <div className="about-timeline">
               {timeline.map((item, i) => (
                 <motion.div key={item.year} className="about-timeline-item" variants={fadeUp} custom={i}>

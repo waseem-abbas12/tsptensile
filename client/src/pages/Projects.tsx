@@ -147,7 +147,7 @@ const ALL_PROJECTS = [
   },
 ];
 
-const FILTERS = ["All", "Commercial", "Residential", "Hospitality", "Institutional"];
+const FILTERS = ["All", "Commercial", "Residential", "Hospitality", "Institutional", "Government", "Healthcare"];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 36 },
