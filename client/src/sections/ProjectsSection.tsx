@@ -84,6 +84,8 @@ export function ProjectsSection({ onQuoteOpen }: ProjectsSectionProps) {
                   <img
                     src={project.image || "/images/hero.jpg"}
                     alt={project.title}
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       (e.currentTarget as HTMLImageElement).src = "/images/hero.jpg";
                     }}

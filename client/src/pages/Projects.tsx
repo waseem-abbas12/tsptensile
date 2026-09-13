@@ -198,7 +198,11 @@ export default function ProjectsPage() {
               {filtered.map((p, i) => (
                 <motion.article key={p.title} className="project-card-full" custom={i} variants={cardVariants} initial="hidden" animate="visible" exit="exit" layout>
                   <div className="project-image">
-                    <img src={p.image} alt={p.title} style={{ objectPosition: i % 3 === 2 ? "center top" : "center" }} />
+                    <img src={p.image} alt={p.title}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      fetchPriority={i === 0 ? "high" : "auto"}
+                      style={{ objectPosition: i % 3 === 2 ? "center top" : "center" }} />
                     <div className="project-overlay">
                       <div className="project-overlay-meta">
                         <span>{p.system}</span>

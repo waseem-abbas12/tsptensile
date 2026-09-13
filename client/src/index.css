@@ -1030,5 +1030,151 @@
 }
 
 
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE PERFORMANCE & RESPONSIVE FIXES
+   ═══════════════════════════════════════════════════════════════════════ */
 
+/* Prevent ANY horizontal overflow (page jump / scroll glitch on mobile) */
+html, body { overflow-x: hidden; max-width: 100vw; }
+.site-shell { overflow-x: hidden; }
+
+/* ── Header mobile cleanup ─────────────────────────────────────────── */
+@media (max-width: 880px) {
+  /* Hide phone button on mobile — WhatsApp is enough */
+  .header-phone-btn { display: none; }
+  /* Make header actions tighter */
+  .header-actions { gap: 8px; }
+  /* Shrink WA button on mobile header */
+  .header-wa-btn span { display: none; }
+  .header-wa-btn { padding: 0 12px; min-width: 42px; justify-content: center; }
+}
+
+/* ── Filter tabs — horizontal scroll on mobile ─────────────────────── */
+@media (max-width: 768px) {
+  .filter-tabs, .filter-tabs-center {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    gap: 8px;
+  }
+  .filter-tabs::-webkit-scrollbar,
+  .filter-tabs-center::-webkit-scrollbar { display: none; }
+  .filter-tabs button, .filter-tabs-center button { flex-shrink: 0; }
+}
+
+/* ── Projects grid — single column on small phones ─────────────────── */
+@media (max-width: 480px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid-full { grid-template-columns: 1fr; gap: 20px; }
+  .project-2, .project-3 { margin-top: 0; }
+  .project-image, .project-2 .project-image { height: 240px; }
+  .project-card-full .project-image { height: 220px; }
+}
+
+/* ── CEO page mobile ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ceo-hero { padding: 120px 0 60px; }
+  .ceo-hero-inner { grid-template-columns: 1fr; gap: 0; }
+  .ceo-image-wrap { display: none; }
+  .ceo-credentials { gap: 20px; flex-wrap: wrap; }
+  .cred-num { font-size: 40px; }
+  .ceo-quotes { grid-template-columns: 1fr; gap: 16px; }
+  .ceo-vision-inner { grid-template-columns: 1fr; gap: 32px; }
+  .ceo-quote-card { padding: 28px 24px; }
+}
+
+/* ── About & inner pages ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .about-statement { padding: 70px 0; }
+  .about-values { padding: 70px 0; }
+  .values-grid { grid-template-columns: 1fr; gap: 20px; }
+  .value-card { padding: 28px 24px; }
+  .about-timeline-section { padding: 70px 0; }
+  .about-timeline-item { grid-template-columns: 60px 12px 1fr; gap: 14px; }
+  .about-timeline-year { font-size: 17px; }
+  .page-hero { min-height: 38vh; padding-bottom: 50px; }
+  .page-hero-content h1 { font-size: clamp(32px, 7vw, 52px); }
+  .page-hero-sub { font-size: 15px; }
+}
+
+/* ── Contact page mobile ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .contact-section { padding: 60px 0; }
+  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  .contact-info-wrap { padding-top: 0; }
+}
+
+/* ── Stats mobile ───────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stat-item { padding: 24px 16px; }
+  .stat-number { font-size: 48px; }
+  .stat-label { font-size: 10px; }
+}
+
+/* ── Footer mobile ──────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-grid > div:first-child { grid-column: auto; }
+  .footer-bottom { flex-direction: column; gap: 6px; text-align: center; margin-top: 40px; }
+  .site-footer { padding: 50px 0 20px; }
+}
+
+/* ── Quote panel mobile ─────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .quote-panel { padding: 52px 20px 30px; }
+  .quote-panel h2 { font-size: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ── Ensure all img tags are contained on mobile ───────────────────── */
+img { max-width: 100%; height: auto; }
+
+/* ── Better touch targets ────────────────────────────────────────────── */
+@media (max-width: 880px) {
+  .mobile-nav a, .mobile-nav button { min-height: 52px; display: flex; align-items: center; }
+  .faq-item button { min-height: 56px; }
+  .button, .header-cta { min-height: 46px; }
+}
+
+/* ── Solution full page mobile ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .solution-full { grid-template-columns: 1fr; }
+  .solution-full-reverse { direction: ltr; }
+  .solution-full-image { height: 280px; }
+  .solution-full-copy { padding: 36px 24px; }
+}
+
+/* ── Process page mobile ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .process-page-section { padding: 70px 0; }
+  .process-step-full { grid-template-columns: 44px 1fr; gap: 20px; margin-bottom: 50px; padding-bottom: 50px; }
+  .process-step-desc { font-size: 15px; }
+}
+
+/* ── Engineering page mobile ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .engineering-split { grid-template-columns: 1fr; }
+  .principles-grid { grid-template-columns: 1fr; gap: 20px; }
+  .principle-card { padding: 28px 24px; }
+  .materials-table { font-size: 12px; }
+  .materials-table td, .materials-table th { padding: 10px 10px; }
+}
+
+/* ── CTA band mobile ────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .page-cta-band { padding: 70px 0; }
+  .page-cta-band h2 { font-size: clamp(32px, 8vw, 52px); }
+}
+
+/* ── Floating WhatsApp button — make sure it doesn't clip ──────────── */
+@media (max-width: 560px) {
+  /* Keep floating WA button above mobile navigation bars */
+  .floating-wa-btn, [class*="floating-whatsapp"] {
+    bottom: 20px !important;
+    right: 16px !important;
+  }
+}
 

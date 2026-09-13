@@ -137,6 +137,9 @@ export function HeroSection({ onQuoteOpen, scrollTo }: HeroSectionProps) {
                   key={active.image}
                   src={active.image}
                   alt={active.title}
+                  loading={currentSlide === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchPriority={currentSlide === 0 ? "high" : "auto"}
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}

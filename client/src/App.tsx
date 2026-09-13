@@ -1,22 +1,25 @@
 /* Style reminder: Desert Modernism — the app shell stays light, editorial and image-led; no black/orange default theme. */
 import { Switch, Route } from "wouter";
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ContentProvider } from "./contexts/ContentContext";
 import { Layout } from "./components/Layout";
-import Home from "./pages/Home";
-import ProjectsPage from "./pages/Projects";
-import SolutionsPage from "./pages/Solutions";
-import ProcessPage from "./pages/Process";
-import EngineeringPage from "./pages/Engineering";
-import AboutPage from "./pages/About";
-import CeoPage from "./pages/CEO";
-import FaqPage from "./pages/FAQ";
-import ContactPage from "./pages/Contact";
-import AdminPage from "./pages/Admin";
-import NotFound from "./pages/NotFound";
+
+// Lazy load all pages — each becomes its own JS chunk (faster first load on mobile)
+const Home = lazy(() => import("./pages/Home"));
+const ProjectsPage = lazy(() => import("./pages/Projects"));
+const SolutionsPage = lazy(() => import("./pages/Solutions"));
+const ProcessPage = lazy(() => import("./pages/Process"));
+const EngineeringPage = lazy(() => import("./pages/Engineering"));
+const AboutPage = lazy(() => import("./pages/About"));
+const CeoPage = lazy(() => import("./pages/CEO"));
+const FaqPage = lazy(() => import("./pages/FAQ"));
+const ContactPage = lazy(() => import("./pages/Contact"));
+const AdminPage = lazy(() => import("./pages/Admin"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
   return (
@@ -25,25 +28,32 @@ export default function App() {
         <ContentProvider>
           <TooltipProvider>
             <Toaster />
-            <Switch>
-              <Route path="/admin" component={AdminPage} />
-              <Route>
-                <Layout>
-                  <Switch>
-                    <Route path="/" component={Home} />
-                    <Route path="/projects" component={ProjectsPage} />
-                    <Route path="/solutions" component={SolutionsPage} />
-                    <Route path="/process" component={ProcessPage} />
-                    <Route path="/engineering" component={EngineeringPage} />
-                    <Route path="/about" component={AboutPage} />
-                    <Route path="/about/ceo" component={CeoPage} />
-                    <Route path="/faq" component={FaqPage} />
-                    <Route path="/contact" component={ContactPage} />
-                    <Route component={NotFound} />
-                  </Switch>
-                </Layout>
-              </Route>
-            </Switch>
+            <Suspense fallback={
+              <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#F5F2EA" }}>
+                <div style={{ width: 40, height: 40, border: "3px solid #D9DED8", borderTopColor: "#2D6A68", borderRadius: "50%", animation: "spin 0.7s linear infinite" }} />
+                <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+              </div>
+            }>
+              <Switch>
+                <Route path="/admin" component={AdminPage} />
+                <Route>
+                  <Layout>
+                    <Switch>
+                      <Route path="/" component={Home} />
+                      <Route path="/projects" component={ProjectsPage} />
+                      <Route path="/solutions" component={SolutionsPage} />
+                      <Route path="/process" component={ProcessPage} />
+                      <Route path="/engineering" component={EngineeringPage} />
+                      <Route path="/about" component={AboutPage} />
+                      <Route path="/about/ceo" component={CeoPage} />
+                      <Route path="/faq" component={FaqPage} />
+                      <Route path="/contact" component={ContactPage} />
+                      <Route component={NotFound} />
+                    </Switch>
+                  </Layout>
+                </Route>
+              </Switch>
+            </Suspense>
           </TooltipProvider>
         </ContentProvider>
       </ThemeProvider>
