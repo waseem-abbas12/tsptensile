@@ -36,6 +36,11 @@ export default function App() {
             }>
               <Switch>
                 <Route path="/admin" component={AdminPage} />
+                <Route path="/admin/" component={AdminPage} />
+                <Route path="/admin/:sub*" component={AdminPage} />
+                <Route path="/Admin" component={AdminPage} />
+                <Route path="/Admin/" component={AdminPage} />
+                <Route path="/Admin/:sub*" component={AdminPage} />
                 <Route>
                   <Layout>
                     <Switch>

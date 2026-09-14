@@ -101,7 +101,23 @@
 .adm-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}.adm-list-item{background:white;border:1px solid var(--line)}.adm-list-item-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;gap:12px}.adm-list-item-header:hover{background:#fafafa}.adm-list-item-header strong{font-size:15px;color:var(--ink)}.adm-list-actions{display:flex;align-items:center;gap:12px;color:var(--ink-soft)}.adm-tag{display:inline-block;font-size:10px;background:rgba(45,106,104,.12);color:var(--teal);padding:2px 8px;border-radius:100px;margin-left:8px;font-weight:600}.adm-muted{font-size:12px;color:var(--ink-soft);margin-left:8px}.adm-list-item-body{padding:0 20px 20px;overflow:hidden}.adm-delete-btn{background:none;color:#e53e3e;display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 10px;border:1px solid #fed7d7;cursor:pointer}.adm-delete-btn:hover{background:#fff5f5}.adm-delete-btn-top{margin-top:8px}
 .adm-subsection{background:white;border:1px solid var(--line);padding:24px;margin-bottom:16px}.adm-subsection-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.adm-subsection-header h3{font-size:18px;font-weight:500;margin:0}.adm-row-with-delete{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;margin-bottom:16px}.adm-faq-item{display:grid;grid-template-columns:28px 1fr auto;gap:16px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line)}.adm-faq-item:last-child{border-bottom:0}.adm-faq-num{font-family:var(--serif);font-size:28px;color:var(--terra);opacity:.4;line-height:1;padding-top:8px}.adm-faq-body{display:flex;flex-direction:column}
 .adm-office-card{background:white;border:1px solid var(--line);padding:24px;margin-bottom:12px;position:relative}
-@media(max-width:900px){.adm-shell{grid-template-columns:1fr}.adm-sidebar{position:static;height:auto}.adm-main{padding:24px 20px}.adm-grid-2,.adm-grid-3{grid-template-columns:1fr}}
+.adm-mobile-header{display:none}
+.adm-mobile-tabs{display:none}
+@media(max-width:900px){
+  .adm-shell{grid-template-columns:1fr;display:flex;flex-direction:column;min-height:100vh}
+  .adm-mobile-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#142D3C;color:white;border-bottom:1px solid rgba(255,255,255,.12);position:sticky;top:0;z-index:30}
+  .adm-mobile-tabs{display:flex;overflow-x:auto;background:#0d1d27;padding:10px 14px;gap:8px;position:sticky;top:53px;z-index:29;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .adm-mobile-tabs::-webkit-scrollbar{display:none}
+  .adm-mobile-tab-btn{padding:8px 16px;border-radius:100px;font-size:12px;font-weight:600;color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);border:0;white-space:nowrap;cursor:pointer;transition:all .2s;flex-shrink:0}
+  .adm-mobile-tab-btn.active{background:var(--teal);color:white;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .adm-sidebar{display:none}
+  .adm-main{padding:20px 16px 60px;flex:1}
+  .adm-mobile-actions{display:flex !important;flex-direction:column;gap:10px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
+  .adm-grid-2,.adm-grid-3{grid-template-columns:1fr}
+  .adm-login{padding:20px}
+  .adm-login-box{padding:36px 22px;width:100%;max-width:380px}
+  .adm-login-box h1{font-size:32px}
+}
 
 /* ── TEXT MARQUEE SLIDER ────────────────────────────────────────────── */
 .text-marquee-section {

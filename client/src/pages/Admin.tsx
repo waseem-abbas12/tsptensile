@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContent, DEFAULT_CONTENT, type Project, type Testimonial, type FaqItem, type Office } from "@/contexts/ContentContext";
-import { Plus, Trash2, Save, Download, Upload, RotateCcw, LogOut, ChevronDown, ChevronUp, Eye } from "lucide-react";
+import { Plus, Trash2, Save, Download, Upload, RotateCcw, LogOut, ChevronDown, ChevronUp, Eye, EyeOff } from "lucide-react";
 import { Link } from "wouter";
 
 const ADMIN_PASSWORD = "formfield2026";
@@ -277,19 +277,43 @@ const SECTIONS = [
 ];
 
 export default function AdminPage() {
-  const [authed, setAuthed] = useState(() => sessionStorage.getItem("ff_admin") === "1");
+  const [authed, setAuthed] = useState(() => {
+    try {
+      return sessionStorage.getItem("ff_admin") === "1" || localStorage.getItem("ff_admin") === "1";
+    } catch {
+      return false;
+    }
+  });
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [active, setActive] = useState("company");
   const { resetToDefaults, exportData, importData } = useContent();
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const login = () => {
-    if (password === ADMIN_PASSWORD) { sessionStorage.setItem("ff_admin", "1"); setAuthed(true); }
-    else { setError(true); setTimeout(() => setError(false), 1500); }
+  const login = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const clean = password.trim().toLowerCase();
+    // Accept formfield2026 (case-insensitive) or phone number
+    if (clean === ADMIN_PASSWORD.toLowerCase() || clean === "03024001063" || clean === "923024001063") {
+      try {
+        sessionStorage.setItem("ff_admin", "1");
+        localStorage.setItem("ff_admin", "1");
+      } catch {}
+      setAuthed(true);
+    } else {
+      setError(true);
+      setTimeout(() => setError(false), 2000);
+    }
   };
 
-  const logout = () => { sessionStorage.removeItem("ff_admin"); setAuthed(false); };
+  const logout = () => {
+    try {
+      sessionStorage.removeItem("ff_admin");
+      localStorage.removeItem("ff_admin");
+    } catch {}
+    setAuthed(false);
+  };
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -305,29 +329,107 @@ export default function AdminPage() {
   if (!authed) {
     return (
       <div className="adm-login">
-        <div className="adm-login-box">
-          <h1>Admin Panel</h1>
-          <p>Form/Field website content manager</p>
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && login()}
-            className={error ? "error" : ""}
-            autoFocus
-          />
-          {error && <span className="adm-error">Galat password hai</span>}
-          <button className="adm-btn adm-btn-primary" onClick={login}>Login</button>
+        <form className="adm-login-box" onSubmit={login}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
+            <div style={{ width: 34, height: 34, borderRadius: 8, background: "#0F172A", display: "grid", placeItems: "center" }}>
+              <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+                <path d="M6 29 C12 18, 16 12, 18 5 C17 14, 13 23, 6 29 Z" fill="#F59E0B" />
+                <path d="M30 29 C24 18, 20 12, 18 5 C19 14, 23 23, 30 29 Z" fill="#D97706" opacity="0.9" />
+                <line x1="18" y1="4" x2="18" y2="30" stroke="#FFFFFF" strokeWidth="1.8" />
+                <circle cx="18" cy="4" r="1.5" fill="#FBBF24" />
+              </svg>
+            </div>
+            <div>
+              <div style={{ fontSize: "15px", fontWeight: 800, color: "var(--ink)", letterSpacing: "0.04em" }}>TSP TENSILE</div>
+              <div style={{ fontSize: "9.5px", color: "var(--teal)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em" }}>Admin Portal</div>
+            </div>
+          </div>
+          <h1>Admin Login</h1>
+          <p>Apna admin password enter karein website content manage karne ke liye.</p>
+          <div style={{ position: "relative", width: "100%" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter admin password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              className={error ? "error" : ""}
+              autoFocus
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck="false"
+              autoComplete="current-password"
+              style={{ paddingRight: "46px" }}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                background: "none",
+                border: 0,
+                color: "var(--ink-soft)",
+                padding: "6px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center"
+              }}
+              title={showPassword ? "Hide password" : "Show password"}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+          {error && <span className="adm-error">Galat password hai. Sahi password enter karein.</span>}
+          <button type="submit" className="adm-btn adm-btn-primary" style={{ height: "46px", justifyContent: "center", fontSize: "15px", borderRadius: "4px" }}>
+            Login
+          </button>
           <Link href="/" className="adm-back-link">← Website pe wapas jao</Link>
-        </div>
+        </form>
       </div>
     );
   }
 
   return (
     <div className="adm-shell">
-      {/* Sidebar */}
+      {/* Mobile Top App Header */}
+      <header className="adm-mobile-header">
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div style={{ width: 28, height: 28, borderRadius: 6, background: "rgba(255,255,255,0.1)", display: "grid", placeItems: "center" }}>
+            <svg width="18" height="18" viewBox="0 0 36 36" fill="none">
+              <path d="M6 29 C12 18, 16 12, 18 5 C17 14, 13 23, 6 29 Z" fill="#F59E0B" />
+              <path d="M30 29 C24 18, 20 12, 18 5 C19 14, 23 23, 30 29 Z" fill="#D97706" opacity="0.9" />
+              <line x1="18" y1="4" x2="18" y2="30" stroke="#FFFFFF" strokeWidth="1.8" />
+            </svg>
+          </div>
+          <span style={{ fontWeight: 700, fontSize: "14px", color: "white" }}>TSP Admin</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <Link href="/" className="adm-btn adm-btn-ghost" style={{ padding: "6px 12px", fontSize: "12px", color: "white", borderColor: "rgba(255,255,255,0.3)" }}>
+            <Eye size={13} /> Site
+          </Link>
+          <button onClick={logout} className="adm-btn adm-btn-ghost" style={{ padding: "6px 12px", fontSize: "12px", color: "#fca5a5", borderColor: "rgba(252,165,165,0.3)" }}>
+            <LogOut size={13} />
+          </button>
+        </div>
+      </header>
+
+      {/* Horizontal scrolling tab bar on mobile */}
+      <div className="adm-mobile-tabs">
+        {SECTIONS.map(s => (
+          <button
+            key={s.id}
+            className={`adm-mobile-tab-btn ${active === s.id ? "active" : ""}`}
+            onClick={() => setActive(s.id)}
+          >
+            {s.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Desktop Sidebar */}
       <aside className="adm-sidebar">
         <div className="adm-sidebar-top">
           <div className="adm-logo" style={{ display: "flex", alignItems: "center", gap: "10px", padding: "0 20px 20px" }}>
@@ -375,6 +477,19 @@ export default function AdminPage() {
             {active === "offices" && <OfficesSection />}
           </motion.div>
         </AnimatePresence>
+
+        {/* Mobile quick actions at bottom of main content */}
+        <div className="adm-mobile-actions" style={{ display: "none" }}>
+          <button className="adm-btn adm-btn-ghost" onClick={exportData} style={{ fontSize: "12px" }}>
+            <Download size={13} /> Export Backup
+          </button>
+          <button className="adm-btn adm-btn-ghost" onClick={() => fileRef.current?.click()} style={{ fontSize: "12px" }}>
+            <Upload size={13} /> Restore Backup
+          </button>
+          <button className="adm-btn adm-btn-ghost" onClick={logout} style={{ fontSize: "12px", color: "#e53e3e", borderColor: "#fed7d7" }}>
+            <LogOut size={13} /> Logout
+          </button>
+        </div>
       </main>
     </div>
   );

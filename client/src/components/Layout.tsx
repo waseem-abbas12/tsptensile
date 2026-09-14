@@ -158,6 +158,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
               >
                 Get a quote <ArrowUpRight size={16} />
               </button>
+              <Link
+                href="/admin"
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "6px",
+                  padding: "10px 0 2px",
+                  fontSize: "12px",
+                  color: "var(--ink-soft)",
+                  borderTop: "1px dashed var(--line)",
+                  marginTop: "6px",
+                  fontWeight: 600
+                }}
+              >
+                🔒 Admin Portal Login
+              </Link>
             </div>
           </nav>
         )}
@@ -222,6 +240,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/about/ceo">About the CEO</Link>
             <Link href="/faq">FAQs</Link>
             <Link href="/contact">Contact Us</Link>
+            <Link href="/admin" style={{ opacity: 0.6, fontSize: "12px", letterSpacing: "0.04em", marginTop: "4px" }}>
+              Admin Portal ↗
+            </Link>
           </div>
         </div>
         <div className="container footer-bottom">
