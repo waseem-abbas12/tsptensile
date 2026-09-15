@@ -16,6 +16,8 @@ const ProcessPage = lazy(() => import("./pages/Process"));
 const EngineeringPage = lazy(() => import("./pages/Engineering"));
 const AboutPage = lazy(() => import("./pages/About"));
 const CeoPage = lazy(() => import("./pages/CEO"));
+const LocationsPage = lazy(() => import("./pages/Locations"));
+const LocationCityPage = lazy(() => import("./pages/LocationCity"));
 const FaqPage = lazy(() => import("./pages/FAQ"));
 const ContactPage = lazy(() => import("./pages/Contact"));
 const AdminPage = lazy(() => import("./pages/Admin"));
@@ -47,6 +49,13 @@ export default function App() {
                       <Route path="/" component={Home} />
                       <Route path="/projects" component={ProjectsPage} />
                       <Route path="/solutions" component={SolutionsPage} />
+                      <Route path="/locations" component={LocationsPage} />
+                      <Route path="/locations/:city" component={LocationCityPage} />
+                      {/* High Intent City Keyword Aliases */}
+                      <Route path="/car-parking-shades-lahore">{() => <LocationCityPage city="lahore" />}</Route>
+                      <Route path="/car-parking-shades-islamabad">{() => <LocationCityPage city="islamabad" />}</Route>
+                      <Route path="/car-parking-shades-rawalpindi">{() => <LocationCityPage city="rawalpindi" />}</Route>
+                      <Route path="/car-parking-shades-karachi">{() => <LocationCityPage city="karachi" />}</Route>
                       <Route path="/process" component={ProcessPage} />
                       <Route path="/engineering" component={EngineeringPage} />
                       <Route path="/about" component={AboutPage} />

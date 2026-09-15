@@ -4,15 +4,17 @@ interface MarqueeItem {
 }
 
 const defaultItems: MarqueeItem[] = [
-  { text: "TSP TENSILE & FABRIC SHADES", highlight: true },
-  { text: "CAR PARKING SHADES" },
-  { text: "WATER POOL SHADES" },
-  { text: "ARCHITECTURAL CANOPIES" },
-  { text: "RETRACTABLE & FOLDING SHADES" },
-  { text: "CUSTOM FIBERGLASS WORK" },
-  { text: "GERMAN PVDF & PTFE MEMBRANES", highlight: true },
-  { text: "15-YEAR WARRANTY" },
-  { text: "140 KM/H WIND RATED" },
+  { text: "CANTILEVER CAR PARKING SHADES", highlight: true },
+  { text: "LAHORE · DHA & BAHRIA TOWN" },
+  { text: "TENSILE MEMBRANE STRUCTURES" },
+  { text: "ISLAMABAD & RAWALPINDI" },
+  { text: "SWIMMING POOL SHADES" },
+  { text: "KARACHI COASTAL SPECS" },
+  { text: "GERMAN MEHLER PVDF FABRIC", highlight: true },
+  { text: "PADEL COURT ENCLOSURES" },
+  { text: "ZERO FRONT COLUMN PARKING" },
+  { text: "15-YEAR WEATHER WARRANTY" },
+  { text: "WHATSAPP 0302 4001063", highlight: true },
 ];
 
 export function TextMarquee({ items = defaultItems }: { items?: MarqueeItem[] }) {

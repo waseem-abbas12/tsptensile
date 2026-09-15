@@ -35,12 +35,13 @@ function BrandMark({ className }: { className?: string }) {
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/process", label: "Process" },
+  { href: "/projects", label: "Projects" },
+  { href: "/locations", label: "Locations" },
   { href: "/engineering", label: "Engineering" },
-  { href: "/about/ceo", label: "CEO Message" },
+  { href: "/process", label: "Process" },
+  { href: "/about", label: "About" },
+  { href: "/about/ceo", label: "CEO" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -206,48 +207,58 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div>
-            <span className="footer-label">Explore</span>
-            <Link href="/solutions">Solutions</Link>
-            <Link href="/projects">Projects</Link>
-            <Link href="/process">Process</Link>
-            <Link href="/engineering">Engineering</Link>
-            <Link href="/about">About</Link>
+            <span className="footer-label">Products & Shades</span>
+            <Link href="/solutions#cantilever">Cantilever Car Parking</Link>
+            <Link href="/solutions#tensile-roofs">Tensile Membrane Roofs</Link>
+            <Link href="/solutions#pool-shades">Swimming Pool Shades</Link>
+            <Link href="/solutions#walkways">Covered Walkway Canopies</Link>
+            <Link href="/solutions#padel-courts">Padel Court Enclosures</Link>
+            <Link href="/solutions#rooftop">Rooftop Tensile Pergolas</Link>
+            <Link href="/projects">View Recent Projects</Link>
           </div>
           <div>
-            <span className="footer-label">Contact</span>
-            <a href={`mailto:${content?.company?.email || "info@tsptensile.pk"}`}>
-              {content?.company?.email || "info@tsptensile.pk"}
-            </a>
+            <span className="footer-label">Locations Served</span>
+            <Link href="/locations/lahore">Car Parking Shades Lahore</Link>
+            <Link href="/locations/islamabad">Tensile Shades Islamabad</Link>
+            <Link href="/locations/rawalpindi">Parking Sheds Rawalpindi</Link>
+            <Link href="/locations/karachi">Tensile Fabric Karachi</Link>
+            <Link href="/locations" style={{ color: "var(--accent)", fontWeight: 600 }}>All Cities & Site Survey ↗</Link>
+          </div>
+          <div>
+            <span className="footer-label">Direct Contact</span>
             <a href={`tel:${(content?.company?.phone || "0302 4001063").replace(/\s+/g, "")}`}>
-              {content?.company?.phone || "0302 4001063"}
+              📞 {content?.company?.phone || "0302 4001063"}
             </a>
             <a
               href={`https://wa.me/${whatsappRaw}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              WhatsApp ↗
+              💬 WhatsApp Direct ↗
             </a>
-            <span>
-              {content?.offices?.length
-                ? content.offices.map((o) => o.city).join(" · ")
-                : "Lahore · Islamabad · Rawalpindi"}
+            <a href={`mailto:${content?.company?.email || "info@tsptensile.pk"}`}>
+              ✉️ {content?.company?.email || "info@tsptensile.pk"}
+            </a>
+            <span style={{ fontSize: "12px", lineHeight: "1.5", marginTop: "4px", display: "block", color: "var(--ink-soft)" }}>
+              DHA · Bahria Town · Gulberg · F-6/F-7 · Clifton · Nationwide Service
             </span>
           </div>
           <div>
-            <span className="footer-label">Company</span>
+            <span className="footer-label">Company & Legal</span>
             <Link href="/about">About TSP Tensile</Link>
             <Link href="/about/ceo">About the CEO</Link>
-            <Link href="/faq">FAQs</Link>
-            <Link href="/contact">Contact Us</Link>
-            <Link href="/admin" style={{ opacity: 0.6, fontSize: "12px", letterSpacing: "0.04em", marginTop: "4px" }}>
-              Admin Portal ↗
+            <Link href="/engineering">Structural Engineering</Link>
+            <Link href="/process">Installation Process</Link>
+            <Link href="/faq">FAQs & Pricing</Link>
+            <Link href="/contact">Free Site Survey</Link>
+            <Link href="/admin" style={{ opacity: 0.6, fontSize: "12px", letterSpacing: "0.04em", marginTop: "8px", display: "inline-block" }}>
+              🔒 Admin Portal
             </Link>
           </div>
         </div>
         <div className="container footer-bottom">
-          <span>© {new Date().getFullYear()} {content?.company?.name || "TSP Tensile Structures"}. All rights reserved.</span>
-          <span>Engineered for Pakistan's Climate & Built to Last.</span>
+          <span>© {new Date().getFullYear()} {content?.company?.name || "TSP Tensile Structures"}. All rights reserved. Pakistan's #1 Tensile Shade Manufacturer.</span>
+          <span>Lahore · Islamabad · Rawalpindi · Karachi · Nationwide</span>
         </div>
       </footer>
 

@@ -7,6 +7,7 @@ import { StatsSection } from "@/sections/StatsSection";
 import { ClientLogosMarquee } from "@/components/ClientLogosMarquee";
 import { ApproachSection } from "@/sections/ApproachSection";
 import { SolutionsSection } from "@/sections/SolutionsSection";
+import { LocationsGridSection } from "@/sections/LocationsGridSection";
 import { BlueprintBand } from "@/sections/BlueprintBand";
 import { ProjectsMarquee } from "@/components/ProjectsMarquee";
 import { ProjectsSection } from "@/sections/ProjectsSection";
@@ -39,6 +40,7 @@ export default function Home() {
       <ClientLogosMarquee />
       <ApproachSection scrollTo={scrollTo} />
       <SolutionsSection />
+      <LocationsGridSection />
       <BlueprintBand scrollTo={scrollTo} />
       <ProjectsMarquee onQuoteOpen={() => setQuoteOpen(true)} />
       <ProjectsSection onQuoteOpen={() => setQuoteOpen(true)} />

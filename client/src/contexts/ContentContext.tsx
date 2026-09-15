@@ -78,9 +78,9 @@ const DEFAULT_IMAGES = {
 export const DEFAULT_CONTENT: SiteContent = {
   company: {
     name: "TSP Tensile Structures",
-    tagline: "Tensile Architecture & Car Parking Shades / Pakistan",
-    heroHeading: "Shade becomes architecture when every curve has a reason.",
-    heroSub: "Custom tensile membrane structures and cantilever parking shades engineered for Pakistan's climate. Designed, fabricated, and installed as one considered whole.",
+    tagline: "Pakistan's #1 Tensile Membrane Structures & Cantilever Car Parking Shades",
+    heroHeading: "Pakistan's Premier Tensile Architecture & Cantilever Car Parking Shades",
+    heroSub: "Custom-engineered cantilever parking shades, tensile membrane roofs, and commercial canopies in Lahore, Islamabad, Rawalpindi & Karachi. In-house fabrication, German Mehler PVDF fabric, and 15-year warranty.",
     phone: "0302 4001063",
     email: "info@tsptensile.pk",
     whatsapp: "923024001063",
