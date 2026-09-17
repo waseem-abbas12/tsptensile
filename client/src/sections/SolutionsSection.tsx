@@ -14,23 +14,23 @@ const images = {
 const solutionItems = [
   {
     num: "01",
-    title: "Arrival & parking",
-    desc: "Elegant cover for the moments between the road and the door.",
+    title: "Cantilever Parking & Porch Sheds",
+    desc: "Obstruction-free zero front-column parking shades for residential villas, corporate plazas & EV bays.",
   },
   {
     num: "02",
-    title: "Walkways & entrances",
-    desc: "Light, continuous structures that guide people through a place.",
+    title: "Industrial, Factory & Warehouse Sheds",
+    desc: "Heavy-duty steel structure sheds, pre-engineered buildings (PEB), workshops & dairy farm sheds.",
   },
   {
     num: "03",
-    title: "Pool & recreation",
-    desc: "Cool, composed shelter that lets outdoor life stay outdoors.",
+    title: "Swimming Pool, Padel & Sports Sheds",
+    desc: "Heatproof & UV-blocking tensile fabric canopies for pools, padel courts, and sports arenas.",
   },
   {
     num: "04",
-    title: "Custom membranes",
-    desc: "One-off forms shaped around the way your site is actually used.",
+    title: "Marquees, Shadi Halls & Gazebos",
+    desc: "Clear-span architectural tensile membrane roofs, banquet lawns, covered walkways & entrance arches.",
   },
 ];
 

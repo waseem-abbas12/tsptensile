@@ -5,15 +5,14 @@ interface MarqueeItem {
 
 const defaultItems: MarqueeItem[] = [
   { text: "CANTILEVER CAR PARKING SHADES", highlight: true },
-  { text: "LAHORE · DHA & BAHRIA TOWN" },
-  { text: "TENSILE MEMBRANE STRUCTURES" },
-  { text: "ISLAMABAD & RAWALPINDI" },
-  { text: "SWIMMING POOL SHADES" },
-  { text: "KARACHI COASTAL SPECS" },
-  { text: "GERMAN MEHLER PVDF FABRIC", highlight: true },
-  { text: "PADEL COURT ENCLOSURES" },
-  { text: "ZERO FRONT COLUMN PARKING" },
-  { text: "15-YEAR WEATHER WARRANTY" },
+  { text: "100+ COMPLETED PROJECTS ALL OVER PAKISTAN", highlight: true },
+  { text: "PORCH & WALL MOUNTED SHEDS" },
+  { text: "FACTORY & WAREHOUSE STEEL SHEDS" },
+  { text: "MARQUEE & SHADI HALL SHADES" },
+  { text: "SWIMMING POOL SHADES & GAZEBOS" },
+  { text: "PADEL COURT & SPORTS ENCLOSURES" },
+  { text: "GERMAN MEHLER & PRE-ENGINEERED PEB SHEDS", highlight: true },
+  { text: "OUR FACTORY IN LAHORE · NATIONWIDE SERVICE" },
   { text: "WHATSAPP 0302 4001063", highlight: true },
 ];
 

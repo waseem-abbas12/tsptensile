@@ -207,14 +207,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div>
-            <span className="footer-label">Products & Shades</span>
-            <Link href="/solutions#cantilever">Cantilever Car Parking</Link>
+            <span className="footer-label">Products & Sheds</span>
+            <Link href="/solutions#cantilever">Cantilever Parking & Porch Sheds</Link>
+            <Link href="/solutions#industrial-sheds">Industrial & Warehouse Sheds</Link>
             <Link href="/solutions#tensile-roofs">Tensile Membrane Roofs</Link>
+            <Link href="/solutions#marquee-event-shades">Marquee & Shadi Hall Sheds</Link>
             <Link href="/solutions#pool-shades">Swimming Pool Shades</Link>
             <Link href="/solutions#walkways">Covered Walkway Canopies</Link>
             <Link href="/solutions#padel-courts">Padel Court Enclosures</Link>
-            <Link href="/solutions#rooftop">Rooftop Tensile Pergolas</Link>
-            <Link href="/projects">View Recent Projects</Link>
+            <Link href="/solutions#rooftop">Rooftop Pergolas & Gazebos</Link>
+            <Link href="/projects">View 100+ Completed Projects ↗</Link>
           </div>
           <div>
             <span className="footer-label">Locations Served</span>

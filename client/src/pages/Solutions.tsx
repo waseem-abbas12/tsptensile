@@ -108,6 +108,38 @@ const solutions = [
     image: "/images/walkway.jpg",
     applications: ["Rooftop cafes & restaurants", "Residential terrace gardens", "Penthouse entertainment decks", "Corporate rooftop break areas"],
   },
+  {
+    id: "07",
+    slug: "industrial-sheds",
+    name: "Industrial, Factory & Warehouse Sheds",
+    tagline: "Pre-Engineered Heavy Duty Steel & Fabric Industrial Buildings",
+    desc: "Heavy-duty structural steel and tensile fabric roofing systems engineered for factories, manufacturing workshops, dairy farms, poultry sheds, and logistic warehouses across Lahore, Faisalabad, Gujranwala, and Karachi. High clear-span clearance with thermal insulation.",
+    benefits: [
+      "Long-span column-free space for heavy forklifts, machinery, and production lines",
+      "Galvanized & anti-rust MS steel framing engineered for heavy monsoon & wind loads",
+      "Heatproof insulated sandwich panel & high-strength PVC tensile membrane options",
+      "Fast prefabricated erection — reduces build time by over 50% compared to concrete",
+      "Turnkey civil foundation, anchor bolting, and fabrication with structural warranty"
+    ],
+    image: "/images/detail.jpg",
+    applications: ["Factory production floors", "Logistics & distribution warehouses", "Dairy & livestock farm sheds", "Agricultural equipment storage & workshops"],
+  },
+  {
+    id: "08",
+    slug: "marquee-event-shades",
+    name: "Marquee, Shadi Hall & Gazebo Canopies",
+    tagline: "Grand Clear-Span Event Arenas & Luxury Outdoor Gazebos",
+    desc: "Aesthetic architectural tensile structures and heavy-duty steel truss marquees for marriage lawns, shadi halls, convention centers, and resort courtyards. Designed for dramatic atmospheric interior lighting and complete weatherproofing.",
+    benefits: [
+      "Expansive clear span accommodating 500 to 3,000+ banquet guests without middle pillars",
+      "100% waterproof and flame-retardant Class B1/M2 European PVDF fabrics",
+      "Compatible with central air conditioning ducting and grand chandelier suspension",
+      "Custom dome, hyperbolic, conical, and modern arch configurations",
+      "Fast seasonal installation or permanent year-round commercial operation"
+    ],
+    image: "/images/hero_flagship.jpg",
+    applications: ["Wedding lawns & banquet halls in Lahore & Islamabad", "Corporate expo centers", "Luxury farmhouse outdoor gazebos", "Stadium & sports arena grandstands"],
+  },
 ];
 
 function SolutionBlock({ sol, idx }: { sol: typeof solutions[0]; idx: number }) {
