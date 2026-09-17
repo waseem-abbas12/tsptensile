@@ -371,6 +371,101 @@ export default function LocationCityPage(props?: LocationCityProps) {
         </div>
       </section>
 
+      {/* ── Complete Sheds & Tensile Taxonomy (Hyper-Local Ranking Cloud) ── */}
+      <section style={{ padding: "60px 0 70px", background: "white", borderTop: "1px solid var(--line)" }}>
+        <div className="container">
+          <div style={{ maxWidth: "800px", marginBottom: "30px" }}>
+            <span className="eyebrow">Comprehensive Shade &amp; Shed Capabilities in {city.name}</span>
+            <h2 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontFamily: "var(--serif)", fontWeight: 500, margin: "8px 0 12px" }}>
+              All Types of Industrial, Commercial &amp; Residential Sheds
+            </h2>
+            <p style={{ color: "var(--ink-soft)", fontSize: "14.5px", lineHeight: 1.6 }}>
+              From custom car porches in residential sectors to 50,000+ sq.ft industrial warehouse PEB sheds and wedding marquees, TSP Tensile fabricates every type of structural steel and PVC membrane structure across {city.name} and surrounding industrial zones.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px" }}>
+            <div style={{ background: "var(--paper)", padding: "20px", borderRadius: "8px", border: "1px solid var(--line)" }}>
+              <h3 style={{ fontSize: "15px", fontWeight: 700, color: "var(--ink)", marginBottom: "12px", display: "flex", alignItems: "center", gap: "6px" }}>
+                🚗 Parking &amp; Porch Sheds
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12.5px", color: "var(--ink-soft)", display: "flex", flexDirection: "column", gap: "8px" }}>
+                <li>✓ Cantilever Car Parking Shades (Zero Column)</li>
+                <li>✓ Residential Porch &amp; Garage Sheds</li>
+                <li>✓ Wall Mounted &amp; Pole Parking Sheds</li>
+                <li>✓ Hospital, Hotel &amp; Airport Parking Canopies</li>
+                <li>✓ Commercial Plaza &amp; Office Fleet Bays</li>
+                <li>✓ Foldable &amp; Remote Control Retractable Shades</li>
+              </ul>
+            </div>
+
+            <div style={{ background: "var(--paper)", padding: "20px", borderRadius: "8px", border: "1px solid var(--line)" }}>
+              <h3 style={{ fontSize: "15px", fontWeight: 700, color: "var(--ink)", marginBottom: "12px", display: "flex", alignItems: "center", gap: "6px" }}>
+                🏭 Industrial &amp; Storage Sheds
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12.5px", color: "var(--ink-soft)", display: "flex", flexDirection: "column", gap: "8px" }}>
+                <li>✓ Pre-Engineered Buildings (PEB Steel Sheds)</li>
+                <li>✓ Factory &amp; Manufacturing Workshop Sheds</li>
+                <li>✓ Logistics Warehouse &amp; Storage Sheds</li>
+                <li>✓ Dairy Farm &amp; Livestock Steel Structures</li>
+                <li>✓ Agricultural &amp; Poultry Farm Sheds</li>
+                <li>✓ Heavy Duty Long-Span MS Galvanized Sheds</li>
+              </ul>
+            </div>
+
+            <div style={{ background: "var(--paper)", padding: "20px", borderRadius: "8px", border: "1px solid var(--line)" }}>
+              <h3 style={{ fontSize: "15px", fontWeight: 700, color: "var(--ink)", marginBottom: "12px", display: "flex", alignItems: "center", gap: "6px" }}>
+                🎪 Event, Sports &amp; Lifestyle Sheds
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12.5px", color: "var(--ink-soft)", display: "flex", flexDirection: "column", gap: "8px" }}>
+                <li>✓ Shadi Hall &amp; Marriage Lawn Marquees</li>
+                <li>✓ Swimming Pool Heatproof &amp; UV Shades</li>
+                <li>✓ Padel &amp; Tennis Court Tensile Enclosures</li>
+                <li>✓ Rooftop Restaurant Pergolas &amp; Gazebos</li>
+                <li>✓ School, College &amp; Hospital Covered Walkways</li>
+                <li>✓ Stadium, Amphitheatre &amp; Dome Sheds</li>
+              </ul>
+            </div>
+
+            <div style={{ background: "var(--paper)", padding: "20px", borderRadius: "8px", border: "1px solid var(--line)" }}>
+              <h3 style={{ fontSize: "15px", fontWeight: 700, color: "var(--ink)", marginBottom: "12px", display: "flex", alignItems: "center", gap: "6px" }}>
+                📐 Engineered Geometries &amp; Fabrics
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "12.5px", color: "var(--ink-soft)", display: "flex", flexDirection: "column", gap: "8px" }}>
+                <li>✓ Hyperbolic Paraboloid (Hypar) Shapes</li>
+                <li>✓ Conical, Barrel Vault &amp; Pyramid Tensile</li>
+                <li>✓ German Mehler Valmex 900 GSM PVDF</li>
+                <li>✓ Australian HDPE Breathable Shade Cloth</li>
+                <li>✓ French Serge Ferrari Architectural Membrane</li>
+                <li>✓ Hot-Dip Galvanized &amp; Powder Coated Steel</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style={{ marginTop: "24px", paddingTop: "18px", borderTop: "1px dashed var(--line)", display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
+            <span style={{ fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--teal)" }}>
+              {city.name} Popular Search Queries:
+            </span>
+            {[
+              `Car parking sheds ${city.name}`,
+              `Tensile shades ${city.name}`,
+              `Cantilever parking shade price ${city.name}`,
+              `Industrial shed construction ${city.name}`,
+              `Warehouse steel shed ${city.name}`,
+              `Swimming pool shade ${city.name}`,
+              `Padel court roof ${city.name}`,
+              `Marquee shed fabricator ${city.name}`,
+              `Porch shed design ${city.name}`,
+              `Factory shed installation ${city.name}`
+            ].map((tag) => (
+              <span key={tag} style={{ fontSize: "11px", background: "var(--ivory)", padding: "4px 10px", borderRadius: "4px", color: "var(--ink-soft)" }}>
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── City FAQs (Schema Optimized) ── */}
       <section style={{ padding: "85px 0", background: "var(--ivory)", borderTop: "1px solid var(--line)" }} ref={r3}>
         <div className="container">
