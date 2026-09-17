@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  <!-- Core Landing Pages -->
  <url>
- <loc>https://tensile-architectural-site.vercel.app/</loc>
+ <loc>https://tsptensile.com/</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>1.0</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/solutions</loc>
+ <loc>https://tsptensile.com/solutions</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.9</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/projects</loc>
+ <loc>https://tsptensile.com/projects</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.8</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/locations</loc>
+ <loc>https://tsptensile.com/locations</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.9</priority>
@@ -28,25 +28,25 @@
 
  <!-- High-Intent City Landing Pages (Local SEO) -->
  <url>
- <loc>https://tensile-architectural-site.vercel.app/locations/lahore</loc>
+ <loc>https://tsptensile.com/locations/lahore</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.95</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/locations/islamabad</loc>
+ <loc>https://tsptensile.com/locations/islamabad</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.95</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/locations/rawalpindi</loc>
+ <loc>https://tsptensile.com/locations/rawalpindi</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.9</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/locations/karachi</loc>
+ <loc>https://tsptensile.com/locations/karachi</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.9</priority>
@@ -54,25 +54,25 @@
 
  <!-- Aliases / High Demand Search Landing Routes -->
  <url>
- <loc>https://tensile-architectural-site.vercel.app/car-parking-shades-lahore</loc>
+ <loc>https://tsptensile.com/car-parking-shades-lahore</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.95</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/car-parking-shades-islamabad</loc>
+ <loc>https://tsptensile.com/car-parking-shades-islamabad</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.9</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/car-parking-shades-rawalpindi</loc>
+ <loc>https://tsptensile.com/car-parking-shades-rawalpindi</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.85</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/car-parking-shades-karachi</loc>
+ <loc>https://tsptensile.com/car-parking-shades-karachi</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.85</priority>
@@ -80,37 +80,37 @@
 
  <!-- Company, Engineering & Trust Pages -->
  <url>
- <loc>https://tensile-architectural-site.vercel.app/engineering</loc>
+ <loc>https://tsptensile.com/engineering</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>monthly</changefreq>
  <priority>0.7</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/process</loc>
+ <loc>https://tsptensile.com/process</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>monthly</changefreq>
  <priority>0.7</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/about</loc>
+ <loc>https://tsptensile.com/about</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>monthly</changefreq>
  <priority>0.6</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/about/ceo</loc>
+ <loc>https://tsptensile.com/about/ceo</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>monthly</changefreq>
  <priority>0.6</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/faq</loc>
+ <loc>https://tsptensile.com/faq</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>weekly</changefreq>
  <priority>0.8</priority>
  </url>
  <url>
- <loc>https://tensile-architectural-site.vercel.app/contact</loc>
+ <loc>https://tsptensile.com/contact</loc>
  <lastmod>2026-09-17</lastmod>
  <changefreq>monthly</changefreq>
  <priority>0.85</priority>
