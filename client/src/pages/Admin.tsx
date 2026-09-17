@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContent, DEFAULT_CONTENT, type Project, type Testimonial, type FaqItem, type Office } from "@/contexts/ContentContext";
-import { Plus, Trash2, Save, Download, Upload, RotateCcw, LogOut, ChevronDown, ChevronUp, Eye, EyeOff } from "lucide-react";
+import { Plus, Trash2, Save, Download, Upload, RotateCcw, LogOut, ChevronDown, ChevronUp, Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
 
 const ADMIN_PASSWORD = "formfield2026";
@@ -276,43 +276,118 @@ const SECTIONS = [
   { id: "offices", label: "📍 Offices" },
 ];
 
+const SESSION_KEY = "tsp_admin_session_auth";
+const SESSION_DURATION = 1000 * 60 * 60 * 2; // 2 hours
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState(() => {
     try {
-      return sessionStorage.getItem("ff_admin") === "1" || localStorage.getItem("ff_admin") === "1";
+      // Clean up any legacy insecure permanent logins
+      localStorage.removeItem("ff_admin");
+      localStorage.removeItem("tsp_admin_auth");
+
+      const saved = sessionStorage.getItem(SESSION_KEY);
+      if (!saved) return false;
+      const parsed = JSON.parse(saved);
+      if (parsed.token === "tsp_auth_active" && Date.now() - parsed.timestamp < SESSION_DURATION) {
+        return true;
+      }
+      sessionStorage.removeItem(SESSION_KEY);
+      return false;
     } catch {
       return false;
     }
   });
+
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [lockoutUntil, setLockoutUntil] = useState<number | null>(null);
+  const [countdown, setCountdown] = useState(0);
   const [active, setActive] = useState("company");
   const { resetToDefaults, exportData, importData } = useContent();
   const fileRef = useRef<HTMLInputElement>(null);
 
+  // Countdown timer for brute-force lockout
+  useEffect(() => {
+    if (!lockoutUntil) return;
+    const interval = setInterval(() => {
+      const remaining = Math.ceil((lockoutUntil - Date.now()) / 1000);
+      if (remaining <= 0) {
+        setLockoutUntil(null);
+        setCountdown(0);
+        setFailedAttempts(0);
+        setError("");
+      } else {
+        setCountdown(remaining);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [lockoutUntil]);
+
+  // Clean any old localStorage entries on mount and update document title & robot meta
+  useEffect(() => {
+    try {
+      localStorage.removeItem("ff_admin");
+      localStorage.removeItem("tsp_admin_auth");
+    } catch {}
+
+    document.title = authed ? "TSP Tensile - Admin Portal" : "Restricted Access";
+    let metaRobots = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    if (!metaRobots) {
+      metaRobots = document.createElement("meta");
+      metaRobots.name = "robots";
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.content = "noindex, nofollow, noarchive";
+
+    return () => {
+      if (metaRobots) metaRobots.content = "index, follow";
+    };
+  }, [authed]);
+
   const login = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    const clean = password.trim().toLowerCase();
-    // Accept formfield2026 (case-insensitive) or phone number
-    if (clean === ADMIN_PASSWORD.toLowerCase() || clean === "03024001063" || clean === "923024001063") {
+    if (lockoutUntil && Date.now() < lockoutUntil) return;
+
+    const clean = password.trim();
+    // Only the exact ADMIN_PASSWORD is accepted. No phone numbers or backdoors.
+    if (clean === ADMIN_PASSWORD) {
       try {
-        sessionStorage.setItem("ff_admin", "1");
-        localStorage.setItem("ff_admin", "1");
+        sessionStorage.setItem(
+          SESSION_KEY,
+          JSON.stringify({ token: "tsp_auth_active", timestamp: Date.now() })
+        );
+        localStorage.removeItem("ff_admin");
       } catch {}
       setAuthed(true);
+      setError("");
+      setFailedAttempts(0);
+      setPassword("");
     } else {
-      setError(true);
-      setTimeout(() => setError(false), 2000);
+      const newAttempts = failedAttempts + 1;
+      setFailedAttempts(newAttempts);
+      if (newAttempts >= 5) {
+        const lockTime = Date.now() + 60 * 1000;
+        setLockoutUntil(lockTime);
+        setCountdown(60);
+        setError("5 martaba galat password enter kiya gaya. Security lockout: 60 seconds intezar karein.");
+      } else {
+        setError(`Galat password! Sirf authorized admin login kar sakta hai (${5 - newAttempts} koshishein baqi).`);
+      }
     }
   };
 
   const logout = () => {
     try {
+      sessionStorage.removeItem(SESSION_KEY);
       sessionStorage.removeItem("ff_admin");
       localStorage.removeItem("ff_admin");
     } catch {}
     setAuthed(false);
+    setPassword("");
+    setError("");
   };
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -327,6 +402,7 @@ export default function AdminPage() {
   };
 
   if (!authed) {
+    const isLocked = !!(lockoutUntil && countdown > 0);
     return (
       <div className="adm-login">
         <form className="adm-login-box" onSubmit={login}>
@@ -341,11 +417,11 @@ export default function AdminPage() {
             </div>
             <div>
               <div style={{ fontSize: "15px", fontWeight: 800, color: "var(--ink)", letterSpacing: "0.04em" }}>TSP TENSILE</div>
-              <div style={{ fontSize: "9.5px", color: "var(--teal)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em" }}>Admin Portal</div>
+              <div style={{ fontSize: "9.5px", color: "var(--teal)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em" }}>Restricted Access</div>
             </div>
           </div>
-          <h1>Admin Login</h1>
-          <p>Apna admin password enter karein website content manage karne ke liye.</p>
+          <h1>Security Verification</h1>
+          <p>This portal is restricted to authorized company administrators only. Please enter your secret security code to proceed.</p>
           <div style={{ position: "relative", width: "100%" }}>
             <input
               type={showPassword ? "text" : "password"}
@@ -353,11 +429,12 @@ export default function AdminPage() {
               value={password}
               onChange={e => setPassword(e.target.value)}
               className={error ? "error" : ""}
+              disabled={isLocked}
               autoFocus
               autoCapitalize="none"
               autoCorrect="off"
               spellCheck="false"
-              autoComplete="current-password"
+              autoComplete="off"
               style={{ paddingRight: "46px" }}
             />
             <button
@@ -382,11 +459,23 @@ export default function AdminPage() {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-          {error && <span className="adm-error">Galat password hai. Sahi password enter karein.</span>}
-          <button type="submit" className="adm-btn adm-btn-primary" style={{ height: "46px", justifyContent: "center", fontSize: "15px", borderRadius: "4px" }}>
-            Login
+          {error && <span className="adm-error" style={{ lineHeight: "1.4" }}>{error}</span>}
+          <button
+            type="submit"
+            className="adm-btn adm-btn-primary"
+            disabled={isLocked}
+            style={{
+              height: "46px",
+              justifyContent: "center",
+              fontSize: "15px",
+              borderRadius: "4px",
+              opacity: isLocked ? 0.6 : 1,
+              cursor: isLocked ? "not-allowed" : "pointer"
+            }}
+          >
+            {isLocked ? `Locked (${countdown}s)` : "Verify & Enter"}
           </button>
-          <Link href="/" className="adm-back-link">← Website pe wapas jao</Link>
+          <Link href="/" className="adm-back-link">← Return to Website</Link>
         </form>
       </div>
     );
