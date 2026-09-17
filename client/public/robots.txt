@@ -1,0 +1,11 @@
+﻿User-agent: *
+Allow: /
+
+# Admin Panel Disallow
+Disallow: /admin
+Disallow: /admin/
+Disallow: /Admin
+Disallow: /Admin/
+
+# Sitemaps
+Sitemap: https://tensile-architectural-site.vercel.app/sitemap.xml
