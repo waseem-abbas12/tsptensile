@@ -2,9 +2,10 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "cleanUrls": false,
   "rewrites": [
     {
-      "source": "/((?!.*\\.[\\w]+$).*)",
+      "source": "/((?!.*\\.(?:xml|txt|html|pdf|png|jpg|jpeg|svg|css|js|ico|webp)$).*)",
       "destination": "/index.html"
     }
   ]
