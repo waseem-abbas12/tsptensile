@@ -8,4 +8,5 @@ Disallow: /Admin
 Disallow: /Admin/
 
 # Sitemaps
+Sitemap: https://www.tsptensile.com/sitemap.xml
 Sitemap: https://tsptensile.com/sitemap.xml
