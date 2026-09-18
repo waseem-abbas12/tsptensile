@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
 
+# Allow Google Favicon & Image crawlers explicitly
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
 # Admin Panel Disallow
 Disallow: /admin
 Disallow: /admin/
