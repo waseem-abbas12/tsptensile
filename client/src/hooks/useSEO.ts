@@ -14,7 +14,7 @@ export interface SEOProps {
   breadcrumbs?: BreadcrumbItem[];
 }
 
-const BASE_URL = "https://tsptensile.com";
+const BASE_URL = "https://www.tsptensile.com";
 
 export function useSEO({
   title,
