@@ -3,6 +3,7 @@ import { ArrowUpRight, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import { useScrollAnimation, staggerContainer, fadeUp, slideInLeft, slideInRight } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
+import { useSEO } from "@/hooks/useSEO";
 
 const images = {
   hero: "/images/hero.jpg",
@@ -187,6 +188,16 @@ function SolutionBlock({ sol, idx }: { sol: typeof solutions[0]; idx: number }) 
 }
 
 export default function SolutionsPage() {
+  useSEO({
+    title: "Car Parking Shades, Industrial Sheds & Tensile Roofs | TSP Tensile",
+    description: "Explore cantilever car parking shades, industrial factory & warehouse sheds, marquee banquet canopies, and swimming pool tensile covers in Pakistan. Call 0302 4001063.",
+    path: "/solutions",
+    keywords: "cantilever car parking shades, industrial factory shed, warehouse steel structure, tensile fabric roofs, marquee shadi hall canopies, swimming pool shades pakistan",
+    breadcrumbs: [
+      { name: "Shade Solutions", url: "/solutions" }
+    ]
+  });
+
   return (
     <div className="inner-page">
       <section className="page-hero" style={{ background: "var(--ink)" }}>

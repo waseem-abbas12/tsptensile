@@ -4,10 +4,21 @@ import { ArrowUpRight, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { useContent } from "@/contexts/ContentContext";
+import { useSEO } from "@/hooks/useSEO";
 
 type FormState = { name: string; phone: string; city: string; type: string; message: string; };
 
 export default function ContactPage() {
+  useSEO({
+    title: "Free Site Survey & Shade Quote | Contact TSP Tensile Pakistan",
+    description: "Book a free on-site survey and get custom 3D structural drawings & quotation for car parking sheds, warehouse roofs, and tensile canopies. Call/WhatsApp 0302 4001063.",
+    path: "/contact",
+    keywords: "free site survey tensile shades, contact shade contractor lahore, tensile structures quote islamabad, parking shed price karachi",
+    breadcrumbs: [
+      { name: "Contact & Site Survey", url: "/contact" }
+    ]
+  });
+
   const { content } = useContent();
   const offices = content.offices;
   const whatsapp = content.company.whatsapp || "923024001063";

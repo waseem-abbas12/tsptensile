@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
+import { useSEO } from "@/hooks/useSEO";
 
 const values = [
   { num: "01", title: "Site first", desc: "Every decision begins with the specific place and its specific conditions. We do not fit sites to solutions — we fit solutions to sites." },
@@ -21,6 +22,16 @@ const timeline = [
 ];
 
 export default function AboutPage() {
+  useSEO({
+    title: "About TSP Tensile | 15+ Years Excellence in Tensile Architecture Pakistan",
+    description: "Learn about TSP Tensile's engineering heritage, leadership under CEO Shaukat Rauf, and over 100+ completed tensile membrane and parking shade projects across Pakistan.",
+    path: "/about",
+    keywords: "about tsp tensile, tensile shade company pakistan, shaukat rauf ceo, tensile architecture manufacturer lahore",
+    breadcrumbs: [
+      { name: "About", url: "/about" }
+    ]
+  });
+
   const { ref: r1, isInView: iv1 } = useScrollAnimation({ amount: 0.15 });
   const { ref: r2, isInView: iv2 } = useScrollAnimation({ amount: 0.1 });
   const { ref: r3, isInView: iv3 } = useScrollAnimation({ amount: 0.1 });

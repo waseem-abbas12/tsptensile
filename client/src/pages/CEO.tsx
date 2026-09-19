@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowUpRight, Quote } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
 import { useContent } from "@/contexts/ContentContext";
+import { useSEO } from "@/hooks/useSEO";
 
 const milestones = [
   { year: "2008", text: "Joined Haif Trading & Contracting Company, Riyadh — 6 years of structural steel erection and fabrication across Saudi Arabia." },
@@ -14,6 +15,17 @@ const milestones = [
 ];
 
 export default function CeoPage() {
+  useSEO({
+    title: "Shaukat Rauf - Founder & CEO | TSP Tensile Pakistan",
+    description: "Meet Shaukat Rauf, Founder & CEO of TSP Tensile. 18+ years of mechanical and structural engineering experience across Haif Trading (Saudi Arabia), Descon, and FWO.",
+    path: "/about/ceo",
+    keywords: "shaukat rauf ceo, tsp tensile founder, structural tensile engineering expert pakistan",
+    breadcrumbs: [
+      { name: "About", url: "/about" },
+      { name: "CEO Profile", url: "/about/ceo" }
+    ]
+  });
+
   const { content } = useContent();
   const ceo = content?.ceo || {
     name: "Shaukat Rauf",

@@ -6,8 +6,19 @@ import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { useContent } from "@/contexts/ContentContext";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function FaqPage() {
+  useSEO({
+    title: "Pricing & FAQs | Car Parking Shades & Tensile Structures | TSP Tensile",
+    description: "Get answers to frequently asked questions about tensile shades pricing per sq.ft in Pakistan, material lifespan, warranty, municipal approvals, and installation timeline.",
+    path: "/faq",
+    keywords: "tensile shade price pakistan, car parking shed cost per sq ft, tensile membrane lifespan, shade cloth faq",
+    breadcrumbs: [
+      { name: "FAQs & Pricing", url: "/faq" }
+    ]
+  });
+
   const { content } = useContent();
   const categories = content?.faqCategories?.length ? content.faqCategories : [];
   const [openItem, setOpenItem] = useState<string | null>("Getting started-0");

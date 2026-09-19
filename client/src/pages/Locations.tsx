@@ -4,8 +4,19 @@ import { ArrowUpRight, MapPin, Phone, ShieldCheck, CheckCircle2, MessageCircle, 
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { CITIES_DATA } from "@/data/locationsData";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function LocationsPage() {
+  useSEO({
+    title: "Locations Served | Car Parking Shades Lahore, Islamabad, Karachi",
+    description: "TSP Tensile provides cantilever car parking shades, tensile fabric roofs, and industrial sheds across Lahore, Islamabad, Rawalpindi, Karachi, and nationwide. Book a free site survey.",
+    path: "/locations",
+    keywords: "car parking shades lahore, tensile structures islamabad, parking sheds rawalpindi, tensile fabric karachi, shade contractor pakistan",
+    breadcrumbs: [
+      { name: "Locations", url: "/locations" }
+    ]
+  });
+
   const { ref: r1, isInView: iv1 } = useScrollAnimation({ amount: 0.1 });
   const { ref: r2, isInView: iv2 } = useScrollAnimation({ amount: 0.1 });
 

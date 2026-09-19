@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRoute, Link } from "wouter";
 import { motion } from "framer-motion";
 import {
@@ -18,6 +17,7 @@ import {
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { CITIES_DATA } from "@/data/locationsData";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
+import { useSEO } from "@/hooks/useSEO";
 
 interface LocationCityProps {
   city?: string;
@@ -29,19 +29,20 @@ export default function LocationCityPage(props?: LocationCityProps) {
   const citySlug = (props?.city || props?.params?.city || routeParams?.city || "lahore").toLowerCase();
   const city = CITIES_DATA[citySlug] || CITIES_DATA.lahore;
 
+  useSEO({
+    title: city.metaTitle,
+    description: city.metaDescription,
+    path: `/locations/${city.slug}`,
+    keywords: `${city.h1}, car parking sheds ${city.name.toLowerCase()}, tensile shades ${city.name.toLowerCase()}, cantilever parking sheds ${city.name.toLowerCase()}, shade contractor ${city.name.toLowerCase()}`,
+    breadcrumbs: [
+      { name: "Locations", url: "/locations" },
+      { name: city.name, url: `/locations/${city.slug}` }
+    ]
+  });
+
   const { ref: r1, isInView: iv1 } = useScrollAnimation({ amount: 0.1 });
   const { ref: r2, isInView: iv2 } = useScrollAnimation({ amount: 0.1 });
   const { ref: r3, isInView: iv3 } = useScrollAnimation({ amount: 0.1 });
-
-  // Update page title and meta description dynamically
-  useEffect(() => {
-    document.title = `${city.metaTitle} | TSP Tensile`;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", city.metaDescription);
-    }
-    window.scrollTo(0, 0);
-  }, [city]);
 
   return (
     <div className="inner-page">

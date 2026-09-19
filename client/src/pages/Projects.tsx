@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, fadeUp, staggerContainer } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { useContent } from "@/contexts/ContentContext";
+import { useSEO } from "@/hooks/useSEO";
 
 const images = {
   hero: "/images/hero.jpg",
@@ -156,6 +157,16 @@ const cardVariants = {
 };
 
 export default function ProjectsPage() {
+  useSEO({
+    title: "100+ Completed Projects | Tensile Architecture & Parking Shades",
+    description: "Browse 100+ completed projects by TSP Tensile across Pakistan. Cantilever car parking shades, commercial canopies, hospital entrance shades, and military installations.",
+    path: "/projects",
+    keywords: "tensile shade projects pakistan, car parking sheds lahore projects, completed tensile structures islamabad, commercial shed portfolio pakistan",
+    breadcrumbs: [
+      { name: "Projects", url: "/projects" }
+    ]
+  });
+
   const { content } = useContent();
   const ALL_PROJECTS = content.projects;
   const [filter, setFilter] = useState("All");

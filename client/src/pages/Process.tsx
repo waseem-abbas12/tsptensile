@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
+import { useSEO } from "@/hooks/useSEO";
 
 const steps = [
   {
@@ -48,6 +49,16 @@ const steps = [
 ];
 
 export default function ProcessPage() {
+  useSEO({
+    title: "Fabrication & Installation Process | Tensile Sheds | TSP Tensile",
+    description: "Learn about TSP Tensile's 4-step execution process: on-site measurements, 3D design, structural engineering, and precision site installation across Pakistan.",
+    path: "/process",
+    keywords: "tensile shade fabrication process, parking shed installation pakistan, site survey tensile architecture",
+    breadcrumbs: [
+      { name: "Process", url: "/process" }
+    ]
+  });
+
   const { ref: headerRef, isInView: headerInView } = useScrollAnimation({ amount: 0.2 });
 
   return (

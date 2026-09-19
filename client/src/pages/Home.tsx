@@ -1,5 +1,5 @@
-/* Style reminder: Desert Modernism — warm ivory canvas, ink-blue type, eucalyptus accent, editorial asymmetry */
 import { useState } from "react";
+import { useSEO } from "@/hooks/useSEO";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { HeroSection } from "@/sections/HeroSection";
 import { TextMarquee } from "@/components/TextMarquee";
@@ -21,6 +21,13 @@ import { QuotePanel } from "@/components/QuotePanel";
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  useSEO({
+    title: "Car Parking Shades, Industrial Steel Sheds & Tensile Membrane Pakistan | TSP Tensile",
+    description: "Pakistan's #1 manufacturer of cantilever car parking sheds, industrial factory & warehouse sheds, marquee tents & swimming pool canopies. 100+ projects completed across Pakistan. Call/WhatsApp 0302 4001063.",
+    path: "/",
+    keywords: "car parking sheds pakistan, cantilever parking shade lahore, industrial shed construction pakistan, warehouse steel structure shed, factory shed lahore, marquee shed, porch sheds, wall mounted sheds, swimming pool shade, dairy farm shed, peb pre engineered building pakistan, tensile fabric structure islamabad, car parking shades karachi, TSP tensile"
+  });
+
   const [quoteOpen, setQuoteOpen] = useState(false);
 
   const scrollTo = (id: string) => {

@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp, slideInLeft, slideInRight } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
+import { useSEO } from "@/hooks/useSEO";
 
 const images = {
   detail: "/images/detail.jpg",
@@ -24,6 +25,16 @@ const principles = [
 ];
 
 export default function EngineeringPage() {
+  useSEO({
+    title: "Structural Engineering & PVDF Fabric Specifications | TSP Tensile",
+    description: "Detailed structural calculations, German Mehler & Serge Ferrari PVDF tensile membrane specifications, wind load resistance up to 140 km/h, and steel framing standards.",
+    path: "/engineering",
+    keywords: "tensile membrane engineering, pvdf fabric specifications pakistan, wind load calculations tensile shade, steel canopy structural design",
+    breadcrumbs: [
+      { name: "Engineering", url: "/engineering" }
+    ]
+  });
+
   const { ref: r1, isInView: iv1 } = useScrollAnimation({ amount: 0.15 });
   const { ref: r2, isInView: iv2 } = useScrollAnimation({ amount: 0.1 });
   const { ref: r3, isInView: iv3 } = useScrollAnimation({ amount: 0.1 });
