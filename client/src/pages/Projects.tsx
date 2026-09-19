@@ -5,6 +5,7 @@ import { useScrollAnimation, fadeUp, staggerContainer } from "@/hooks/useScrollA
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { useContent } from "@/contexts/ContentContext";
 import { useSEO } from "@/hooks/useSEO";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 const images = {
   hero: "/images/hero.jpg",
@@ -208,13 +209,17 @@ export default function ProjectsPage() {
             <AnimatePresence mode="popLayout">
               {filtered.map((p, i) => (
                 <motion.article key={p.title} className="project-card-full" custom={i} variants={cardVariants} initial="hidden" animate="visible" exit="exit" layout>
-                  <div className="project-image">
-                    <img src={p.image} alt={p.title}
-                      loading={i === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      fetchPriority={i === 0 ? "high" : "auto"}
-                      style={{ objectPosition: i % 3 === 2 ? "center top" : "center" }} />
-                    <div className="project-overlay">
+                  <div className="project-image" style={{ position: "relative" }}>
+                    <ZoomableImage
+                      src={p.image}
+                      alt={p.title}
+                      caption={`${p.title} (${p.city}, ${p.year}) — ${p.system}`}
+                      zoomScale={2.4}
+                      showExpandBtn={true}
+                      priority={i === 0}
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                    <div className="project-overlay" style={{ pointerEvents: "none" }}>
                       <div className="project-overlay-meta">
                         <span>{p.system}</span>
                         <span>{p.area}</span>

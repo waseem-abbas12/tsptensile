@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp, slideInLeft, slideInRight } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { useSEO } from "@/hooks/useSEO";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 const images = {
   detail: "/images/detail.jpg",
@@ -114,7 +115,14 @@ export default function EngineeringPage() {
       {/* Image split */}
       <section className="engineering-split" ref={r3}>
         <motion.div className="engineering-image" variants={slideInLeft} initial="hidden" animate={iv3 ? "visible" : "hidden"}>
-          <img src={images.detail} alt="Cable termination detail" />
+          <ZoomableImage
+            src={images.detail}
+            alt="Cable termination detail"
+            caption="Cable Termination & Fabric Pre-Stress Joint Detail"
+            zoomScale={2.4}
+            showExpandBtn={true}
+            style={{ width: "100%", height: "100%" }}
+          />
         </motion.div>
         <motion.div className="engineering-copy" variants={staggerContainer} initial="hidden" animate={iv3 ? "visible" : "hidden"}>
           <motion.p className="eyebrow" variants={fadeUp}>Site engineering</motion.p>

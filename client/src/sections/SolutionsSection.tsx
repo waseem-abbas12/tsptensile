@@ -6,6 +6,7 @@ import {
   slideInLeft,
   slideInRight,
 } from "@/hooks/useScrollAnimation";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 const images = {
   pool: "/images/commercial.jpg",
@@ -62,9 +63,17 @@ export function SolutionsSection() {
             variants={slideInLeft}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
+            style={{ position: "relative" }}
           >
-            <img src={images.pool} alt="Tensile pool shade in warm daylight" />
-            <div className="image-caption">
+            <ZoomableImage
+              src={images.pool}
+              alt="Tensile pool shade in warm daylight"
+              caption="01 / Swimming Pool & Garden Tensile Canopy - Pakistan"
+              zoomScale={2.4}
+              showExpandBtn={true}
+              style={{ width: "100%", height: "100%" }}
+            />
+            <div className="image-caption" style={{ pointerEvents: "none" }}>
               <span>01 / POOL &amp; GARDEN</span>
               <span>Explore the possibilities ↗</span>
             </div>

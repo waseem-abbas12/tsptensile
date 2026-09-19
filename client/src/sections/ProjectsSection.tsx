@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, fadeUp, staggerContainer } from "@/hooks/useScrollAnimation";
 import { useContent } from "@/contexts/ContentContext";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 const filters = ["All", "Commercial", "Residential", "Hospitality", "Institutional", "Government", "Healthcare"];
 
@@ -80,15 +81,14 @@ export function ProjectsSection({ onQuoteOpen }: ProjectsSectionProps) {
                 onClick={onQuoteOpen}
                 style={{ cursor: "pointer" }}
               >
-                <div className="project-image">
-                  <img
+                <div className="project-image" style={{ position: "relative" }}>
+                  <ZoomableImage
                     src={project.image || "/images/hero.jpg"}
                     alt={project.title}
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = "/images/hero.jpg";
-                    }}
+                    caption={`${project.title} — ${project.city} (${project.type})`}
+                    zoomScale={2.4}
+                    showExpandBtn={true}
+                    style={{ width: "100%", height: "100%" }}
                   />
                 </div>
                 <div className="project-info">

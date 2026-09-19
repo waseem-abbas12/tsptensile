@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { useScrollAnimation, staggerContainer, fadeUp, slideInLeft, slideInRight } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { useSEO } from "@/hooks/useSEO";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 const images = {
   hero: "/images/hero.jpg",
@@ -150,8 +151,15 @@ function SolutionBlock({ sol, idx }: { sol: typeof solutions[0]; idx: number }) 
   return (
     <section className={`solution-full${isEven ? "" : " solution-full-reverse"}`} id={sol.slug} ref={ref}>
       <motion.div className="solution-full-image" variants={isEven ? slideInLeft : slideInRight} initial="hidden" animate={isInView ? "visible" : "hidden"}>
-        <img src={sol.image} alt={sol.name} />
-        <div className="solution-id-badge">{sol.id}</div>
+        <ZoomableImage
+          src={sol.image}
+          alt={sol.name}
+          caption={`${sol.name} — ${sol.tagline}`}
+          badgeText={sol.id}
+          zoomScale={2.4}
+          showExpandBtn={true}
+          style={{ width: "100%", height: "100%", minHeight: "380px" }}
+        />
       </motion.div>
       <motion.div className="solution-full-copy" variants={staggerContainer} initial="hidden" animate={isInView ? "visible" : "hidden"}>
         <motion.p className="eyebrow" variants={fadeUp}>{sol.tagline}</motion.p>

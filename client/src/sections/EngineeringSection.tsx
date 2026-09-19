@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp, slideInLeft, slideInRight } from "@/hooks/useScrollAnimation";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 const images = {
   detail: "/images/detail.jpg",
@@ -21,9 +22,13 @@ export function EngineeringSection({ onQuoteOpen }: EngineeringSectionProps) {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        <img
+        <ZoomableImage
           src={images.detail}
           alt="Close detail of tensile fabric seam and steel connection"
+          caption="Precision Engineering — Fabric Pre-Stress & Stainless Steel Terminal Detail"
+          zoomScale={2.4}
+          showExpandBtn={true}
+          style={{ width: "100%", height: "100%" }}
         />
       </motion.div>
 

@@ -18,6 +18,7 @@ import { TensileCanvas } from "@/components/TensileCanvas";
 import { CITIES_DATA } from "@/data/locationsData";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
 import { useSEO } from "@/hooks/useSEO";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 interface LocationCityProps {
   city?: string;
@@ -201,10 +202,13 @@ export default function LocationCityPage(props?: LocationCityProps) {
 
             <div style={{ position: "relative" }}>
               <div style={{ borderRadius: "10px", overflow: "hidden", boxShadow: "0 20px 50px rgba(20,45,60,0.18)" }}>
-                <img
+                <ZoomableImage
                   src={city.localProjects[0]?.image || "/images/hero.jpg"}
                   alt={`${city.name} Tensile Fabric Cantilever Shade`}
-                  style={{ width: "100%", height: "420px", objectFit: "cover" }}
+                  caption={`${city.name} — Tensile Engineering Installation`}
+                  zoomScale={2.4}
+                  showExpandBtn={true}
+                  style={{ width: "100%", height: "420px" }}
                 />
               </div>
               <div style={{
@@ -331,10 +335,13 @@ export default function LocationCityPage(props?: LocationCityProps) {
                   }}
                 >
                   <div style={{ height: "230px", overflow: "hidden", position: "relative" }}>
-                    <img
+                    <ZoomableImage
                       src={proj.image}
                       alt={`${proj.title} - ${proj.location}`}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      caption={`${proj.title} — ${proj.location} (${proj.type})`}
+                      zoomScale={2.4}
+                      showExpandBtn={true}
+                      style={{ width: "100%", height: "100%" }}
                     />
                     <div style={{
                       position: "absolute",
@@ -345,7 +352,9 @@ export default function LocationCityPage(props?: LocationCityProps) {
                       padding: "4px 10px",
                       borderRadius: "4px",
                       fontSize: "11px",
-                      fontWeight: 600
+                      fontWeight: 600,
+                      pointerEvents: "none",
+                      zIndex: 10,
                     }}>
                       {proj.area}
                     </div>
