@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useContent, DEFAULT_CONTENT, type Project, type Testimonial, type FaqItem, type Office } from "@/contexts/ContentContext";
-import { Plus, Trash2, Save, Download, Upload, RotateCcw, LogOut, ChevronDown, ChevronUp, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { useContent, DEFAULT_CONTENT, DEFAULT_CALCULATOR_CONFIG, type Project, type Testimonial, type FaqItem, type Office, type CalculatorConfig, type FabricRate } from "@/contexts/ContentContext";
+import { Plus, Trash2, Save, Download, Upload, RotateCcw, LogOut, ChevronDown, ChevronUp, Eye, EyeOff, ShieldCheck, Calculator } from "lucide-react";
 import { Link } from "wouter";
 
 const ADMIN_PASSWORD = "formfield2026";
@@ -265,11 +265,238 @@ function OfficesSection() {
   );
 }
 
+function CalculatorSection() {
+  const { content, updateCalculator } = useContent();
+  const [local, setLocal] = useState<CalculatorConfig>(() => ({
+    ...DEFAULT_CALCULATOR_CONFIG,
+    ...(content.calculator || {}),
+    fabrics: (content.calculator?.fabrics || DEFAULT_CALCULATOR_CONFIG.fabrics).map(f => ({ ...f })),
+    structures: (content.calculator?.structures || DEFAULT_CALCULATOR_CONFIG.structures).map(s => ({ ...s })),
+    steelFinishes: (content.calculator?.steelFinishes || DEFAULT_CALCULATOR_CONFIG.steelFinishes).map(st => ({ ...st })),
+    cities: (content.calculator?.cities || DEFAULT_CALCULATOR_CONFIG.cities).map(c => ({ ...c })),
+  }));
+  const [saved, setSaved] = useState(false);
+
+  const save = () => {
+    updateCalculator(local);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  };
+
+  const updateFabricRate = (index: number, rate: number) => {
+    setLocal(prev => {
+      const copy = [...prev.fabrics];
+      copy[index] = { ...copy[index], ratePerSqFt: rate };
+      return { ...prev, fabrics: copy };
+    });
+  };
+
+  const updateFabricField = (index: number, field: keyof FabricRate, val: any) => {
+    setLocal(prev => {
+      const copy = [...prev.fabrics];
+      copy[index] = { ...copy[index], [field]: val };
+      return { ...prev, fabrics: copy };
+    });
+  };
+
+  const updateSteelAddon = (index: number, addon: number) => {
+    setLocal(prev => {
+      const copy = [...prev.steelFinishes];
+      copy[index] = { ...copy[index], rateAddonPerSqFt: addon };
+      return { ...prev, steelFinishes: copy };
+    });
+  };
+
+  const updateCityMultiplier = (index: number, mult: number) => {
+    setLocal(prev => {
+      const copy = [...prev.cities];
+      copy[index] = { ...copy[index], multiplier: mult };
+      return { ...prev, cities: copy };
+    });
+  };
+
+  const updateStructMultiplier = (index: number, mult: number) => {
+    setLocal(prev => {
+      const copy = [...prev.structures];
+      copy[index] = { ...copy[index], multiplier: mult };
+      return { ...prev, structures: copy };
+    });
+  };
+
+  return (
+    <div className="adm-section">
+      <div className="adm-section-header">
+        <h2>Estimation Calculator Settings &amp; Rates (تخمینہ ریٹس)</h2>
+      </div>
+      <p style={{ color: "#64748B", fontSize: "13px", marginTop: "-8px", marginBottom: "20px" }}>
+        Control live pricing calculation per square foot for fabrics, steel finishes, structure models and Pakistani cities.
+      </p>
+
+      {/* Global Rules */}
+      <div style={{ background: "#F8FAFC", border: "1px solid #E2E8F0", borderRadius: "10px", padding: "18px", marginBottom: "24px" }}>
+        <h3 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 14px", color: "var(--ink)" }}>Global Rules &amp; Minimum Charges</h3>
+        <div className="adm-grid-2">
+          <Field
+            label="Minimum Order Price in PKR (e.g. 65000)"
+            value={String(local.minOrderAmountPkr)}
+            onChange={v => setLocal(p => ({ ...p, minOrderAmountPkr: Number(v) || 0 }))}
+            type="number"
+          />
+          <Field
+            label="Minimum Area in Sq. Ft (e.g. 120)"
+            value={String(local.minOrderSqFt)}
+            onChange={v => setLocal(p => ({ ...p, minOrderSqFt: Number(v) || 0 }))}
+            type="number"
+          />
+          <Field
+            label="WhatsApp Quotation Number (digits only, e.g. 923024001063)"
+            value={local.whatsappRecipient}
+            onChange={v => setLocal(p => ({ ...p, whatsappRecipient: v }))}
+          />
+        </div>
+        <Field
+          label="Estimate Disclaimer Note (shows at bottom of calculation)"
+          value={local.disclaimer}
+          onChange={v => setLocal(p => ({ ...p, disclaimer: v }))}
+          rows={2}
+        />
+      </div>
+
+      {/* Fabric Rates Table / Cards */}
+      <div style={{ marginBottom: "28px" }}>
+        <h3 style={{ fontSize: "15px", fontWeight: 700, margin: "0 0 12px", color: "var(--ink)" }}>
+          Fabric Membrane Rates (فیبرک ریٹس فی مربع فٹ - PKR)
+        </h3>
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          {local.fabrics.map((f, i) => (
+            <div key={f.id} style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "10px", padding: "16px", boxShadow: "0 2px 6px rgba(0,0,0,0.03)" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1.2fr 160px 140px 140px", gap: "12px", alignItems: "center" }}>
+                <div>
+                  <strong style={{ fontSize: "13.5px", color: "var(--ink)" }}>{f.name}</strong>
+                  <div style={{ fontSize: "11.5px", color: "#64748B" }}>Origin: {f.origin} · {f.gsm}</div>
+                </div>
+                <div>
+                  <label style={{ fontSize: "11px", fontWeight: 600, color: "#475569", display: "block", marginBottom: "4px" }}>
+                    PKR / Sq. Ft:
+                  </label>
+                  <input
+                    type="number"
+                    value={f.ratePerSqFt}
+                    onChange={e => updateFabricRate(i, Number(e.target.value) || 0)}
+                    style={{ width: "100%", padding: "7px 10px", borderRadius: "6px", border: "1.5px solid #2D6A68", fontWeight: 700, fontSize: "13.5px", color: "#2D6A68" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: "11px", fontWeight: 600, color: "#475569", display: "block", marginBottom: "4px" }}>
+                    Warranty:
+                  </label>
+                  <input
+                    type="text"
+                    value={f.warranty}
+                    onChange={e => updateFabricField(i, "warranty", e.target.value)}
+                    style={{ width: "100%", padding: "7px 10px", borderRadius: "6px", border: "1px solid #CBD5E1", fontSize: "12px" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: "11px", fontWeight: 600, color: "#475569", display: "block", marginBottom: "4px" }}>
+                    Lifespan:
+                  </label>
+                  <input
+                    type="text"
+                    value={f.lifespan}
+                    onChange={e => updateFabricField(i, "lifespan", e.target.value)}
+                    style={{ width: "100%", padding: "7px 10px", borderRadius: "6px", border: "1px solid #CBD5E1", fontSize: "12px" }}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Steel Finish Addons */}
+      <div style={{ marginBottom: "28px" }}>
+        <h3 style={{ fontSize: "15px", fontWeight: 700, margin: "0 0 12px", color: "var(--ink)" }}>
+          Steel Framework Add-on Rates (اسٹیل فریم ورک اضافی ریٹ - PKR)
+        </h3>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "12px" }}>
+          {local.steelFinishes.map((st, i) => (
+            <div key={st.id} style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "10px", padding: "14px" }}>
+              <strong style={{ fontSize: "13px", color: "var(--ink)", display: "block", marginBottom: "2px" }}>{st.name}</strong>
+              <div style={{ fontSize: "11.5px", color: "#64748B", marginBottom: "10px" }}>{st.desc}</div>
+              <label style={{ fontSize: "11px", fontWeight: 600, color: "#475569", display: "block", marginBottom: "4px" }}>
+                Add-on PKR / Sq. Ft (0 for included):
+              </label>
+              <input
+                type="number"
+                value={st.rateAddonPerSqFt}
+                onChange={e => updateSteelAddon(i, Number(e.target.value) || 0)}
+                style={{ width: "100%", padding: "7px 10px", borderRadius: "6px", border: "1px solid #CBD5E1", fontWeight: 700, fontSize: "13px" }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Structure Multipliers */}
+      <div style={{ marginBottom: "28px" }}>
+        <h3 style={{ fontSize: "15px", fontWeight: 700, margin: "0 0 12px", color: "var(--ink)" }}>
+          Structure Type Multipliers (سٹرکچر ماڈل فیکٹرز)
+        </h3>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "10px" }}>
+          {local.structures.map((s, i) => (
+            <div key={s.id} style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "10px", padding: "12px 14px" }}>
+              <strong style={{ fontSize: "12.5px", color: "var(--ink)", display: "block", marginBottom: "6px" }}>{s.name}</strong>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <label style={{ fontSize: "11px", color: "#475569", whiteSpace: "nowrap" }}>Multiplier:</label>
+                <input
+                  type="number"
+                  step="0.05"
+                  value={s.multiplier}
+                  onChange={e => updateStructMultiplier(i, Number(e.target.value) || 1)}
+                  style={{ width: "80px", padding: "4px 8px", borderRadius: "5px", border: "1px solid #CBD5E1", fontWeight: 600, fontSize: "12px" }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* City Logistics Multipliers */}
+      <div style={{ marginBottom: "28px" }}>
+        <h3 style={{ fontSize: "15px", fontWeight: 700, margin: "0 0 12px", color: "var(--ink)" }}>
+          City Logistics Multipliers (شہروں کے لاجسٹکس فیکٹرز)
+        </h3>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "10px" }}>
+          {local.cities.map((c, i) => (
+            <div key={c.id} style={{ background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "10px", padding: "12px 14px" }}>
+              <strong style={{ fontSize: "12.5px", color: "var(--ink)", display: "block", marginBottom: "6px" }}>{c.name}</strong>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <label style={{ fontSize: "11px", color: "#475569", whiteSpace: "nowrap" }}>Factor:</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={c.multiplier}
+                  onChange={e => updateCityMultiplier(i, Number(e.target.value) || 1)}
+                  style={{ width: "80px", padding: "4px 8px", borderRadius: "5px", border: "1px solid #CBD5E1", fontWeight: 600, fontSize: "12px" }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <SaveBar onSave={save} saved={saved} />
+    </div>
+  );
+}
+
 // ── Main Admin Panel ──────────────────────────────────────────────────────
 
 const SECTIONS = [
   { id: "company", label: "🏢 Company Info" },
   { id: "ceo", label: "👤 CEO Profile" },
+  { id: "calculator", label: "📐 Calculator Rates" },
   { id: "projects", label: "🏗️ Projects" },
   { id: "testimonials", label: "🗣️ Testimonials" },
   { id: "faq", label: "❓ FAQ" },
@@ -560,6 +787,7 @@ export default function AdminPage() {
           <motion.div key={active} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
             {active === "company" && <CompanySection />}
             {active === "ceo" && <CeoSection />}
+            {active === "calculator" && <CalculatorSection />}
             {active === "projects" && <ProjectsSection />}
             {active === "testimonials" && <TestimonialsSection />}
             {active === "faq" && <FaqSection />}

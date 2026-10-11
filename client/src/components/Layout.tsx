@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Menu, X, MessageCircle, Smartphone, Download, Calculator, Home, Layers } from "lucide-react";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { QuotePanel } from "@/components/QuotePanel";
 import { AiAssistant } from "@/components/AiAssistant";
 import { SocialIconsRow, FloatingWhatsAppButton } from "@/components/SocialIcons";
 import { useContent } from "@/contexts/ContentContext";
+import { DownloadAppModal } from "@/components/DownloadAppModal";
 
 function BrandMark({ className }: { className?: string }) {
   return (
@@ -37,11 +38,11 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/solutions", label: "Solutions" },
   { href: "/projects", label: "Projects" },
+  { href: "/calculator", label: "Calculator" },
   { href: "/locations", label: "Locations" },
   { href: "/engineering", label: "Engineering" },
   { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
-  { href: "/about/ceo", label: "CEO" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -49,8 +50,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { content } = useContent();
   const [menuOpen, setMenuOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [appModalOpen, setAppModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -98,6 +100,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </nav>
 
           <div className="header-actions">
+            {/* Download Mobile App — Desktop header button */}
+            <button
+              type="button"
+              className="header-download-btn header-download-desktop"
+              onClick={() => setAppModalOpen(true)}
+              title="Download TSP Tensile Mobile App"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                background: "rgba(245, 158, 11, 0.14)",
+                border: "1px solid rgba(245, 158, 11, 0.45)",
+                color: "#B45309",
+                padding: "7px 13px",
+                borderRadius: "100px",
+                fontSize: "12px",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <Smartphone size={14} style={{ color: "#D97706" }} />
+              <span>Download App</span>
+            </button>
+
             {/* Phone — desktop only */}
             <a
               href={`tel:${phoneDisplay.replace(/[^0-9]/g, "")}`}
@@ -124,6 +151,30 @@ export function Layout({ children }: { children: React.ReactNode }) {
               Get a quote <ArrowUpRight size={15} />
             </button>
 
+            {/* Download App — mobile button right at top of screen */}
+            <button
+              type="button"
+              className="header-download-mobile"
+              onClick={() => setAppModalOpen(true)}
+              aria-label="Download TSP Tensile Mobile App"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "5px",
+                background: "#0E2A38",
+                color: "#FFFFFF",
+                border: "1px solid rgba(245, 158, 11, 0.6)",
+                padding: "6px 12px",
+                borderRadius: "100px",
+                fontSize: "11px",
+                fontWeight: 700,
+                cursor: "pointer",
+              }}
+            >
+              <Download size={13} style={{ color: "#F59E0B" }} />
+              <span>App</span>
+            </button>
+
             {/* ☰ Hamburger — ALWAYS visible on mobile */}
             <button
               className="mobile-menu-toggle"
@@ -137,6 +188,46 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {menuOpen && (
           <nav className="mobile-nav">
+            {/* Quick Mobile App Install Banner in Mobile Menu */}
+            <div
+              onClick={() => {
+                setMenuOpen(false);
+                setAppModalOpen(true);
+              }}
+              style={{
+                background: "linear-gradient(135deg, #0E2A38 0%, #173E52 100%)",
+                color: "#FFFFFF",
+                padding: "12px 14px",
+                borderRadius: "10px",
+                marginBottom: "14px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                cursor: "pointer",
+                border: "1px solid rgba(245, 158, 11, 0.4)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <Smartphone size={20} style={{ color: "#F59E0B" }} />
+                <div>
+                  <div style={{ fontSize: "13px", fontWeight: 700 }}>TSP Tensile Mobile App</div>
+                  <div style={{ fontSize: "11px", color: "var(--sage)" }}>1-Tap Install · Works Offline</div>
+                </div>
+              </div>
+              <span
+                style={{
+                  background: "#F59E0B",
+                  color: "#0F172A",
+                  padding: "4px 9px",
+                  borderRadius: "100px",
+                  fontSize: "10.5px",
+                  fontWeight: 800,
+                }}
+              >
+                INSTALL
+              </span>
+            </div>
+
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
                 {link.label}
@@ -231,6 +322,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <span className="footer-label">Company & Legal</span>
             <Link href="/about">About TSP Tensile</Link>
             <Link href="/about/ceo">About the CEO</Link>
+            <Link href="/calculator" style={{ color: "#F59E0B", fontWeight: 700 }}>📐 Cost Calculator (تخمینہ) ↗</Link>
+            <Link href="/app" style={{ color: "var(--sage)", fontWeight: 700 }}>📱 Download Mobile App ↗</Link>
             <Link href="/engineering">Structural Engineering</Link>
             <Link href="/process">Installation Process</Link>
             <Link href="/faq">FAQs & Pricing</Link>
@@ -242,6 +335,44 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <span>Lahore · Islamabad · Rawalpindi · Karachi · Nationwide</span>
         </div>
       </footer>
+
+      {/* ── Mobile App Bottom Bar (Native Mobile App Experience) ── */}
+      <nav
+        className="mobile-bottom-app-bar"
+        aria-label="Mobile App Navigation"
+      >
+        <Link href="/" className={location === "/" ? "active" : ""}>
+          <Home size={18} />
+          <span>Home</span>
+        </Link>
+        <Link href="/calculator" className={location === "/calculator" ? "active" : ""}>
+          <Calculator size={18} />
+          <span>Calculator</span>
+        </Link>
+        <Link href="/projects" className={location === "/projects" ? "active" : ""}>
+          <Layers size={18} />
+          <span>Projects</span>
+        </Link>
+        <button type="button" onClick={() => setAppModalOpen(true)}>
+          <Smartphone size={18} style={{ color: "#F59E0B" }} />
+          <span style={{ color: "#F59E0B" }}>App</span>
+        </button>
+        <a
+          href={`https://wa.me/${whatsappRaw}?text=Hello%20TSP%20Tensile,%20I'd%20like%20to%20inquire%20about%20a%20tensile%20structure.`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MessageCircle size={18} style={{ color: "#25D366" }} />
+          <span>WhatsApp</span>
+        </a>
+      </nav>
+
+      {/* ── Download App Modal ── */}
+      <DownloadAppModal
+        isOpen={appModalOpen}
+        onClose={() => setAppModalOpen(false)}
+        onOpenCalculator={() => navigate("/calculator")}
+      />
 
       {/* ── Quote panel ── */}
       <AnimatePresence>

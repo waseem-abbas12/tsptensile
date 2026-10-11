@@ -59,6 +59,52 @@ export interface CompanyData {
   workingHours: string;
 }
 
+export interface FabricRate {
+  id: string;
+  name: string;
+  origin: string;
+  gsm: string;
+  ratePerSqFt: number;
+  warranty: string;
+  lifespan: string;
+  desc: string;
+  recommended?: boolean;
+}
+
+export interface StructureTypeOption {
+  id: string;
+  name: string;
+  multiplier: number;
+  defaultLengthFt: number;
+  defaultWidthFt: number;
+  desc: string;
+}
+
+export interface SteelFinishOption {
+  id: string;
+  name: string;
+  rateAddonPerSqFt: number;
+  desc: string;
+}
+
+export interface CityOption {
+  id: string;
+  name: string;
+  multiplier: number;
+  desc: string;
+}
+
+export interface CalculatorConfig {
+  minOrderSqFt: number;
+  minOrderAmountPkr: number;
+  whatsappRecipient: string;
+  disclaimer: string;
+  fabrics: FabricRate[];
+  structures: StructureTypeOption[];
+  steelFinishes: SteelFinishOption[];
+  cities: CityOption[];
+}
+
 export interface SiteContent {
   company: CompanyData;
   ceo: CeoData;
@@ -66,6 +112,7 @@ export interface SiteContent {
   testimonials: Testimonial[];
   faqCategories: FaqCategory[];
   offices: Office[];
+  calculator: CalculatorConfig;
 }
 
 const DEFAULT_IMAGES = {
@@ -73,6 +120,174 @@ const DEFAULT_IMAGES = {
   pool: "/images/commercial.jpg",
   walkway: "/images/walkway.jpg",
   detail: "/images/detail.jpg",
+};
+
+export const DEFAULT_CALCULATOR_CONFIG: CalculatorConfig = {
+  minOrderSqFt: 120,
+  minOrderAmountPkr: 65000,
+  whatsappRecipient: "923024001063",
+  disclaimer: "All calculated prices are turnkey estimates for engineering, high-grade steel fabrication, German/imported fabric, anchor bolts, and professional site tensioning. Final exact pricing is confirmed after our complimentary laser site survey.",
+  fabrics: [
+    {
+      id: "german_pvdf_900",
+      name: "German Mehler Valmex PVDF (900 GSM)",
+      origin: "Germany",
+      gsm: "900 GSM",
+      ratePerSqFt: 680,
+      warranty: "15 Years",
+      lifespan: "20–25 Years",
+      desc: "Premium German tensile fabric with self-cleaning PVDF lacquer and UV deflection.",
+      recommended: true
+    },
+    {
+      id: "french_ferrari_1050",
+      name: "French Serge Ferrari PVDF (1050 GSM)",
+      origin: "France",
+      gsm: "1050 GSM",
+      ratePerSqFt: 890,
+      warranty: "20 Years",
+      lifespan: "25–30 Years",
+      desc: "Heavy-duty Précontraint architectural membrane for extreme wind and storm stability."
+    },
+    {
+      id: "ptfe_glass",
+      name: "Architectural PTFE / Woven Glass Fibre",
+      origin: "Japan / Germany",
+      gsm: "1250 GSM",
+      ratePerSqFt: 1650,
+      warranty: "25 Years",
+      lifespan: "35+ Years",
+      desc: "Permanent Class A1 non-combustible landmark membrane with diffused natural daylight."
+    },
+    {
+      id: "commercial_hdpe",
+      name: "Heavy-Duty UV Knitted HDPE Shade Cloth",
+      origin: "Korea / UAE",
+      gsm: "340 GSM",
+      ratePerSqFt: 340,
+      warranty: "8 Years",
+      lifespan: "10–12 Years",
+      desc: "95% shade density, micro-perforated breathable mesh for rapid air circulation."
+    },
+    {
+      id: "korean_pvdf_750",
+      name: "Korean Commercial PVDF Membrane (750 GSM)",
+      origin: "South Korea",
+      gsm: "750 GSM",
+      ratePerSqFt: 490,
+      warranty: "10 Years",
+      lifespan: "12–15 Years",
+      desc: "Economical 100% waterproof lacquer membrane for residential car porches and plazas."
+    }
+  ],
+  structures: [
+    {
+      id: "cantilever_car",
+      name: "Cantilever Car Parking Shade (Single / Double Post)",
+      multiplier: 1.0,
+      defaultLengthFt: 18,
+      defaultWidthFt: 10,
+      desc: "Zero front column obstruction. Seamless vehicle parking for 1, 2, 3 or more bays."
+    },
+    {
+      id: "conical_umbrella",
+      name: "Conical Gazebo / High-Peak Umbrella Shade",
+      multiplier: 1.15,
+      defaultLengthFt: 16,
+      defaultWidthFt: 16,
+      desc: "Central mast cone structure, ideal for courtyard dining, rooftop terraces, cafes and pool pavilions."
+    },
+    {
+      id: "hypar_sail",
+      name: "Hyperbolic Paraboloid (Hypar) Tension Sail",
+      multiplier: 1.20,
+      defaultLengthFt: 20,
+      defaultWidthFt: 15,
+      desc: "Sculptural 3D twisted surface with opposite opposing curvatures. Spectacular modern architectural visual."
+    },
+    {
+      id: "covered_walkway",
+      name: "Curved Arch Covered Walkway / Pathway Canopy",
+      multiplier: 1.10,
+      defaultLengthFt: 40,
+      defaultWidthFt: 8,
+      desc: "Linear continuous covered canopy with integrated rainwater drainage channels for hospital/hotel corridors."
+    },
+    {
+      id: "rooftop_pergola",
+      name: "Rooftop / Terrace Tensile Pergola",
+      multiplier: 1.12,
+      defaultLengthFt: 20,
+      defaultWidthFt: 15,
+      desc: "High wind-load rated roof frame with chemical anchor tie-ins to concrete slab."
+    },
+    {
+      id: "industrial_shed",
+      name: "Industrial PEB Tensile Roof / Factory Shed",
+      multiplier: 0.95,
+      defaultLengthFt: 50,
+      defaultWidthFt: 30,
+      desc: "Large clear-span structural steel truss coverage with lightweight tensioned fabric roof."
+    }
+  ],
+  steelFinishes: [
+    {
+      id: "ms_powder_coated",
+      name: "Grade-50 Structural Steel + Oven-Baked Powder Coating",
+      rateAddonPerSqFt: 0,
+      desc: "Heavy circular/tubular mild steel posts with zinc chromate epoxy primer and polyurethane powder coating (Standard)."
+    },
+    {
+      id: "hot_dip_galv",
+      name: "Hot-Dip Galvanized (80 Microns) + Dual Coat",
+      rateAddonPerSqFt: 120,
+      desc: "Extreme anti-rust protection for humid areas, chemical atmospheres and zero-maintenance rooftop setups."
+    },
+    {
+      id: "ss_316_marine",
+      name: "Marine-Grade Stainless Steel (SS-316) Hardware & Wire Ropes",
+      rateAddonPerSqFt: 280,
+      desc: "Architectural grade stainless steel tensioners, turnbuckles, wire cables & plates for coastal and luxury villas."
+    }
+  ],
+  cities: [
+    {
+      id: "lahore",
+      name: "Lahore (Head Office & Yard)",
+      multiplier: 1.0,
+      desc: "Free on-site laser survey, zero intercity mobilization cost."
+    },
+    {
+      id: "islamabad",
+      name: "Islamabad & Rawalpindi Desk",
+      multiplier: 1.04,
+      desc: "Dedicated Northern engineering team, 24-hour site survey turnaround."
+    },
+    {
+      id: "peshawar",
+      name: "Peshawar & KPK Region",
+      multiplier: 1.07,
+      desc: "Engineered for high wind pressures and valley weather extremes."
+    },
+    {
+      id: "faisalabad",
+      name: "Faisalabad, Sialkot & Gujranwala",
+      multiplier: 1.04,
+      desc: "Rapid delivery across central Punjab industrial belt."
+    },
+    {
+      id: "karachi",
+      name: "Karachi & Coastal Area",
+      multiplier: 1.12,
+      desc: "Special marine coastal rust-proofing and coastal wind engineering."
+    },
+    {
+      id: "multan",
+      name: "Multan, Bahawalpur & South Punjab",
+      multiplier: 1.05,
+      desc: "High solar radiation deflection and extreme summer heat resistance."
+    }
+  ]
 };
 
 export const DEFAULT_CONTENT: SiteContent = {
@@ -280,6 +495,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     { city: "Islamabad", address: "F-8 Markaz, Islamabad, ICT", phone: "0302 4001063", email: "info@tsptensile.pk" },
     { city: "Rawalpindi", address: "Saddar, Rawalpindi, Punjab", phone: "0302 4001063", email: "info@tsptensile.pk" },
   ],
+  calculator: DEFAULT_CALCULATOR_CONFIG,
 };
 
 // ── Context ────────────────────────────────────────────────────────────────
@@ -291,6 +507,7 @@ interface ContentContextType {
   updateContent: (patch: Partial<SiteContent>) => void;
   updateCompany: (patch: Partial<CompanyData>) => void;
   updateCeo: (patch: Partial<CeoData>) => void;
+  updateCalculator: (patch: Partial<CalculatorConfig>) => void;
   setProjects: (projects: Project[]) => void;
   setTestimonials: (testimonials: Testimonial[]) => void;
   setFaqCategories: (cats: FaqCategory[]) => void;
@@ -342,6 +559,7 @@ function loadFromStorage(): SiteContent {
       ...parsed,
       company: { ...DEFAULT_CONTENT.company, ...parsed.company },
       ceo: { ...DEFAULT_CONTENT.ceo, ...parsed.ceo },
+      calculator: { ...DEFAULT_CALCULATOR_CONFIG, ...(parsed.calculator || {}) },
     };
   } catch (err) {
     console.error("Failed to load from storage", err);
@@ -403,6 +621,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
             ...parsed,
             company: { ...DEFAULT_CONTENT.company, ...parsed?.company },
             ceo: { ...DEFAULT_CONTENT.ceo, ...parsed?.ceo },
+            calculator: { ...DEFAULT_CALCULATOR_CONFIG, ...(parsed?.calculator || {}) },
           };
           setContent(merged);
           // Sync cache
@@ -421,6 +640,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
   const updateContent = (patch: Partial<SiteContent>) => save({ ...content, ...patch });
   const updateCompany = (patch: Partial<CompanyData>) => save({ ...content, company: { ...content.company, ...patch } });
   const updateCeo = (patch: Partial<CeoData>) => save({ ...content, ceo: { ...content.ceo, ...patch } });
+  const updateCalculator = (patch: Partial<CalculatorConfig>) => save({ ...content, calculator: { ...content.calculator, ...patch } });
   const setProjects = (projects: Project[]) => save({ ...content, projects });
   const setTestimonials = (testimonials: Testimonial[]) => save({ ...content, testimonials });
   const setFaqCategories = (faqCategories: FaqCategory[]) => save({ ...content, faqCategories });
@@ -442,14 +662,20 @@ export function ContentProvider({ children }: { children: ReactNode }) {
   const importData = (json: string): boolean => {
     try {
       const parsed = JSON.parse(json);
-      const merged = { ...DEFAULT_CONTENT, ...parsed, company: { ...DEFAULT_CONTENT.company, ...parsed.company }, ceo: { ...DEFAULT_CONTENT.ceo, ...parsed.ceo } };
+      const merged = { 
+        ...DEFAULT_CONTENT, 
+        ...parsed, 
+        company: { ...DEFAULT_CONTENT.company, ...parsed.company }, 
+        ceo: { ...DEFAULT_CONTENT.ceo, ...parsed.ceo },
+        calculator: { ...DEFAULT_CALCULATOR_CONFIG, ...(parsed.calculator || {}) }
+      };
       save(merged);
       return true;
     } catch { return false; }
   };
 
   return (
-    <ContentContext.Provider value={{ content, updateContent, updateCompany, updateCeo, setProjects, setTestimonials, setFaqCategories, setOffices, resetToDefaults, exportData, importData }}>
+    <ContentContext.Provider value={{ content, updateContent, updateCompany, updateCeo, updateCalculator, setProjects, setTestimonials, setFaqCategories, setOffices, resetToDefaults, exportData, importData }}>
       {children}
     </ContentContext.Provider>
   );
