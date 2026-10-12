@@ -377,6 +377,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <span className="footer-label">Company & Legal</span>
             <Link href="/about">About TSP Tensile</Link>
             <Link href="/about/ceo">About the CEO</Link>
+            <a
+              href="/TSP_Tensile_Structures_Company_Profile.pdf"
+              download="TSP_Tensile_Structures_Company_Profile.pdf"
+              style={{ color: "#F59E0B", fontWeight: 700 }}
+              title="Download official company profile PDF"
+            >
+              📄 Company Profile (PDF) ⬇
+            </a>
             <Link href="/calculator" style={{ color: "#F59E0B", fontWeight: 700 }}>📐 Cost Calculator (تخمینہ) ↗</Link>
             <Link href="/app" style={{ color: "var(--sage)", fontWeight: 700 }}>📱 Download Mobile App ↗</Link>
             <Link href="/engineering">Structural Engineering</Link>

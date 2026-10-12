@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileText, Download } from "lucide-react";
 import { useScrollAnimation, staggerContainer, fadeUp } from "@/hooks/useScrollAnimation";
 import { TensileCanvas } from "@/components/TensileCanvas";
 import { useSEO } from "@/hooks/useSEO";
@@ -65,6 +65,29 @@ export default function AboutPage() {
             <motion.p variants={fadeUp}>
               We are not a shade supplier with a catalogue. Every structure we build begins with a site visit, a conversation and a design that responds to the specific place. Our team carries the idea from the first sketch to the final bolt — without handovers.
             </motion.p>
+            <motion.div variants={fadeUp} style={{ marginTop: "24px" }}>
+              <a
+                href="/TSP_Tensile_Structures_Company_Profile.pdf"
+                download="TSP_Tensile_Structures_Company_Profile.pdf"
+                className="btn btn-primary"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  background: "#0E2A38",
+                  color: "#FFFFFF",
+                  padding: "13px 26px",
+                  borderRadius: "100px",
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  boxShadow: "0 8px 24px rgba(14, 42, 56, 0.25)",
+                  textDecoration: "none"
+                }}
+              >
+                <FileText size={18} style={{ color: "#F59E0B" }} />
+                <span>Download Official Company Profile (PDF) ⬇</span>
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
