@@ -10,6 +10,8 @@ export function usePwaInstall() {
   const [isInstalled, setIsInstalled] = useState(false);
   const [isIos, setIsIos] = useState(false);
   const [isAndroid, setIsAndroid] = useState(false);
+  const [isInAppBrowser, setIsInAppBrowser] = useState(false);
+  const [isChrome, setIsChrome] = useState(false);
 
   useEffect(() => {
     // Check if app is already running in standalone/installed mode
@@ -24,9 +26,13 @@ export function usePwaInstall() {
     const ua = window.navigator.userAgent.toLowerCase();
     const isIosDevice = /iphone|ipad|ipod/.test(ua) && !(window as unknown as { MSStream?: unknown }).MSStream;
     const isAndroidDevice = /android/.test(ua);
+    const inApp = /fban|fbav|instagram|messenger|whatsapp|threads|snapchat|tiktok|line|micromessenger/.test(ua);
+    const chromeBrowser = /chrome|crios/.test(ua) && !/edg|opr|brave/.test(ua) && !inApp;
 
     setIsIos(isIosDevice);
     setIsAndroid(isAndroidDevice);
+    setIsInAppBrowser(inApp);
+    setIsChrome(chromeBrowser);
 
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
@@ -46,6 +52,12 @@ export function usePwaInstall() {
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
+
+  const openInChrome = () => {
+    const currentHostAndPath = window.location.host + window.location.pathname + window.location.search;
+    // Android Chrome Intent triggers genuine Google Chrome application
+    window.location.href = `intent://${currentHostAndPath}#Intent;scheme=https;package=com.android.chrome;end`;
+  };
 
   const promptInstall = async (): Promise<"accepted" | "dismissed" | "unavailable"> => {
     if (!deferredPrompt) {
@@ -69,6 +81,9 @@ export function usePwaInstall() {
     isInstalled,
     isIos,
     isAndroid,
+    isInAppBrowser,
+    isChrome,
+    openInChrome,
     promptInstall,
   };
 }

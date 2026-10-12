@@ -13,15 +13,20 @@ import {
   MessageCircle,
   Eye,
   Zap,
-  Globe
+  Globe,
+  ExternalLink,
+  AlertTriangle
 } from "lucide-react";
 import { usePwaInstall } from "@/hooks/usePwaInstall";
 import { useSEO } from "@/hooks/useSEO";
 import { useContent } from "@/contexts/ContentContext";
+import { DownloadAppModal } from "@/components/DownloadAppModal";
 
 export default function MobileAppPage() {
-  const { canInstall, isInstalled, isIos, promptInstall } = usePwaInstall();
+  const { canInstall, isInstalled, isIos, isAndroid, isInAppBrowser, openInChrome, promptInstall } = usePwaInstall();
   const { content } = useContent();
+  const [showModal, setShowModal] = useState(false);
+  const [installStatus, setInstallStatus] = useState<string | null>(null);
 
   useSEO({
     title: "Download TSP Tensile Mobile App | Progressive Web App Pakistan",
@@ -29,14 +34,16 @@ export default function MobileAppPage() {
     path: "/app"
   });
 
-  const [installStatus, setInstallStatus] = useState<string | null>(null);
-
   const handleInstall = async () => {
     if (canInstall) {
       const res = await promptInstall();
       if (res === "accepted") {
         setInstallStatus("installed");
       }
+    } else if (isInAppBrowser) {
+      openInChrome();
+    } else {
+      setShowModal(true);
     }
   };
 
@@ -44,6 +51,7 @@ export default function MobileAppPage() {
 
   return (
     <div className="mobile-app-page" style={{ background: "var(--paper)", minHeight: "100vh", paddingBottom: "100px" }}>
+      <DownloadAppModal isOpen={showModal} onClose={() => setShowModal(false)} />
       {/* ── Hero Section ── */}
       <section
         style={{
@@ -68,6 +76,48 @@ export default function MobileAppPage() {
               <p style={{ fontSize: "16.5px", color: "rgba(255, 255, 255, 0.85)", lineHeight: 1.65, margin: "0 0 28px", maxWidth: "600px" }}>
                 Install the complete TSP Tensile mobile app on your Android or iPhone. Fast, lightweight, works offline, and includes the live Tensile Cost Estimation Calculator.
               </p>
+
+              {/* In-App Browser Warning (WhatsApp / Facebook) */}
+              {isInAppBrowser && (
+                <div
+                  style={{
+                    background: "rgba(245, 158, 11, 0.2)",
+                    border: "1px solid rgba(245, 158, 11, 0.5)",
+                    borderRadius: "12px",
+                    padding: "12px 16px",
+                    marginBottom: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <AlertTriangle size={20} style={{ color: "#FBBF24", flexShrink: 0 }} />
+                  <span style={{ fontSize: "13px", color: "#FEF3C7", flex: 1, minWidth: "200px" }}>
+                    آپ واٹس ایپ کے براؤزر میں ہیں۔ براہ کرم نیچے دیے گئے بٹن سے گوگل کروم میں کھولیں تاکہ ایپ فون پر انسٹال ہو سکے۔
+                  </span>
+                  <button
+                    type="button"
+                    onClick={openInChrome}
+                    style={{
+                      background: "#F59E0B",
+                      color: "#0F172A",
+                      border: "none",
+                      borderRadius: "8px",
+                      padding: "8px 14px",
+                      fontSize: "12.5px",
+                      fontWeight: 700,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <ExternalLink size={14} />
+                    <span>کروم میں کھولیں</span>
+                  </button>
+                </div>
+              )}
 
               {/* Action Buttons */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", alignItems: "center", marginBottom: "24px" }}>
