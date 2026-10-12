@@ -22,6 +22,7 @@ const FaqPage = lazy(() => import("./pages/FAQ"));
 const ContactPage = lazy(() => import("./pages/Contact"));
 const CalculatorPage = lazy(() => import("./pages/Calculator"));
 const MobileAppPage = lazy(() => import("./pages/MobileApp"));
+const CompanyProfilePage = lazy(() => import("./pages/CompanyProfile"));
 const AdminPage = lazy(() => import("./pages/Admin"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -62,6 +63,9 @@ export default function App() {
                       <Route path="/engineering" component={EngineeringPage} />
                       <Route path="/about" component={AboutPage} />
                       <Route path="/about/ceo" component={CeoPage} />
+                      <Route path="/company-profile" component={CompanyProfilePage} />
+                      <Route path="/profile" component={CompanyProfilePage} />
+                      <Route path="/dossier" component={CompanyProfilePage} />
                       <Route path="/faq" component={FaqPage} />
                       <Route path="/calculator" component={CalculatorPage} />
                       <Route path="/estimate" component={CalculatorPage} />

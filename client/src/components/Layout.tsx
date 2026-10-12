@@ -36,6 +36,7 @@ function BrandMark({ className }: { className?: string }) {
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/company-profile", label: "Profile" },
   { href: "/solutions", label: "Solutions" },
   { href: "/projects", label: "Projects" },
   { href: "/calculator", label: "Calculator" },
@@ -377,13 +378,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <span className="footer-label">Company & Legal</span>
             <Link href="/about">About TSP Tensile</Link>
             <Link href="/about/ceo">About the CEO</Link>
+            <Link href="/company-profile" style={{ color: "#F59E0B", fontWeight: 700 }}>
+              🌟 Corporate Profile (Dossier)
+            </Link>
             <a
               href="/TSP_Tensile_Structures_Company_Profile.pdf"
               download="TSP_Tensile_Structures_Company_Profile.pdf"
               style={{ color: "#F59E0B", fontWeight: 700 }}
               title="Download official company profile PDF"
             >
-              📄 Company Profile (PDF) ⬇
+              📄 Download Profile (PDF 8.7MB) ⬇
             </a>
             <Link href="/calculator" style={{ color: "#F59E0B", fontWeight: 700 }}>📐 Cost Calculator (تخمینہ) ↗</Link>
             <Link href="/app" style={{ color: "var(--sage)", fontWeight: 700 }}>📱 Download Mobile App ↗</Link>
