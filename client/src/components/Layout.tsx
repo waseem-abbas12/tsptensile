@@ -73,6 +73,61 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <div className="site-shell">
       <ScrollProgress />
 
+      {/* ── Top Announcement Bar (Controllable from Admin Panel) ── */}
+      {content.appSettings?.announcementEnabled && (
+        <aside
+          className="top-announcement-bar"
+          style={{
+            background: "linear-gradient(90deg, #0B1E28 0%, #173E52 50%, #0B1E28 100%)",
+            color: "#FFFFFF",
+            padding: "8px 16px",
+            fontSize: "12px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "10px",
+            borderBottom: "1px solid rgba(245, 158, 11, 0.3)",
+            textAlign: "center",
+            position: "relative",
+            zIndex: 1000,
+            flexWrap: "wrap",
+          }}
+        >
+          <span
+            style={{
+              background: "#F59E0B",
+              color: "#0F172A",
+              fontSize: "10px",
+              fontWeight: 800,
+              padding: "2px 8px",
+              borderRadius: "100px",
+              letterSpacing: "0.05em",
+            }}
+          >
+            {content.appSettings?.announcementBadge || "OFFICIAL APP"}
+          </span>
+          <span style={{ color: "#E2E8F0" }}>
+            {content.appSettings?.announcementTextUrdu || "موبائل ایپ لائیو: ریئل ٹائم تخمینہ کیلکولیٹر اور 2.4x ایچ ڈی زوم فیچر کے ساتھ"}
+          </span>
+          <button
+            type="button"
+            onClick={() => setAppModalOpen(true)}
+            style={{
+              background: "rgba(255,255,255,0.15)",
+              border: "1px solid rgba(255,255,255,0.35)",
+              color: "#FFFFFF",
+              borderRadius: "100px",
+              padding: "2px 10px",
+              fontSize: "11px",
+              fontWeight: 700,
+              cursor: "pointer",
+            }}
+          >
+            Download App ↗
+          </button>
+        </aside>
+      )}
+
       {/* ── Header ── */}
       <header className={`site-header${scrolled ? " scrolled" : ""}`}>
         <div className="header-inner">
@@ -337,35 +392,37 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </footer>
 
       {/* ── Mobile App Bottom Bar (Native Mobile App Experience) ── */}
-      <nav
-        className="mobile-bottom-app-bar"
-        aria-label="Mobile App Navigation"
-      >
-        <Link href="/" className={location === "/" ? "active" : ""}>
-          <Home size={18} />
-          <span>Home</span>
-        </Link>
-        <Link href="/calculator" className={location === "/calculator" ? "active" : ""}>
-          <Calculator size={18} />
-          <span>Calculator</span>
-        </Link>
-        <Link href="/projects" className={location === "/projects" ? "active" : ""}>
-          <Layers size={18} />
-          <span>Projects</span>
-        </Link>
-        <button type="button" onClick={() => setAppModalOpen(true)}>
-          <Smartphone size={18} style={{ color: "#F59E0B" }} />
-          <span style={{ color: "#F59E0B" }}>App</span>
-        </button>
-        <a
-          href={`https://wa.me/${whatsappRaw}?text=Hello%20TSP%20Tensile,%20I'd%20like%20to%20inquire%20about%20a%20tensile%20structure.`}
-          target="_blank"
-          rel="noopener noreferrer"
+      {content.appSettings?.showAppFloatingBanner !== false && (
+        <nav
+          className="mobile-bottom-app-bar"
+          aria-label="Mobile App Navigation"
         >
-          <MessageCircle size={18} style={{ color: "#25D366" }} />
-          <span>WhatsApp</span>
-        </a>
-      </nav>
+          <Link href="/" className={location === "/" ? "active" : ""}>
+            <Home size={18} />
+            <span>Home</span>
+          </Link>
+          <Link href="/calculator" className={location === "/calculator" ? "active" : ""}>
+            <Calculator size={18} />
+            <span>Calculator</span>
+          </Link>
+          <Link href="/projects" className={location === "/projects" ? "active" : ""}>
+            <Layers size={18} />
+            <span>Projects</span>
+          </Link>
+          <button type="button" onClick={() => setAppModalOpen(true)}>
+            <Smartphone size={18} style={{ color: "#F59E0B" }} />
+            <span style={{ color: "#F59E0B" }}>App</span>
+          </button>
+          <a
+            href={`https://wa.me/${whatsappRaw}?text=Hello%20TSP%20Tensile,%20I'd%20like%20to%20inquire%20about%20a%20tensile%20structure.`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={18} style={{ color: "#25D366" }} />
+            <span>WhatsApp</span>
+          </a>
+        </nav>
+      )}
 
       {/* ── Download App Modal ── */}
       <DownloadAppModal

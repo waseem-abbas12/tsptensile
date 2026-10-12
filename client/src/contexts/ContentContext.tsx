@@ -94,11 +94,36 @@ export interface CityOption {
   desc: string;
 }
 
+export interface AppSettings {
+  announcementEnabled: boolean;
+  announcementTextUrdu: string;
+  announcementTextEn: string;
+  announcementBadge: string;
+  bannerDiscountText: string;
+  showAppFloatingBanner: boolean;
+  appDirectApkUrl: string;
+  appPlayStoreUrl: string;
+  customWhatsAppQuoteNumber: string;
+}
+
+export const DEFAULT_APP_SETTINGS: AppSettings = {
+  announcementEnabled: true,
+  announcementTextUrdu: "موبائل ایپ لائیو: ریئل ٹائم تخمینہ کیلکولیٹر اور 2.4x ایچ ڈی زوم فیچر کے ساتھ",
+  announcementTextEn: "Official Mobile App is live with Instant Cost Calculator & 2.4x Fabric Loupe Zoom.",
+  announcementBadge: "OFFICIAL APP",
+  bannerDiscountText: "Get Free 3D Renders & Turnkey Site Survey Booking via App",
+  showAppFloatingBanner: true,
+  appDirectApkUrl: "",
+  appPlayStoreUrl: "",
+  customWhatsAppQuoteNumber: "923024001063",
+};
+
 export interface CalculatorConfig {
   minOrderSqFt: number;
   minOrderAmountPkr: number;
   whatsappRecipient: string;
   disclaimer: string;
+  discountPercent?: number;
   fabrics: FabricRate[];
   structures: StructureTypeOption[];
   steelFinishes: SteelFinishOption[];
@@ -113,6 +138,7 @@ export interface SiteContent {
   faqCategories: FaqCategory[];
   offices: Office[];
   calculator: CalculatorConfig;
+  appSettings: AppSettings;
 }
 
 const DEFAULT_IMAGES = {
@@ -496,6 +522,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     { city: "Rawalpindi", address: "Saddar, Rawalpindi, Punjab", phone: "0302 4001063", email: "info@tsptensile.pk" },
   ],
   calculator: DEFAULT_CALCULATOR_CONFIG,
+  appSettings: DEFAULT_APP_SETTINGS,
 };
 
 // ── Context ────────────────────────────────────────────────────────────────
@@ -508,6 +535,7 @@ interface ContentContextType {
   updateCompany: (patch: Partial<CompanyData>) => void;
   updateCeo: (patch: Partial<CeoData>) => void;
   updateCalculator: (patch: Partial<CalculatorConfig>) => void;
+  updateAppSettings: (patch: Partial<AppSettings>) => void;
   setProjects: (projects: Project[]) => void;
   setTestimonials: (testimonials: Testimonial[]) => void;
   setFaqCategories: (cats: FaqCategory[]) => void;
@@ -560,6 +588,7 @@ function loadFromStorage(): SiteContent {
       company: { ...DEFAULT_CONTENT.company, ...parsed.company },
       ceo: { ...DEFAULT_CONTENT.ceo, ...parsed.ceo },
       calculator: { ...DEFAULT_CALCULATOR_CONFIG, ...(parsed.calculator || {}) },
+      appSettings: { ...DEFAULT_APP_SETTINGS, ...(parsed.appSettings || {}) },
     };
   } catch (err) {
     console.error("Failed to load from storage", err);
@@ -622,6 +651,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
             company: { ...DEFAULT_CONTENT.company, ...parsed?.company },
             ceo: { ...DEFAULT_CONTENT.ceo, ...parsed?.ceo },
             calculator: { ...DEFAULT_CALCULATOR_CONFIG, ...(parsed?.calculator || {}) },
+            appSettings: { ...DEFAULT_APP_SETTINGS, ...(parsed?.appSettings || {}) },
           };
           setContent(merged);
           // Sync cache
@@ -641,6 +671,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
   const updateCompany = (patch: Partial<CompanyData>) => save({ ...content, company: { ...content.company, ...patch } });
   const updateCeo = (patch: Partial<CeoData>) => save({ ...content, ceo: { ...content.ceo, ...patch } });
   const updateCalculator = (patch: Partial<CalculatorConfig>) => save({ ...content, calculator: { ...content.calculator, ...patch } });
+  const updateAppSettings = (patch: Partial<AppSettings>) => save({ ...content, appSettings: { ...(content.appSettings || DEFAULT_APP_SETTINGS), ...patch } });
   const setProjects = (projects: Project[]) => save({ ...content, projects });
   const setTestimonials = (testimonials: Testimonial[]) => save({ ...content, testimonials });
   const setFaqCategories = (faqCategories: FaqCategory[]) => save({ ...content, faqCategories });
@@ -655,7 +686,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     const blob = new Blob([JSON.stringify(content, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url; a.download = "formfield-content.json"; a.click();
+    a.href = url; a.download = "tsptensile-master-content.json"; a.click();
     URL.revokeObjectURL(url);
   };
 
@@ -667,7 +698,8 @@ export function ContentProvider({ children }: { children: ReactNode }) {
         ...parsed, 
         company: { ...DEFAULT_CONTENT.company, ...parsed.company }, 
         ceo: { ...DEFAULT_CONTENT.ceo, ...parsed.ceo },
-        calculator: { ...DEFAULT_CALCULATOR_CONFIG, ...(parsed.calculator || {}) }
+        calculator: { ...DEFAULT_CALCULATOR_CONFIG, ...(parsed.calculator || {}) },
+        appSettings: { ...DEFAULT_APP_SETTINGS, ...(parsed.appSettings || {}) }
       };
       save(merged);
       return true;
@@ -675,7 +707,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <ContentContext.Provider value={{ content, updateContent, updateCompany, updateCeo, updateCalculator, setProjects, setTestimonials, setFaqCategories, setOffices, resetToDefaults, exportData, importData }}>
+    <ContentContext.Provider value={{ content, updateContent, updateCompany, updateCeo, updateCalculator, updateAppSettings, setProjects, setTestimonials, setFaqCategories, setOffices, resetToDefaults, exportData, importData }}>
       {children}
     </ContentContext.Provider>
   );
