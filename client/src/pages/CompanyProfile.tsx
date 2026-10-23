@@ -370,18 +370,41 @@ export default function CompanyProfilePage() {
                   gap: 10,
                   background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
                   color: "#0B1E28",
-                  padding: "16px 32px",
+                  padding: "16px 30px",
                   borderRadius: 100,
                   fontWeight: 900,
-                  fontSize: 15,
+                  fontSize: 14.5,
                   boxShadow: "0 12px 30px rgba(245, 158, 11, 0.4)",
                   textDecoration: "none",
                   transition: "all 0.25s ease",
                   border: "2px solid #FCD34D",
                 }}
               >
-                <Download size={20} style={{ strokeWidth: 2.5 }} />
-                <span>DOWNLOAD OFFICIAL 12-PAGE PDF (8.7 MB)</span>
+                <Download size={19} style={{ strokeWidth: 2.5 }} />
+                <span>DOWNLOAD 12-PAGE PDF (6.5 MB)</span>
+              </a>
+
+              <a
+                href="/company-profile.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 9,
+                  background: "rgba(255, 255, 255, 0.15)",
+                  border: "1.5px solid rgba(245, 158, 11, 0.5)",
+                  color: "#FFFFFF",
+                  padding: "16px 26px",
+                  borderRadius: 100,
+                  fontWeight: 800,
+                  fontSize: 14.5,
+                  textDecoration: "none",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                <FileText size={18} style={{ color: "#F59E0B" }} />
+                <span>VIEW PRINT MAGAZINE SPREAD ↗</span>
               </a>
 
               <a
@@ -1298,7 +1321,29 @@ export default function CompanyProfilePage() {
                 }}
               >
                 <Download size={18} />
-                <span>DOWNLOAD 12-PAGE PDF</span>
+                <span>DOWNLOAD 12-PAGE PDF (6.5 MB)</span>
+              </a>
+
+              <a
+                href="/company-profile.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 9,
+                  background: "rgba(255, 255, 255, 0.15)",
+                  border: "1.5px solid rgba(245, 158, 11, 0.5)",
+                  color: "#FFFFFF",
+                  padding: "15px 26px",
+                  borderRadius: 100,
+                  fontWeight: 800,
+                  fontSize: 14.5,
+                  textDecoration: "none",
+                }}
+              >
+                <FileText size={18} style={{ color: "#F59E0B" }} />
+                <span>VIEW PRINT SPREAD ↗</span>
               </a>
 
               <a
