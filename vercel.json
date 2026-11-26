@@ -2,13 +2,101 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "routes": [
+  "redirects": [
     {
-      "handle": "filesystem"
+      "source": "/",
+      "destination": "https://www.muzzayantensileengineering.com/",
+      "statusCode": 301
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/solutions",
+      "destination": "https://www.muzzayantensileengineering.com/solutions",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects",
+      "destination": "https://www.muzzayantensileengineering.com/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations",
+      "destination": "https://www.muzzayantensileengineering.com/locations",
+      "statusCode": 301
+    },
+    {
+      "source": "/engineering",
+      "destination": "https://www.muzzayantensileengineering.com/engineering",
+      "statusCode": 301
+    },
+    {
+      "source": "/process",
+      "destination": "https://www.muzzayantensileengineering.com/process",
+      "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "destination": "https://www.muzzayantensileengineering.com/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/about/ceo",
+      "destination": "https://www.muzzayantensileengineering.com/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/faq",
+      "destination": "https://www.muzzayantensileengineering.com/faq",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "destination": "https://www.muzzayantensileengineering.com/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/lahore",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-lahore",
+      "statusCode": 301
+    },
+    {
+      "source": "/car-parking-shades-lahore",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-lahore",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/islamabad",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-islamabad",
+      "statusCode": 301
+    },
+    {
+      "source": "/car-parking-shades-islamabad",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-islamabad",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/rawalpindi",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-rawalpindi",
+      "statusCode": 301
+    },
+    {
+      "source": "/car-parking-shades-rawalpindi",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-rawalpindi",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/karachi",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-karachi",
+      "statusCode": 301
+    },
+    {
+      "source": "/car-parking-shades-karachi",
+      "destination": "https://www.muzzayantensileengineering.com/car-parking-shades-karachi",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://www.muzzayantensileengineering.com/",
+      "statusCode": 301
     }
   ]
 }
